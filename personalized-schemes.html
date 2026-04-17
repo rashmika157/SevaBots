@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Personalized Schemes - SevaBots</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .centered-question-layout {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 50vh;
+      text-align: center;
+    }
+    .main-question {
+      font-size: 2.25rem;
+      font-weight: 600;
+      color: var(--primary-text);
+      margin-bottom: 48px;
+    }
+    .large-btn-container {
+      display: flex;
+      gap: 32px;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+    }
+    .huge-choice-btn {
+      padding: 24px 64px;
+      font-size: 1.5rem;
+      font-weight: 500;
+      background-color: var(--surface-color);
+      color: var(--primary-text);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      cursor: pointer;
+      box-shadow: 0 4px 6px -4px rgba(0, 0, 0, 0.05);
+      width: 100%;
+      max-width: 500px;
+    }
+    .huge-choice-btn:hover {
+      border-color: var(--accent-color);
+      background-color: #f0f9ff;
+      color: var(--accent-color);
+    }
+    .message-text {
+      font-size: 1.75rem;
+      color: var(--secondary-text);
+      font-weight: 500;
+      max-width: 600px;
+      line-height: 1.5;
+    }
+    #occupation-select:focus {
+      outline: 2px solid var(--accent-color);
+    }
+  </style>
+</head>
+<body class="landing-page">
+  <div class="container">
+    <nav class="main-nav">
+      <a href="index.html" class="nav-link" data-i18n="Home">Home</a>
+      <a href="explore.html" class="nav-link" data-i18n="Explore Schemes">Explore Schemes</a>
+      <a href="personalized-schemes.html" class="nav-link active" data-i18n="Personalized Schemes">Personalized Schemes</a>
+      <a href="assistant.html" class="nav-link" data-i18n="AI Assistant">AI Assistant</a>
+    </nav>
+
+    <header style="justify-content: center; margin-bottom: 24px;">
+      <h1 id="page-title" style="text-align: center;" data-i18n="Personalized Schemes">Personalized Schemes</h1>
+    </header>
+
+    <main class="centered-question-layout" id="chat-stage">
+      <!-- Default fall-back placeholder before JS loads -->
+      <div class="main-question">Select your occupation</div>
+    </main>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const stage = document.getElementById('chat-stage');
+      
+      const schemeFlows = {
+        "Agriculture Sector": [
+          { q: "Are you a farmer?", opts: ["Yes", "No"] },
+          { q: "Do you own agricultural land?", opts: ["Yes", "No"] },
+          { q: "What is the size of your land?", opts: ["Small (less than 2 acres)", "Medium (2–5 acres)", "Large (more than 5 acres)"] },
+          { q: "What type of crops do you grow?", opts: ["Food crops (rice, wheat)", "Cash crops (cotton, sugarcane)", "Fruits / vegetables", "Not sure"] },
+          { q: "Do you have irrigation facilities?", opts: ["Yes (borewell / canal)", "No (rain-dependent)", "Not sure"] },
+          { q: "Do you own any heavy farm equipment (e.g. Tractor)?", opts: ["Yes", "No"] },
+          { q: "Have you taken any crop loan historically?", opts: ["Yes", "No"] },
+          { q: "Are you registered under PM-KISAN?", opts: ["Yes", "No", "Don't know"] },
+          { q: "What kind of support do you need?", opts: ["Loan for farming", "Equipment subsidy", "Crop insurance", "Financial support", "Not sure"] },
+          { q: "What is your annual family income?", opts: ["Below ₹2 Lakhs", "₹2–5 Lakhs", "Above ₹5 Lakhs"] },
+          { q: "Where do you live?", opts: ["Rural", "Semi-urban"] },
+          { q: "Do you belong to any category?", opts: ["General", "OBC", "SC/ST"] },
+          { q: "Select your age group", opts: ["Below 30", "30–50", "Above 50"] }
+        ],
+        "Medical Sector": [
+          { q: "Are you seeking healthcare support for yourself or family?", opts: ["Myself", "Family Member"] },
+          { q: "What is your primary healthcare requirement?", opts: ["Hospitalization / Surgery", "Chronic disease treatment", "Maternity care", "General checkups"] },
+          { q: "Do you suffer from any critical illness?", opts: ["Cancer", "Heart Disease", "Kidney issues", "None", "Other"] },
+          { q: "Are you a person with disabilities (PwD)?", opts: ["Yes", "No"] },
+          { q: "Are you a pregnant or lactating mother?", opts: ["Yes", "No", "Not Applicable"] },
+          { q: "Do you have an Ayushman Bharat Card (PMJAY)?", opts: ["Yes", "No", "Don't know"] },
+          { q: "Do you have any private health insurance?", opts: ["Yes", "No"] },
+          { q: "What kind of hospital do you prefer?", opts: ["Government", "Empanelled Private", "Any"] },
+          { q: "Do you possess a BPL (Below Poverty Line) card?", opts: ["Yes", "No"] },
+          { q: "What is your annual family income?", opts: ["Below ₹1 Lakh", "₹1–3 Lakhs", "Above ₹3 Lakhs"] },
+          { q: "Where do you live?", opts: ["Rural", "Urban"] },
+          { q: "Do you belong to any category?", opts: ["General", "OBC", "SC/ST", "Minority"] },
+          { q: "Select your age group", opts: ["Below 18", "18–40", "40–60", "Senior Citizen 60+"] }
+        ],
+        "Education Sector": [
+          { q: "Are you currently enrolled in a school/college?", opts: ["Yes", "No"] },
+          { q: "What is your current level of education?", opts: ["School (up to 12th)", "Undergrad / Degree", "Postgrad / PhD", "Professional Training"] },
+          { q: "Which type of institution are you studying in?", opts: ["Government", "Private Aided", "Private Unaided"] },
+          { q: "Are you planning to study abroad?", opts: ["Yes", "No"] },
+          { q: "Did you score above 75% in your previous exam?", opts: ["Yes", "No"] },
+          { q: "Are you a single girl child?", opts: ["Yes", "No", "Not Applicable"] },
+          { q: "Are you seeking support for tuition or hostel fees?", opts: ["Tuition Fee", "Hostel Fee", "Both", "Other"] },
+          { q: "Are you applying for competitive exam coaching subsidy?", opts: ["Yes", "No"] },
+          { q: "Do you possess a resident/domicile certificate for your state?", opts: ["Yes", "No"] },
+          { q: "What is your annual family income?", opts: ["Below ₹2.5 Lakhs", "₹2.5–5 Lakhs", "Above ₹5 Lakhs"] },
+          { q: "Do you belong to any category?", opts: ["General", "OBC", "SC/ST", "Minority"] },
+          { q: "Select your age group", opts: ["Below 16", "16–22", "23–30", "Above 30"] }
+        ],
+        "Others": [
+          { q: "What is your primary objective?", opts: ["Start a business", "House / Housing Loan", "Pension / Retirement", "Unemployed / Skill Training"] },
+          { q: "If looking for a business loan, what is your sector?", opts: ["Manufacturing", "Services", "Trading", "Not Applicable"] },
+          { q: "Do you currently own a pucca (permanent) house?", opts: ["Yes", "No"] },
+          { q: "Are you registered as an unorganized sector worker (e-Shram)?", opts: ["Yes", "No", "Don't know"] },
+          { q: "Are you actively looking for employment or skill development?", opts: ["Yes", "No"] },
+          { q: "What is your annual family income?", opts: ["Below ₹2 Lakhs", "₹2–5 Lakhs", "Above ₹5 Lakhs"] },
+          { q: "Where do you live?", opts: ["Rural", "Urban", "Slum area"] },
+          { q: "Do you belong to any category?", opts: ["General", "OBC", "SC/ST", "Minority", "Women Entrepreneur"] },
+          { q: "Select your age group", opts: ["Below 30", "30–50", "Senior Citizen 60+"] }
+        ]
+      };
+
+      let activeFlow = [];
+      let stepIndex = 0;
+      let userAnswers = {};
+
+      function renderCurrentStep() {
+        if (stepIndex >= activeFlow.length) {
+          showEndSequence();
+          return;
+        }
+
+        const step = activeFlow[stepIndex];
+        let buttonsHtml = '';
+        for (const opt of step.opts) {
+          buttonsHtml += `<button class="huge-choice-btn btn-dynamic-opt" data-val="${opt}">${window.t(opt)}</button>`;
+        }
+        
+        stage.innerHTML = `
+          <div class="main-question">${window.t(step.q)}</div>
+          <div class="large-btn-container">
+            ${buttonsHtml}
+          </div>
+        `;
+        
+        const dynamicBtns = document.querySelectorAll('.btn-dynamic-opt');
+        dynamicBtns.forEach(btn => {
+          btn.addEventListener('click', (e) => {
+            const answer = String(e.target.getAttribute('data-val'));
+            userAnswers[step.q] = answer;
+            localStorage.setItem('userAnswers', JSON.stringify(userAnswers));
+            
+            if (step.terminateMap && step.terminateMap[answer]) {
+              stage.innerHTML = `<div class="message-text">${window.t(step.terminateMap[answer])}</div>`;
+              return;
+            }
+            
+            stepIndex++;
+            renderCurrentStep();
+          });
+        });
+      }
+
+      function showEndSequence() {
+        stage.innerHTML = `
+          <div style="display: flex; flex-direction: column; align-items: center; text-align: center;">
+            <div class="main-question" style="margin-bottom: 24px;">${window.t("Thank you! We have collected your details.")}</div>
+            <div class="message-text" style="margin-bottom: 48px;" id="analysis-text">${window.t("Analyzing your profile and finding suitable schemes")}...</div>
+            <div id="final-action-container" style="display: none;">
+              <a href="results.html" class="huge-choice-btn" style="text-decoration: none; display: inline-block;">${window.t("View Recommended Schemes")}</a>
+            </div>
+          </div>
+        `;
+
+        const analysisText = document.getElementById('analysis-text');
+        let dotCount = 0;
+        const msg = window.t("Analyzing your profile and finding suitable schemes");
+        const dotInterval = setInterval(() => {
+          dotCount = (dotCount % 3) + 1;
+          analysisText.textContent = msg + ".".repeat(dotCount);
+        }, 500);
+
+        setTimeout(() => {
+          clearInterval(dotInterval);
+          analysisText.textContent = window.t("Analysis complete! We found matching schemes for you.");
+          document.getElementById('final-action-container').style.display = 'block';
+        }, 2500);
+      }
+
+      // Render the very first occupation selector screen
+      function renderInitialScreen() {
+        stage.innerHTML = `
+          <label class="main-question" for="occupation-select" style="display: block;">${window.t('Select your occupation')}</label>
+          <div style="display: flex; flex-direction: column; align-items: center; width: 100%; gap: 32px;">
+            <select id="occupation-select" style="max-width: 500px; width: 100%; font-size: 1.25rem; padding: 20px; border-radius: 12px; border: 1px solid var(--border-color); background-color: var(--surface-color); color: var(--primary-text); cursor: pointer;">
+              <option value="">${window.t('-- Select Option --')}</option>
+              <option value="Agriculture Sector">${window.t('Agriculture Sector')}</option>
+              <option value="Medical Sector">${window.t('Medical Sector')}</option>
+              <option value="Education Sector">${window.t('Education Sector')}</option>
+              <option value="Others">${window.t('Others')}</option>
+            </select>
+            <button id="btn-occupation-next" class="huge-choice-btn">${window.t('Next')}</button>
+          </div>
+        `;
+
+        document.getElementById('btn-occupation-next').addEventListener('click', () => {
+          const occ = document.getElementById('occupation-select').value;
+          if (!occ) return;
+          
+          localStorage.setItem('userOccupation', occ);
+          // Initializing fresh user answers for this run
+          userAnswers = {};
+          localStorage.setItem('userAnswers', JSON.stringify(userAnswers));
+          
+          if (schemeFlows[occ]) {
+            activeFlow = schemeFlows[occ];
+            stepIndex = 0;
+            renderCurrentStep();
+          }
+        });
+      }
+
+      // Boot up the flow
+      renderInitialScreen();
+    });
+  </script>
+<script src="theme.js?v=1776477080.03402"></script>
+<script src="translations.js?v=1776477080.03402"></script>
+</body>
+</html>
+
+
+
+

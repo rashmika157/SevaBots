@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Explore Schemes - SevaBots</title>
+  <meta name="description" content="Explore and find government and social schemes available in your state with SevaBots.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <nav class="main-nav">
+      <a href="index.html" class="nav-link" data-i18n="Home">Home</a>
+      <a href="explore.html" class="nav-link active" data-i18n="Explore Schemes">Explore Schemes</a>
+      <a href="personalized-schemes.html" class="nav-link" data-i18n="Personalized Schemes">Personalized Schemes</a>
+      <a href="assistant.html" class="nav-link" data-i18n="AI Assistant">AI Assistant</a>
+    </nav>
+    <header>
+      <h1 id="page-title">Explore Schemes</h1>
+      <div class="filter-container">
+        <label for="state-filter">Filter by:</label>
+        <select id="state-filter" title="Select your state to filter schemes">
+          <option value="">Select State</option>
+          <option value="maharashtra">Maharashtra</option>
+          <option value="karnataka">Karnataka</option>
+          <option value="delhi">Delhi</option>
+          <option value="gujarat">Gujarat</option>
+          <option value="tamil_nadu">Tamil Nadu</option>
+        </select>
+      </div>
+    </header>
+
+    <main class="schemes-grid" id="schemes-container">
+      <!-- Cards will be populated dynamically by JavaScript -->
+    </main>
+  </div>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const container = document.getElementById('schemes-container');
+    const stateFilter = document.getElementById('state-filter');
+    let allSchemes = [];
+
+    function renderSchemes() {
+        const selectedState = stateFilter ? stateFilter.value : '';
+        
+        let filteredSchemes = allSchemes;
+        if (selectedState) {
+            filteredSchemes = allSchemes.filter(scheme => {
+                const stateNormalized = scheme.state.toLowerCase().replace(/_/g, ' ');
+                const selectedNormalized = selectedState.toLowerCase().replace(/_/g, ' ');
+                return stateNormalized === selectedNormalized || stateNormalized === 'all india';
+            });
+        }
+        
+        container.innerHTML = '';
+        filteredSchemes.forEach(scheme => {
+          const article = document.createElement('article');
+          article.className = 'scheme-card';
+          article.innerHTML = `
+            <h2>${scheme.name}</h2>
+            <p>${scheme.benefits}</p>
+            <p style="margin-bottom: 24px; color: var(--primary-text); font-weight: 500;">State: ${scheme.state}</p>
+            <button class="btn">View Details</button>
+          `;
+          container.appendChild(article);
+        });
+        
+        if (filteredSchemes.length === 0) {
+            container.innerHTML = '<p style="grid-column: 1 / -1; font-size: 1.125rem; color: var(--secondary-text);">No schemes found for the selected state.</p>';
+        }
+    }
+
+    fetch('http://127.0.0.1:5000/api/schemes')
+      .then(res => res.json())
+      .then(data => {
+        allSchemes = data;
+        renderSchemes();
+      })
+      .catch(err => {
+        console.error('Error loading schemes:', err);
+        container.innerHTML = '<p style="grid-column: 1 / -1; font-size: 1.125rem; color: var(--secondary-text);">Failed to load schemes. Are you accessing via file://?</p>';
+      });
+
+    if (stateFilter) {
+        stateFilter.addEventListener('change', renderSchemes);
+    }
+  });
+</script>
+<script src="theme.js?v=1776477080.03402"></script>
+<script src="translations.js?v=1776477080.03402"></script>
+</body>
+</html>
+
+
+
+

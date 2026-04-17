@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SevaBots</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="dynamic-landing-page">
+  <!-- Soft Background Effects Layer -->
+  <div class="bg-blobs">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+  </div>
+
+  <!-- Content Layer -->
+  <div class="content-wrapper">
+    <!-- Top Bar -->
+    <header class="top-nav">
+      <div class="logo">SevaBots</div>
+      <a href="eligibility.html" class="small-btn" data-i18n="Try Now">Try Now</a>
+    </header>
+
+    <!-- Hero Section -->
+    <main class="modern-hero">
+      <div class="hero-tag dynamic-tag" data-i18n="AI-powered welfare assistant">AI-powered welfare assistant</div>
+      
+      <h1 class="modern-hero-title">
+        <span data-i18n="Your guide to access government schemes">Your guide to access government schemes</span>
+      </h1>
+      
+      <p class="modern-hero-subtitle">
+        <span data-i18n="Find the right schemes easily with simple and personalized guidance">Find the right schemes easily with simple and personalized guidance</span>
+      </p>
+
+      <div class="hero-actions">
+        <a href="personalized-schemes.html" class="btn primary-action-btn dynamic-btn unified-btn"><span data-i18n="Find Personalized Schemes">Find Personalized Schemes</span></a>
+        <a href="explore.html" class="btn secondary-action-btn dynamic-btn unified-btn"><span data-i18n="Explore All Schemes">Explore All Schemes</span></a>
+        <a href="assistant.html" class="btn secondary-action-btn dynamic-btn unified-btn"><span data-i18n="Talk to AI Assistant">Talk to AI Assistant</span></a>
+      </div>
+    </main>
+
+    <!-- SECTION 1: Problem / Impact -->
+    <section class="landing-section impact-section fade-in-section">
+      <div class="impact-content">
+        <div class="impact-left">
+          <h2 class="impact-title">₹80,000+ crore in benefits go unclaimed every year</h2>
+          <p class="impact-subtitle">Many people are unaware or unable to access schemes</p>
+        </div>
+        <div class="impact-right">
+          <div class="soft-card stagger-1">Language Barriers</div>
+          <div class="soft-card stagger-2">Complex Process</div>
+          <div class="soft-card stagger-3">Lack of Awareness</div>
+          <div class="soft-card stagger-4">Digital Divide</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 2: How SevaBots Works -->
+    <section class="landing-section steps-section fade-in-section">
+      <div class="section-header">
+        <h2>How SevaBots Works</h2>
+        <p>Simple steps to help you access schemes</p>
+      </div>
+      <div class="steps-grid">
+        <div class="soft-card step-card stagger-1">
+          <h3 class="step-title">1. Answer</h3>
+          <p>Answer a few simple questions</p>
+        </div>
+        <div class="soft-card step-card stagger-2">
+          <h3 class="step-title">2. Match</h3>
+          <p>AI finds schemes for you</p>
+        </div>
+        <div class="soft-card step-card stagger-3">
+          <h3 class="step-title">3. Apply</h3>
+          <p>Get guidance to apply</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 3: How SevaBots Helps You -->
+    <section class="landing-section helps-section fade-in-section">
+      <div class="section-header">
+        <h2>How SevaBots Helps You</h2>
+        <p>Simple features to make scheme access easy</p>
+      </div>
+      <div class="helps-grid">
+        <div class="soft-card help-card stagger-1">
+          <h3 class="help-title">AI Matching</h3>
+          <p>Find schemes based on your profile</p>
+        </div>
+        <div class="soft-card help-card stagger-2">
+          <h3 class="help-title">Simple Guidance</h3>
+          <p>Step-by-step help to apply</p>
+        </div>
+        <div class="soft-card help-card stagger-3">
+          <h3 class="help-title">Multilingual Support</h3>
+          <p>Use in your preferred language</p>
+        </div>
+        <div class="soft-card help-card stagger-4">
+          <h3 class="help-title">Easy Access</h3>
+          <p>Simple and user-friendly interface</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 4: Real Impact -->
+    <section class="landing-section impact-testimonials-section fade-in-section">
+      <div class="section-header">
+        <h2>Real Impact</h2>
+        <p>Helping people access the right schemes</p>
+      </div>
+      <div class="testimonials-grid">
+        <div class="soft-card testimonial-card stagger-1">
+          <p class="quote">"This helped me find the right scheme easily"</p>
+          <div class="author">
+            <span class="name">Rahul K.</span>
+            <span class="state">Karnataka</span>
+          </div>
+        </div>
+        <div class="soft-card testimonial-card stagger-2">
+          <p class="quote">"Very simple and useful"</p>
+          <div class="author">
+            <span class="name">Priya S.</span>
+            <span class="state">Maharashtra</span>
+          </div>
+        </div>
+        <div class="soft-card testimonial-card stagger-3">
+          <p class="quote">"Saved a lot of time"</p>
+          <div class="author">
+            <span class="name">Amit Patel</span>
+            <span class="state">Gujarat</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 5: Small Stats -->
+    <section class="landing-section stats-section fade-in-section">
+      <div class="stats-container">
+        <div class="stat-item stagger-1">80%+ Users helped</div>
+        <div class="stat-item stagger-2">1000+ Schemes</div>
+        <div class="stat-item stagger-3">10+ Languages</div>
+        <div class="stat-item stagger-4">All India Access</div>
+      </div>
+    </section>
+
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+          }
+        });
+      }, { threshold: 0.15 });
+
+      document.querySelectorAll('.fade-in-section').forEach((section) => {
+        observer.observe(section);
+      });
+    });
+  </script>
+<script src="theme.js?v=1776477080.03402"></script>
+<script src="translations.js?v=1776477080.03402"></script>
+</body>
+</html>
+
+
+
+
+

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recommended Schemes - SevaBots</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .results-container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 60px 24px;
+    }
+    
+    .results-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--primary-text);
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .schemes-list {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .result-card {
+      background-color: var(--surface-color);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 32px;
+      box-shadow: 0 4px 6px -4px rgba(0, 0, 0, 0.05), 0 10px 15px -3px rgba(0, 0, 0, 0.02);
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .result-card h2 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: var(--primary-text);
+      margin: 0;
+    }
+
+    .reason-box {
+      background-color: #f8fafc;
+      padding: 16px 20px;
+      border-radius: 8px;
+      border-left: 4px solid var(--accent-color);
+      color: var(--primary-text);
+      font-size: 1.1rem;
+      font-weight: 500;
+    }
+
+    .details-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      margin-top: 8px;
+    }
+
+    @media (max-width: 600px) {
+      .details-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .details-section h3 {
+      font-size: 1.125rem;
+      font-weight: 600;
+      color: var(--primary-text);
+      margin-bottom: 12px;
+    }
+
+    .details-list {
+      list-style-type: disc;
+      padding-left: 20px;
+      color: var(--secondary-text);
+      margin: 0;
+    }
+
+    .details-list.ordered {
+      list-style-type: decimal;
+    }
+
+    .details-list li {
+      margin-bottom: 8px;
+    }
+
+    .details-list li:last-child {
+      margin-bottom: 0;
+    }
+    
+    .apply-btn {
+      margin-top: 16px;
+      align-self: flex-start;
+      padding: 14px 40px;
+      width: auto;
+    }
+  </style>
+</head>
+<body class="landing-page">
+  <div class="top-nav">
+    <div class="logo">SevaBots</div>
+    <a href="index.html" class="small-btn">Back to Home</a>
+  </div>
+
+  <div class="results-container">
+    <h1 class="results-title">Recommended Schemes</h1>
+    
+    <div class="schemes-list" id="dynamic-results-container">
+      <div class="result-card"><div class="reason-box">Loading personalized schemes...</div></div>
+    </div>
+  </div>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const listContainer = document.getElementById('dynamic-results-container');
+    
+    // Parse the data passed from the personalized schemes form
+    const userAnswers = JSON.parse(localStorage.getItem('userAnswers') || '{}');
+    const occupation = localStorage.getItem('userOccupation') || '';
+
+    function renderMatches(matchingSchemes) {
+        listContainer.innerHTML = '';
+        
+        if (!matchingSchemes || matchingSchemes.length === 0) {
+            listContainer.innerHTML = '<div class="result-card"><div class="reason-box">No exact schemes match your specific answers. Please adjust your criteria on the previous page or explore all general schemes.</div></div>';
+            return;
+        }
+
+        matchingSchemes.forEach(scheme => {
+            const card = document.createElement('div');
+            card.className = 'result-card';
+            card.innerHTML = `
+                <h2>${scheme.name}</h2>
+                <div class="reason-box">Matched based on your profile via Backend Server</div>
+                <div class="details-grid" style="margin-top: 16px;">
+                  <div class="details-section" style="grid-column: 1 / -1;">
+                    <h3>Description</h3>
+                    <p style="color: var(--secondary-text); font-size: 1.125rem;">${scheme.benefits}</p>
+                    <p style="color: var(--secondary-text); margin-top: 8px;"><strong>Available In:</strong> ${scheme.state}</p>
+                  </div>
+                </div>
+                <button class="btn apply-btn" style="width: auto;">View Details</button>
+            `;
+            listContainer.appendChild(card);
+        });
+    }
+
+    // POST directly to the smart backend matcher
+    fetch('http://127.0.0.1:5000/api/match', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ 
+            occupation: occupation, 
+            userAnswers: userAnswers 
+        })
+    })
+      .then(res => res.json())
+      .then(data => renderMatches(data))
+      .catch(err => {
+         console.error('Error loading matching schemes:', err);
+         listContainer.innerHTML = '<div class="result-card"><div class="reason-box">Failed to match schemes correctly. Ensure your Flask backend is running on port 5000.</div></div>';
+      });
+  });
+</script>
+<script src="theme.js?v=1776477080.03402"></script>
+<script src="translations.js?v=1776477080.03402"></script>
+</body>
+</html>
+
+
+
+

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Assistant for Farmers - SevaBots</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .centered-layout {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 50vh;
+      text-align: center;
+    }
+    .coming-soon-text {
+      font-size: 2.25rem;
+      font-weight: 600;
+      color: var(--secondary-text);
+      margin-bottom: 24px;
+    }
+  </style>
+</head>
+<body class="landing-page">
+  <div class="container">
+    <nav class="main-nav">
+      <a href="index.html" class="nav-link" data-i18n="Home">Home</a>
+      <a href="explore.html" class="nav-link" data-i18n="Explore Schemes">Explore Schemes</a>
+      <a href="personalized-schemes.html" class="nav-link" data-i18n="Personalized Schemes">Personalized Schemes</a>
+      <a href="assistant.html" class="nav-link active" data-i18n="AI Assistant">AI Assistant</a>
+    </nav>
+
+    <header style="justify-content: center; margin-bottom: 24px;">
+      <h1 id="page-title" style="text-align: center;">AI Assistant for Farmers</h1>
+    </header>
+
+    <main class="chat-container">
+      <!-- AI First Message -->
+      <div class="chat-bubble ai-message">
+        <p>Hello 👋 Tell me your situation and I will help you find suitable schemes.</p>
+      </div>
+
+      <!-- Chat Input Area -->
+      <div class="chat-input-wrapper" style="display: flex; gap: 16px; margin-top: 32px;">
+        <input id="chat-input" type="text" placeholder="Example: I am a small farmer with low income and need loan" style="flex-grow: 1; padding: 16px 24px; font-size: 1.125rem; border-radius: 32px; border: 1px solid var(--border-color); background-color: var(--surface-color); color: var(--primary-text); outline: none;">
+        <button id="send-btn" class="btn" style="border-radius: 32px; padding: 16px 36px; width: auto; box-shadow: none;">Send</button>
+      </div>
+    </main>
+  </div>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const inputField = document.getElementById('chat-input');
+    const sendBtn = document.getElementById('send-btn');
+    const wrapper = document.querySelector('.chat-input-wrapper');
+    const sessionId = 'sess_' + Math.random().toString(36).substr(2, 9);
+
+    async function sendMessage() {
+      const text = inputField.value.trim();
+      if (!text) return;
+
+      // Append user message smoothly
+      const userBubble = document.createElement('div');
+      userBubble.className = 'chat-bubble user-message';
+      userBubble.innerHTML = `<p>${text}</p>`;
+      wrapper.parentNode.insertBefore(userBubble, wrapper);
+      
+      inputField.value = '';
+
+      // Call Flask Backend
+      try {
+        const response = await fetch('http://127.0.0.1:5000/chat', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ message: text, session_id: sessionId })
+        });
+        
+        if (response.ok) {
+          const data = await response.json();
+          const aiBubble = document.createElement('div');
+          aiBubble.className = 'chat-bubble ai-message';
+          aiBubble.innerHTML = `<p>${data.reply}</p>`;
+          wrapper.parentNode.insertBefore(aiBubble, wrapper);
+        }
+      } catch (err) {
+        console.error("Backend error:", err);
+      }
+    }
+
+    sendBtn.addEventListener('click', sendMessage);
+    inputField.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') sendMessage();
+    });
+  });
+</script>
+<script src="theme.js?v=1776477080.03402"></script>
+<script src="translations.js?v=1776477080.03402"></script>
+</body>
+</html>
+
+
+
+

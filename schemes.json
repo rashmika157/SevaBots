@@ -1,0 +1,114 @@
+[
+  {
+    "name": "Kisan Credit Card (KCC)",
+    "benefits": "Provides subsidized loans for farming up to 3 lakhs.",
+    "state": "All India",
+    "category": "Loan for farming",
+    "target": "Agriculture Sector",
+    "income": "Any"
+  },
+  {
+    "name": "PM KISAN Form Machinery",
+    "benefits": "Subsidies on equipment up to 50-80%.",
+    "state": "All India",
+    "category": "Equipment subsidy",
+    "target": "Agriculture Sector",
+    "income": "Below ₹2 Lakhs"
+  },
+  {
+    "name": "Pradhan Mantri Fasal Bima Yojana",
+    "benefits": "Premium crop insurance coverage.",
+    "state": "All India",
+    "category": "Crop insurance",
+    "target": "Agriculture Sector",
+    "income": "Any"
+  },
+  {
+    "name": "Financial Assistance for Marginal Farmers",
+    "benefits": "Direct benefit transfer of 6000 per year.",
+    "state": "All India",
+    "category": "Financial support",
+    "target": "Agriculture Sector",
+    "income": "Below ₹2 Lakhs"
+  },
+  {
+    "name": "Ayushman Bharat PMJAY",
+    "benefits": "Medical cover up to 5 Lakhs.",
+    "state": "All India",
+    "category": "Hospitalization / Surgery",
+    "target": "Medical Sector",
+    "income": "Below ₹1 Lakh"
+  },
+  {
+    "name": "National Health Mission - Chronic Care",
+    "benefits": "Free medicine and checkups for chronic diseases.",
+    "state": "All India",
+    "category": "Chronic disease treatment",
+    "target": "Medical Sector",
+    "income": "Any"
+  },
+  {
+    "name": "Janani Suraksha Yojana",
+    "benefits": "Maternity care and financial assistance for delivery.",
+    "state": "All India",
+    "category": "Maternity care",
+    "target": "Medical Sector",
+    "income": "Below ₹1 Lakh"
+  },
+  {
+    "name": "Pre-Matric Scholarship",
+    "benefits": "Tuition fee support for school students.",
+    "state": "All India",
+    "category": "Tuition Fee",
+    "target": "Education Sector",
+    "income": "Below ₹2.5 Lakhs"
+  },
+  {
+    "name": "Post-Matric Hostel Allowance",
+    "benefits": "Financial support for hostel expenses.",
+    "state": "All India",
+    "category": "Hostel Fee",
+    "target": "Education Sector",
+    "income": "Below ₹2.5 Lakhs"
+  },
+  {
+    "name": "National Means-cum-Merit Scholarship",
+    "benefits": "Both tuition and hostel support.",
+    "state": "All India",
+    "category": "Both",
+    "target": "Education Sector",
+    "income": "Below ₹2.5 Lakhs"
+  },
+  {
+    "name": "Karnataka Raitha Suraksha",
+    "benefits": "Financial assistance to farmers during crop failure.",
+    "state": "Karnataka",
+    "category": "Financial support",
+    "target": "Agriculture Sector",
+    "income": "Any"
+  },
+  {
+    "name": "Maharashtra Krishi Sanjeevani",
+    "benefits": "Helps farmers with delayed payment of electricity bills.",
+    "state": "Maharashtra",
+    "category": "Financial support",
+    "target": "Agriculture Sector",
+    "income": "Any"
+  },
+  {
+    "name": "MUDRA Yojana",
+    "benefits": "Business loan support for entrepreneurs.",
+    "state": "All India",
+    "category": "Start a business",
+    "target": "Others",
+    "income": "Any"
+  },
+  {
+    "name": "PMAY - Gramin",
+    "benefits": "Financial support for housing.",
+    "state": "All India",
+    "category": "House / Housing Loan",
+    "target": "Others",
+    "income": "Below ₹2 Lakhs"
+  }
+]
