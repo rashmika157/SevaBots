@@ -1,21 +1,21 @@
-# SevaBot 🚀
+# SevaBot 
 
 SevaBot is a full-stack web application designed to help citizens, farmers, and students easily discover, navigate, and apply for government schemes dynamically. It features a conversational AI system powered by NLP to intuitively match user symptoms, circumstances, or inputs with the correct benefits via cross-lingual accessibility.
 
-## 🌟 Key Features
+## Key Features
 
 - **Personalized Scheme Matching:** Intelligently matches users to exact schemes using dynamic database configurations algorithms.
 - **Multilingual UI Support:** Deep native translation mapping in English, Hindi, and Kannada.
 - **Fully-Fledged Voice AI:** Integrates with local speech-to-text (Whisper) and text-to-speech (MMS) models to talk directly with the citizen. 
 - **User Dashboard & Persistence:** Seamless UI allowing users to easily parse data, "Save to Dashboard", and trace tracked benefits directly synced via their profiles.
 
-## 🛠️ Technology Stack
+## Technology Stack
 
 - **Frontend:** Pure HTML5, Vanilla JavaScript, and Modular CSS (No frameworks needed). Highly optimized.
 - **Backend:** Python +  Flask + SQLite 
 - **Artificial Intelligence Pipeline:** HuggingFace `transformers` (`openai/whisper-small` for STT, `facebook/mms-tts-kan` for TTS)
 
-## 💻 Running the Project Locally
+## Running the Project Locally
 
 ### Prerequisites
 Make sure you have Python installed (Version 3.8+ recommended).
