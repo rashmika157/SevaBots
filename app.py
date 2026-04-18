@@ -228,6 +228,30 @@ def get_user_schemes():
 # -----------------------------
 # Match API
 # -----------------------------
+from gtts import gTTS
+
+@app.route("/api/tts", methods=["POST"])
+def enhanced_tts():
+    data = request.get_json() or {}
+    text = data.get("text")
+    lang_code = data.get("lang", "en")
+    
+    if not text:
+        return jsonify({"error": "No text"}), 400
+        
+    try:
+        lang = lang_code.split("-")[0]
+        tts = gTTS(text=text, lang=lang)
+        
+        os.makedirs("audio", exist_ok=True)
+        filename = f"tts_{uuid.uuid4().hex}.mp3"
+        filepath = os.path.join("audio", filename)
+        tts.save(filepath)
+        
+        return jsonify({"audio_url": f"/audio/{filename}"})
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
 @app.route("/api/match", methods=["POST"])
 def match_schemes():
     data = request.get_json() or {}

@@ -138,22 +138,63 @@
     
     let localChatState = "init";
 
-    // Text to Speech Function
-    function speakText(text) {
-      if ('speechSynthesis' in window) {
-        window.speechSynthesis.cancel(); // Stop any current speech
-        const utterance = new SpeechSynthesisUtterance(text);
-        
-        // Dynamic Language Selection
-        const currentLang = localStorage.getItem('language') || 'en';
-        if (currentLang === 'hi') utterance.lang = 'hi-IN';
-        else if (currentLang === 'kn') utterance.lang = 'kn-IN';
-        else utterance.lang = 'en-US';
-        
-        utterance.rate = 0.9; // Speak slightly slower for clarity
-        utterance.pitch = 1.0;
-        
-        window.speechSynthesis.speak(utterance);
+    // Global Audio context to forcefully overdrive system audio limits
+    const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+    window.activeAudioNode = null;
+
+    // Amplified Text to Speech Function
+    async function speakText(text) {
+      if (!text) return;
+
+      const currentLang = localStorage.getItem('lang') || 'en';
+      let langCode = 'en-US';
+      if (currentLang === 'hi') langCode = 'hi-IN';
+      else if (currentLang === 'kn') langCode = 'kn-IN';
+
+      try {
+        const response = await fetch('/api/tts', {
+           method: 'POST',
+           headers: { 'Content-Type': 'application/json' },
+           body: JSON.stringify({ text: text, lang: langCode })
+        });
+
+        if (response.ok) {
+           const data = await response.json();
+           
+           if (window.activeAudioNode) window.activeAudioNode.pause();
+
+           const audio = new Audio(data.audio_url);
+           audio.crossOrigin = "anonymous";
+           window.activeAudioNode = audio;
+
+           if (audioContext.state === 'suspended') {
+               await audioContext.resume();
+           }
+
+           const source = audioContext.createMediaElementSource(audio);
+           const gainNode = audioContext.createGain();
+           
+           // Boost volume mathematically by modifying the internal web framework gain pipeline (20x amplification)
+           gainNode.gain.value = 20.0;
+           
+           source.connect(gainNode);
+           gainNode.connect(audioContext.destination);
+
+           audio.play();
+        } else {
+           throw new Error("TTS Route Failed");
+        }
+      } catch (err) {
+        console.warn("Falling back to standard browser TTS:", err);
+        if ('speechSynthesis' in window) {
+          window.speechSynthesis.cancel();
+          const utterance = new SpeechSynthesisUtterance(text);
+          utterance.lang = langCode;
+          utterance.rate = 0.9;
+          utterance.pitch = 1.0;
+          utterance.volume = 1.0;
+          window.speechSynthesis.speak(utterance);
+        }
       }
     }
 
@@ -196,7 +237,7 @@
 
       micBtn.addEventListener('click', () => {
         // Dynamic Language Selection for listening
-        const currentLang = localStorage.getItem('language') || 'en';
+        const currentLang = localStorage.getItem('lang') || 'en';
         if (currentLang === 'hi') recognition.lang = 'hi-IN';
         else if (currentLang === 'kn') recognition.lang = 'kn-IN';
         else recognition.lang = 'en-US';
@@ -264,14 +305,28 @@
       return response;
     }
 
-    async function sendMessage() {
-      const text = inputField.value.trim();
-      if (!text) return;
+    async function translateText(text, fromLang, toLang) {
+        if (fromLang === toLang || !text) return text;
+        try {
+            const res = await fetch(`https://translate.googleapis.com/translate_a/single?client=gtx&sl=${fromLang}&tl=${toLang}&dt=t&q=${encodeURIComponent(text)}`);
+            const data = await res.json();
+            return data[0].map(item => item[0]).join('');
+        } catch (e) {
+            console.error("Translation fail:", e);
+            return text;
+        }
+    }
 
-      // Append user message
+    async function sendMessage() {
+      const originalText = inputField.value.trim();
+      if (!originalText) return;
+
+      const currentLang = localStorage.getItem('lang') || 'en';
+
+      // Append user message natively
       const userBubble = document.createElement('div');
       userBubble.className = 'chat-bubble user-message';
-      userBubble.innerHTML = `<p>${text}</p>`;
+      userBubble.innerHTML = `<p>${originalText}</p>`;
       wrapper.parentNode.insertBefore(userBubble, wrapper);
       
       inputField.value = '';
@@ -281,54 +336,64 @@
       const typingBubble = document.createElement('div');
       typingBubble.className = 'chat-bubble ai-message';
       typingBubble.style.opacity = '0.7';
-      typingBubble.innerHTML = `<p><em>Thinking...</em></p>`;
+      typingBubble.innerHTML = `<p><em>${typeof window.t === 'function' ? window.t("Thinking...") : "Thinking..."}</em></p>`;
       wrapper.parentNode.insertBefore(typingBubble, wrapper);
       window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
 
-      // Call Flask Backend
       try {
+        // ALWAYS process in English internally
+        const englishText = await translateText(originalText, currentLang, 'en');
+
+        // Call Flask Backend logic
         const response = await fetch('/chat', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
           },
-          body: JSON.stringify({ message: text, session_id: sessionId })
+          body: JSON.stringify({ message: englishText, session_id: sessionId })
         });
         
         wrapper.parentNode.removeChild(typingBubble);
         
+        let finalResponse = "";
+        let isError = false;
+        
         if (response.ok) {
           const data = await response.json();
-          const replyText = data.reply;
-          const aiBubble = document.createElement('div');
-          aiBubble.className = 'chat-bubble ai-message';
-          aiBubble.innerHTML = `<p>${replyText}</p>`;
-          wrapper.parentNode.insertBefore(aiBubble, wrapper);
-          
-          speakText(replyText); // SPEAK OUT LOUD
+          finalResponse = data.reply;
         } else {
-          const errorBubble = document.createElement('div');
-          errorBubble.className = 'chat-bubble ai-message';
-          errorBubble.style.color = '#d9534f';
-          const errorMsg = `Sorry, I encountered an error. Backend responded with ${response.status}.`;
-          errorBubble.innerHTML = `<p>${errorMsg}</p>`;
-          wrapper.parentNode.insertBefore(errorBubble, wrapper);
-          
-          speakText("Sorry, I encountered a communication error with the system."); // Speak error
+          isError = true;
+          finalResponse = "Sorry, I encountered a communication error with the system.";
         }
+
+        // Translate English response back to user's selected language
+        const translatedReply = await translateText(finalResponse, 'en', currentLang);
+
+        const aiBubble = document.createElement('div');
+        aiBubble.className = 'chat-bubble ai-message';
+        if (isError) aiBubble.style.color = '#d9534f';
+        aiBubble.innerHTML = `<p>${translatedReply}</p>`;
+        wrapper.parentNode.insertBefore(aiBubble, wrapper);
+        
+        speakText(translatedReply);
+
       } catch (err) {
         if (typingBubble.parentNode) {
           wrapper.parentNode.removeChild(typingBubble);
         }
         console.warn("Backend error, using offline local AI:", err);
         
-        const offlineReply = fallbackReply(text);
+        // Fallback offline flow follows the same translation cycle
+        const englishText = await translateText(originalText, currentLang, 'en');
+        const offlineReplyEnglish = fallbackReply(englishText);
+        const translatedOfflineReply = await translateText(offlineReplyEnglish, 'en', currentLang);
+
         const aiBubble = document.createElement('div');
         aiBubble.className = 'chat-bubble ai-message';
-        aiBubble.innerHTML = `<p>${offlineReply}</p>`;
+        aiBubble.innerHTML = `<p>${translatedOfflineReply}</p>`;
         wrapper.parentNode.insertBefore(aiBubble, wrapper);
         
-        speakText(offlineReply); // SPEAK OUT LOUD
+        speakText(translatedOfflineReply);
       }
       
       window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
