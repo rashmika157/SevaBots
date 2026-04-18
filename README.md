@@ -22,8 +22,8 @@ Make sure you have Python installed (Version 3.8+ recommended).
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/yourusername/sevabot.git
-   cd sevabot
+   git clone https://github.com/rashmika157/Sevabots.git
+   cd Sevabots
    ```
 
 2. **Install the required dependancies:**
