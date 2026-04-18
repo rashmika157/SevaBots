@@ -10,7 +10,53 @@ const translations = {
   "Try Now": { hi: "अभी आज़माएं", kn: "ಈಗ ಪ್ರಯತ್ನಿಸಿ" },
   "AI-powered welfare assistant": { hi: "एआई-संचालित कल्याण सहायक", kn: "AI-ಚಾಲಿತ ಕಲ್ಯಾಣ ಸಹಾಯಕ" },
   "Your guide to access government schemes": { hi: "सरकारी योजनाओं तक पहुंचने के लिए आपका गाइड", kn: "ಸರ್ಕಾರಿ ಯೋಜನೆಗಳನ್ನು ಪ್ರವೇಶಿಸಲು ನಿಮ್ಮ ಮಾರ್ಗದರ್ಶಿ" },
+  "Your guide to access": { hi: "तक पहुंचने के लिए आपका गाइड", kn: "ಪ್ರವೇಶಿಸಲು ನಿಮ್ಮ ಮಾರ್ಗದರ್ಶಿ" },
+  "Government schemes": { hi: "सरकारी योजनाएं", kn: "ಸರ್ಕಾರಿ ಯೋಜನೆಗಳು" },
   "Find the right schemes easily with simple and personalized guidance": { hi: "सरल और व्यक्तिगत मार्गदर्शन के साथ सही योजनाएं आसानी से खोजें", kn: "ಸರಳ ಮತ್ತು ವೈಯಕ್ತಿಕ ಮಾರ್ಗದರ್ಶನದೊಂದಿಗೆ ಸರಿಯಾದ ಯೋಜನೆಗಳನ್ನು ಸುಲಭವಾಗಿ ಹುಡುಕಿ" },
+  
+  // Problem / Impact Section
+  "₹80,000+ crore in benefits go unclaimed every year": { hi: "हर साल ₹80,000+ करोड़ के लाभों का दावा नहीं किया जाता है", kn: "ಪ್ರತಿ ವರ್ಷ ₹80,000+ ಕೋಟಿ ಮೊತ್ತದ ಅನುದಾನಗಳನ್ನು ಪಡೆಯಲಾಗಿಲ್ಲ" },
+  "Many people are unaware or unable to access schemes": { hi: "कई लोग योजनाओं से अनजान हैं या उन तक पहुंचने में असमर्थ हैं", kn: "ಹಲವಾರು ಜನರಿಗೆ ಯೋಜನೆಗಳ ಬಗ್ಗೆ ಅರಿವಿಲ್ಲ ಅಥವಾ ಪ್ರವೇಶಿಸಲು ಸಾಧ್ಯವಾಗುತ್ತಿಲ್ಲ" },
+  "Language Barriers": { hi: "भाषा संबंधी बाधाएं", kn: "ಭಾಷಾ ಅಡೆತಡೆಗಳು" },
+  "Complex Process": { hi: "कठिन प्रक्रिया", kn: "ಸಂಕೀರ್ಣ ಪ್ರಕ್ರಿಯೆ" },
+  "Lack of Awareness": { hi: "जागरूकता का अभाव", kn: "ಜಾಗೃತಿಯ ಕೊರತೆ" },
+  "Digital Divide": { hi: "डिजिटल डिवाइड", kn: "ಡಿಜಿಟಲ್ ವಿಭಜನೆ" },
+  
+  // How SevaBots Works
+  "How SevaBots Works": { hi: "सेवा बॉट्स कैसे काम करता है", kn: "ಸೇವಾಬಾಟ್ಸ್ ಹೇಗೆ ಕೆಲಸ ಮಾಡುತ್ತದೆ" },
+  "Simple steps to help you access schemes": { hi: "योजनाओं तक पहुंचने में आपकी मदद करने के लिए सरल कदम", kn: "ಯೋಜನೆಗಳಿಗೆ ಪ್ರವೇಶಿಸಲು ಸರಳ ಹಂತಗಳು" },
+  "1. Answer": { hi: "1. उत्तर दें", kn: "1. ಉತ್ತರಿಸಿ" },
+  "Answer a few simple questions": { hi: "कुछ सरल सवालों के जवाब दें", kn: "ಕೆಲವೇ ಸರಳ ಪ್ರಶ್ನೆಗಳಿಗೆ ಉತ್ತರಿಸಿ" },
+  "2. Match": { hi: "2. मिलान", kn: "2. ಹೊಂದಿಸಿ" },
+  "AI finds schemes for you": { hi: "एआई आपके लिए योजनाएं ढूंढता है", kn: "AI ನಿಮಗಾಗಿ ಯೋಜನೆಗಳನ್ನು ಹುಡುಕುತ್ತದೆ" },
+  "3. Apply": { hi: "3. आवेदन करें", kn: "3. ಅರ್ಜಿ ಸಲ್ಲಿಸಿ" },
+  "Get guidance to apply": { hi: "आवेदन के लिए मार्गदर्शन प्राप्त करें", kn: "ಅರ್ಜಿ ಸಲ್ಲಿಸಲು ಮಾರ್ಗದರ್ಶನ ಪಡೆಯಿರಿ" },
+
+  // How SevaBots Helps You
+  "How SevaBots Helps You": { hi: "सेवा बॉट्स आपकी कैसे मदद करता है", kn: "ಸೇವಾಬಾಟ್ಸ್ ನಿಮಗೆ ಹೇಗೆ ಸಹಾಯ ಮಾಡುತ್ತದೆ" },
+  "Simple features to make scheme access easy": { hi: "योजना तक पहुंच को आसान बनाने के लिए सरल सुविधाएं", kn: "ಯೋಜನೆ ಪ್ರವೇಶ ಸುಲಭಗೊಳಿಸುವ ಸರಳ ವೈಶಿಷ್ಟ್ಯಗಳು" },
+  "AI Matching": { hi: "एआई मिलान", kn: "AI ಹೊಂದಾಣಿಕೆ" },
+  "Find schemes based on your profile": { hi: "अपनी प्रोफ़ाइल के आधार पर योजनाएं खोजें", kn: "ನಿಮ್ಮ ಪ್ರೊಫೈಲ್ ಆಧಾರಿತ ಯೋಜನೆಗಳನ್ನು ಹುಡುಕಿ" },
+  "Simple Guidance": { hi: "सरल मार्गदर्शन", kn: "ಸರಳ ಮಾರ್ಗದರ್ಶನ" },
+  "Step-by-step help to apply": { hi: "आवेदन के लिए चरण-दर-चरण सहायता", kn: "ಅರ್ಜಿ ಸಲ್ಲಿಸಲು ಹಂತ ಹಂತದ ಸಹಾಯ" },
+  "Multilingual Support": { hi: "बहुभाषी सहयोग", kn: "ಹಲವು ಭಾಷೆಗಳ ಬೆಂಬಲ" },
+  "Use in your preferred language": { hi: "अपनी पसंदीदा भाषा में उपयोग करें", kn: "ನಿಮ್ಮ ಆಯ್ಕೆಯ ಭಾಷೆಯಲ್ಲಿ ಬಳಸಿ" },
+  "Easy Access": { hi: "आसान पहुंच", kn: "ಸುಲಭ ಪ್ರವೇಶ" },
+  "Simple and user-friendly interface": { hi: "सरल और उपयोगकर्ता के अनुकूल इंटरफ़ेस", kn: "ಸರಳ ಮತ್ತು ಬಳಕೆದಾರ ಸ್ನೇಹಿ ಇಂಟರ್ಫೇಸ್" },
+
+  // Real Impact
+  "Real Impact": { hi: "वास्तविक प्रभाव", kn: "ನೈಜ ಪ್ರಭಾವ" },
+  "Helping people access the right schemes": { hi: "लोगों को सही योजनाओं तक पहुंचने में मदद करना", kn: "ಸರಿಯಾದ ಯೋಜನೆಗಳನ್ನು ತಲುಪಲು ಜನರಿಗೆ ಸಹಾಯ" },
+  "\"This helped me find the right scheme easily\"": { hi: "\"इसने मुझे आसानी से सही योजना खोजने में मदद की\"", kn: "\"ಇದು ನನಗೆ ಸರಿಯಾದ ಯೋಜನೆಯನ್ನು ಸುಲಭವಾಗಿ ಹುಡುಕಲು ಸಹಾಯ ಮಾಡಿತು\"" },
+  "\"Very simple and useful\"": { hi: "\"बहुत सरल और उपयोगी\"", kn: "\"ತುಂಬಾ ಸರಳ ಮತ್ತು ಉಪಯುಕ್ತ\"" },
+  "\"Saved a lot of time\"": { hi: "\"बहुत समय बचाया\"", kn: "\"ಹೆಚ್ಚು ಸಮಯ ಉಳಿತಾಯವಾಯಿತು\"" },
+  "Rahul K.": { hi: "राहुल के.", kn: "ರಾಹುಲ್ ಕೆ." },
+  "Karnataka": { hi: "कर्नाटक", kn: "ಕರ್ನಾಟಕ" },
+  "Priya S.": { hi: "प्रिया एस.", kn: "ಪ್ರಿಯಾ ಎಸ್." },
+  "Maharashtra": { hi: "महाराष्ट्र", kn: "ಮಹಾರಾಷ್ಟ್ರ" },
+  "Amit Patel": { hi: "अमित पटेल", kn: "ಅಮಿತ್ ಪಟೇಲ್" },
+  "Gujarat": { hi: "गुजरात", kn: "ಗುಜರಾತ್" },
+  "Sign In": { hi: "साइन इन करें", kn: "ಸೈನ್ ಇನ್" },
   
   // Buttons
   "Find Personalized Schemes": { hi: "व्यक्तिगत योजनाएं खोजें", kn: "ವೈಯಕ್ತಿಕ ಯೋಜನೆಗಳನ್ನು ಹುಡುಕಿ" },

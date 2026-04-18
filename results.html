@@ -99,21 +99,36 @@
       padding: 14px 40px;
       width: auto;
     }
+
+
   </style>
 </head>
-<body class="landing-page">
-  <div class="top-nav">
-    <div class="logo">SevaBots</div>
-    <a href="index.html" class="small-btn">Back to Home</a>
+<body class="dynamic-landing-page">
+  <!-- Soft Background Effects Layer -->
+  <div class="bg-blobs">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+  </div>
+  <div class="top-nav" style="display: flex; justify-content: space-between; align-items: center; margin: 0 auto; margin-bottom: 24px; padding: 24px 5%; width: 100%; max-width: 1800px; box-sizing: border-box;">
+    <div style="display: flex; align-items: center; gap: 10px;">
+      <img src="logo.jpg" alt="SevaBots Logo" style="width: 36px; height: 36px; border-radius: 50%;">
+      <div class="logo">SevaBots</div>
+    </div>
+    <div id="nav-right-container" style="display: flex; align-items: center; gap: 12px;">
+      <button onclick="window.history.back()" class="small-btn" style="background: transparent; color: var(--primary-text); border: 1px solid var(--border-color);">Back</button>
+      <a href="index.html" class="small-btn">Home</a>
+    </div>
   </div>
 
   <div class="results-container">
-    <h1 class="results-title">Recommended Schemes</h1>
+    <h1 class="results-title" style="text-align: center; color: #9d174d;">Recommended Schemes</h1>
     
     <div class="schemes-list" id="dynamic-results-container">
       <div class="result-card"><div class="reason-box">Loading personalized schemes...</div></div>
     </div>
   </div>
+
 <script>
   document.addEventListener('DOMContentLoaded', () => {
     const listContainer = document.getElementById('dynamic-results-container');
@@ -143,13 +158,22 @@
                     <p style="color: var(--secondary-text); margin-top: 8px;"><strong>Available In:</strong> ${scheme.state}</p>
                   </div>
                 </div>
-                <button class="btn apply-btn" style="width: auto;">View Details</button>
+                <div style="display: flex; flex-direction: column; gap: 6px; margin-top: 16px;">
+                  <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+                    <button class="btn apply-btn modal-trigger-btn" style="margin-top: 0; width: auto;">View Details</button>
+                  </div>
+                </div>
             `;
+            
+            const detailsBtn = card.querySelector('.modal-trigger-btn');
+            detailsBtn.addEventListener('click', () => {
+                 if (window.showSchemeModal) window.showSchemeModal(scheme);
+            });
+
             listContainer.appendChild(card);
         });
     }
 
-    // POST directly to the smart backend matcher
     fetch('http://127.0.0.1:5000/api/match', {
         method: 'POST',
         headers: {
@@ -160,16 +184,59 @@
             userAnswers: userAnswers 
         })
     })
-      .then(res => res.json())
+      .then(res => {
+         if (!res.ok) throw new Error('Backend response not OK');
+         return res.json();
+      })
       .then(data => renderMatches(data))
       .catch(err => {
-         console.error('Error loading matching schemes:', err);
-         listContainer.innerHTML = '<div class="result-card"><div class="reason-box">Failed to match schemes correctly. Ensure your Flask backend is running on port 5000.</div></div>';
+         console.warn('Backend match failed, falling back to local JS matching:', err);
+         
+         fetch('schemes.json')
+           .then(res => {
+             if (!res.ok) throw new Error('Local file not found');
+             return res.json();
+           })
+           .then(allSchemes => {
+              let income = "Any";
+              let need = "Not sure";
+              
+              if (occupation === "Agriculture Sector") {
+                  need = userAnswers["What kind of support do you need?"] || "Not sure";
+                  income = userAnswers["What is your annual family income?"] || "Any";
+              } else if (occupation === "Medical Sector") {
+                  need = userAnswers["What is your primary healthcare requirement?"] || "Not Applicable";
+                  income = userAnswers["What is your annual family income?"] || "Any";
+              } else if (occupation === "Education Sector") {
+                  need = userAnswers["Are you seeking support for tuition or hostel fees?"] || "Not Applicable";
+                  income = userAnswers["What is your annual family income?"] || "Any";
+              } else if (occupation === "Others") {
+                  need = userAnswers["What is your primary objective?"] || "Not Applicable";
+                  income = userAnswers["What is your annual family income?"] || "Any";
+              }
+
+              const matchingSchemes = allSchemes.filter(scheme => {
+                  if (scheme.target === 'General') return false;
+                  
+                  const matchOccupation = (scheme.target === occupation);
+                  const matchNeed = (scheme.category === need);
+                  const matchIncome = (scheme.income === "Any" || scheme.income === income);
+                  
+                  return matchOccupation && matchNeed && matchIncome;
+              });
+              
+              renderMatches(matchingSchemes);
+           })
+           .catch(fallbackErr => {
+              console.error('Error loading matching schemes locally:', fallbackErr);
+              listContainer.innerHTML = '<div class="result-card"><div class="reason-box">Failed to match schemes correctly. Ensure your local server is running.</div></div>';
+           });
       });
   });
 </script>
 <script src="theme.js?v=1776477080.03402"></script>
 <script src="translations.js?v=1776477080.03402"></script>
+<script src="modal.js?v=2"></script>
 </body>
 </html>
 

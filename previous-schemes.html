@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Profile - SevaBots</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="dynamic-landing-page">
+  <!-- Soft Background Effects Layer -->
+  <div class="bg-blobs">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+  </div>
+  <header class="top-nav" style="display: flex; justify-content: space-between; align-items: center; margin: 0 auto; margin-bottom: 24px; padding: 24px 5%; width: 100%; max-width: 1800px; box-sizing: border-box;">
+    <a href="index.html" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 10px;">
+      <img src="logo.jpg" alt="SevaBots Logo" style="width: 36px; height: 36px; border-radius: 50%;">
+      <div class="logo">SevaBots</div>
+    </a>
+    
+    <nav class="main-nav" style="margin-bottom: 0; border: none; padding-bottom: 0; display: flex; gap: 32px; align-items: center;">
+      <a href="index.html" class="nav-link" data-i18n="Home">Home</a>
+      <a href="personalized-schemes.html" class="nav-link" data-i18n="Personalized Schemes">Personalized Schemes</a>
+      <a href="explore.html" class="nav-link" data-i18n="Explore Schemes">Explore Schemes</a>
+      <a href="assistant.html" class="nav-link" data-i18n="AI Assistant">AI Assistant</a>
+    </nav>
+
+    <div id="nav-right-container" style="display: flex; align-items: center; gap: 12px;">
+      <button onclick="window.history.back()" class="small-btn" style="background: transparent; color: var(--primary-text); border: 1px solid var(--border-color);">Back</button>
+      <a href="index.html" class="small-btn">Home</a>
+    </div>
+  </header>
+  
+  <div class="container" style="padding-top: 24px;">
+
+    <header style="margin-bottom: 32px; justify-content: center;">
+      <h1 class="empty-state-title" style="margin-bottom: 0; text-align: center; color: #9d174d;">My Profile</h1>
+    </header>
+
+    <div class="profile-dashboard fade-in-section is-visible">
+      
+      <!-- Profile Top Card -->
+      <div class="profile-card">
+        <div class="profile-avatar-container">
+          <div class="profile-avatar" id="avatar-icon">U</div>
+          <button class="small-btn" style="margin-top: 8px;">Edit Profile</button>
+        </div>
+        
+        <div class="profile-details-grid">
+          <div class="profile-field">
+            <span class="profile-label">Full Name</span>
+            <span class="profile-value" id="profile-name">Not Specified</span>
+          </div>
+          <div class="profile-field">
+            <span class="profile-label">Age</span>
+            <span class="profile-value" id="profile-age">Not Specified</span>
+          </div>
+          <div class="profile-field">
+            <span class="profile-label">Gender</span>
+            <span class="profile-value" id="profile-gender">Not Specified</span>
+          </div>
+          <div class="profile-field">
+            <span class="profile-label">State</span>
+            <span class="profile-value" id="profile-state">Not Specified</span>
+          </div>
+          <div class="profile-field">
+            <span class="profile-label">Occupation</span>
+            <span class="profile-value" id="profile-occupation">Not Specified</span>
+          </div>
+          <div class="profile-field">
+            <span class="profile-label">Income Range</span>
+            <span class="profile-value" id="profile-income">Not Specified</span>
+          </div>
+        </div>
+      </div>
+
+      <hr style="border: none; border-top: 1px solid var(--border-color); margin: 0;">
+
+      <!-- Registered Schemes Section -->
+      <div class="registered-schemes-section">
+        <h2 class="section-title">Registered Schemes</h2>
+        
+        <div id="schemes-list" style="display: flex; flex-direction: column; gap: 24px;">
+          <!-- Schemes will be generated here -->
+        </div>
+
+        <!-- Empty State Container (Hidden by default) -->
+        <div id="empty-state" style="display: none; flex-direction: column; align-items: center; justify-content: center; padding: 60px 24px; text-align: center; background: var(--surface-color); border: 1px dashed var(--border-color); border-radius: 20px;">
+          <p style="font-size: 1.5rem; font-weight: 500; color: var(--secondary-text); margin-bottom: 24px;">You haven't registered for any schemes yet.</p>
+          <a href="explore.html" class="btn" style="width: auto; padding: 16px 40px; border-radius: 12px; font-size: 1.1rem;">Browse Schemes</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    // 1. Load User Profile from localStorage
+    const savedUserStr = localStorage.getItem('userDetails');
+    if (savedUserStr) {
+      try {
+        const user = JSON.parse(savedUserStr);
+        if (user.name) {
+          document.getElementById('profile-name').textContent = user.name;
+          document.getElementById('avatar-icon').textContent = user.name.charAt(0).toUpperCase();
+        }
+        if (user.age) document.getElementById('profile-age').textContent = user.age + " Years";
+        if (user.address || user.pin) document.getElementById('profile-state').textContent = user.address || ("PIN: " + user.pin);
+      } catch (e) { console.error("Error formatting user profile", e); }
+    }
+
+    // 2. Load Registered Schemes (Mocking data if empty for demo purposes)
+    const schemesListContainer = document.getElementById('schemes-list');
+    const emptyStateContainer = document.getElementById('empty-state');
+    
+    // We try to get real registered schemes. If none exist, we inject mock data so the new UI is visible.
+    let registeredSchemesStr = localStorage.getItem('registeredSchemes');
+    let registeredSchemes = [];
+    
+    if (registeredSchemesStr) {
+      try {
+        registeredSchemes = JSON.parse(registeredSchemesStr);
+      } catch (e) {}
+    }
+
+    // MOCK DATA FOR UI PREVIEW (Remove or change condition if you want real empty state)
+    if (registeredSchemes.length === 0) {
+      registeredSchemes = [
+        {
+          name: "Pradhan Mantri Fasal Bima Yojana",
+          category: "Agriculture Sector",
+          benefits: "Provides insurance cover and financial support to farmers in the event of failure of any of the notified crops as a result of natural calamities, pests & diseases.",
+          status: "Applied", // Applied, In Progress, Approved
+          documents: ["Aadhar Card", "Land Records", "Bank Passbook"]
+        },
+        {
+          name: "Ayushman Bharat PMJAY",
+          category: "Medical Sector",
+          benefits: "Health cover of Rs. 5 lakhs per family per year for secondary and tertiary care hospitalization across public and private empaneled hospitals in India.",
+          status: "Approved",
+          documents: ["Income Certificate", "Ration Card"]
+        }
+      ];
+    }
+
+    // 3. Render the schemes
+    if (registeredSchemes.length > 0) {
+      schemesListContainer.style.display = "flex";
+      emptyStateContainer.style.display = "none";
+      
+      registeredSchemes.forEach(scheme => {
+        let statusClass = "status-applied";
+        if (scheme.status === "In Progress") statusClass = "status-in-progress";
+        else if (scheme.status === "Approved") statusClass = "status-approved";
+
+        const docsHtml = (scheme.documents || []).map(doc => `<span class="doc-tag">${doc}</span>`).join('');
+
+        const card = document.createElement("div");
+        card.className = "scheme-history-card";
+        card.innerHTML = `
+          <div class="history-card-header">
+            <div class="history-title-group">
+              <span class="scheme-category-tag" style="margin-bottom: 12px;">${scheme.category}</span>
+              <h3>${scheme.name}</h3>
+            </div>
+            <div class="status-badge ${statusClass}">${scheme.status}</div>
+          </div>
+          <div class="card-benefits">
+            ${scheme.benefits}
+          </div>
+          <div>
+            <span style="font-size: 0.9rem; font-weight: 600; color: var(--primary-text); margin-bottom: 4px; display: inline-block;">Documents Required:</span>
+            <div class="documents-list">
+              ${docsHtml || '<span class="doc-tag">No documents specified</span>'}
+            </div>
+          </div>
+          <div style="margin-top: 24px; text-align: right;">
+             <button class="btn modal-trigger-btn" style="width: auto; padding: 10px 20px;">View Details</button>
+          </div>
+        `;
+        
+        const detailsBtn = card.querySelector('.modal-trigger-btn');
+        detailsBtn.addEventListener('click', () => {
+             if (window.showSchemeModal) window.showSchemeModal(scheme);
+        });
+
+        schemesListContainer.appendChild(card);
+      });
+    } else {
+      schemesListContainer.style.display = "none";
+      emptyStateContainer.style.display = "flex";
+    }
+  });
+</script>
+<script src="theme.js?v=1776477080.03402"></script>
+<script src="translations.js?v=1776477080.03402"></script>
+<script src="modal.js"></script>
+</body>
+</html>

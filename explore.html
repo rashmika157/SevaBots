@@ -7,25 +7,53 @@
   <meta name="description" content="Explore and find government and social schemes available in your state with SevaBots.">
   <link rel="stylesheet" href="style.css">
 </head>
-<body>
-  <div class="container">
-    <nav class="main-nav">
+<body class="dynamic-landing-page">
+  <!-- Soft Background Effects Layer -->
+  <div class="bg-blobs">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+  </div>
+  <header class="top-nav" style="display: flex; justify-content: space-between; align-items: center; margin: 0 auto; margin-bottom: 24px; padding: 24px 5%; width: 100%; max-width: 1800px; box-sizing: border-box;">
+    <a href="index.html" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 10px;">
+      <img src="logo.jpg" alt="SevaBots Logo" style="width: 36px; height: 36px; border-radius: 50%;">
+      <div class="logo">SevaBots</div>
+    </a>
+    
+    <nav class="main-nav" style="margin-bottom: 0; border: none; padding-bottom: 0; display: flex; gap: 32px; align-items: center;">
       <a href="index.html" class="nav-link" data-i18n="Home">Home</a>
-      <a href="explore.html" class="nav-link active" data-i18n="Explore Schemes">Explore Schemes</a>
       <a href="personalized-schemes.html" class="nav-link" data-i18n="Personalized Schemes">Personalized Schemes</a>
+      <a href="explore.html" class="nav-link active" data-i18n="Explore Schemes">Explore Schemes</a>
       <a href="assistant.html" class="nav-link" data-i18n="AI Assistant">AI Assistant</a>
     </nav>
-    <header>
-      <h1 id="page-title">Explore Schemes</h1>
-      <div class="filter-container">
-        <label for="state-filter">Filter by:</label>
-        <select id="state-filter" title="Select your state to filter schemes">
-          <option value="">Select State</option>
+
+    <div id="nav-right-container" style="display: flex; align-items: center; gap: 12px;">
+      <button onclick="window.history.back()" class="small-btn" style="background: transparent; color: var(--primary-text); border: 1px solid var(--border-color);">Back</button>
+      <a href="index.html" class="small-btn">Home</a>
+    </div>
+  </header>
+  
+  <div class="container" style="padding-top: 24px;">
+    <header style="justify-content: center; flex-direction: column; align-items: center;">
+      <h1 id="page-title" style="text-align: center; color: #9d174d; margin-bottom: 24px;">Explore Schemes</h1>
+      <div class="filter-container" style="display: flex; gap: 16px; flex-wrap: wrap; justify-content: center;">
+        <select id="state-filter" title="Select your state to filter schemes" style="padding: 10px 16px; border-radius: 8px; border: 1px solid var(--border-color); background: var(--surface-color); color: var(--primary-text);">
+          <option value="">All States</option>
+          <option value="Central Scheme">Central Scheme</option>
           <option value="maharashtra">Maharashtra</option>
           <option value="karnataka">Karnataka</option>
           <option value="delhi">Delhi</option>
           <option value="gujarat">Gujarat</option>
           <option value="tamil_nadu">Tamil Nadu</option>
+          <option value="telangana">Telangana</option>
+          <option value="odisha">Odisha</option>
+        </select>
+        <select id="sector-filter" title="Select the sector to filter schemes" style="padding: 10px 16px; border-radius: 8px; border: 1px solid var(--border-color); background: var(--surface-color); color: var(--primary-text);">
+          <option value="">All Sectors</option>
+          <option value="Agriculture Sector">Agriculture Sector</option>
+          <option value="Medical Sector">Medical Sector</option>
+          <option value="Education Sector">Education Sector</option>
+          <option value="Others">Others</option>
         </select>
       </div>
     </header>
@@ -38,17 +66,28 @@
   document.addEventListener('DOMContentLoaded', () => {
     const container = document.getElementById('schemes-container');
     const stateFilter = document.getElementById('state-filter');
+    const sectorFilter = document.getElementById('sector-filter');
     let allSchemes = [];
 
     function renderSchemes() {
         const selectedState = stateFilter ? stateFilter.value : '';
+        const selectedSector = sectorFilter ? sectorFilter.value : '';
         
         let filteredSchemes = allSchemes;
+        
         if (selectedState) {
-            filteredSchemes = allSchemes.filter(scheme => {
+            filteredSchemes = filteredSchemes.filter(scheme => {
                 const stateNormalized = scheme.state.toLowerCase().replace(/_/g, ' ');
                 const selectedNormalized = selectedState.toLowerCase().replace(/_/g, ' ');
                 return stateNormalized === selectedNormalized || stateNormalized === 'all india';
+            });
+        }
+
+        if (selectedSector) {
+            filteredSchemes = filteredSchemes.filter(scheme => {
+                if (!scheme.target && !scheme.category) return false;
+                const schemeTarget = scheme.target || scheme.category;
+                return schemeTarget === selectedSector || schemeTarget === 'General';
             });
         }
         
@@ -57,37 +96,67 @@
           const article = document.createElement('article');
           article.className = 'scheme-card';
           article.innerHTML = `
-            <h2>${scheme.name}</h2>
-            <p>${scheme.benefits}</p>
-            <p style="margin-bottom: 24px; color: var(--primary-text); font-weight: 500;">State: ${scheme.state}</p>
-            <button class="btn">View Details</button>
+            <div class="scheme-content">
+               <div class="scheme-header">
+                 <span class="scheme-category">${scheme.category || 'General'}</span>
+                 <span class="scheme-availability">${scheme.state || 'All India'}</span>
+               </div>
+               <h3>${scheme.name}</h3>
+               <p>${scheme.benefits}</p>
+            </div>
+            <button class="btn" style="width: 100%; border-radius: 0 0 12px 12px; margin-top: auto;">Explore Details</button>
           `;
+          
+          const detailsBtn = article.querySelector('.btn');
+          detailsBtn.addEventListener('click', () => {
+             if (window.showSchemeModal) window.showSchemeModal(scheme);
+          });
+          
           container.appendChild(article);
         });
         
         if (filteredSchemes.length === 0) {
-            container.innerHTML = '<p style="grid-column: 1 / -1; font-size: 1.125rem; color: var(--secondary-text);">No schemes found for the selected state.</p>';
+            container.innerHTML = '<p style="grid-column: 1 / -1; font-size: 1.125rem; color: var(--secondary-text); text-align: center;">No schemes match your exact filter combination. Try selecting a broader category.</p>';
         }
     }
 
     fetch('http://127.0.0.1:5000/api/schemes')
-      .then(res => res.json())
+      .then(res => {
+        if (!res.ok) throw new Error('Backend response not OK');
+        return res.json();
+      })
       .then(data => {
         allSchemes = data;
         renderSchemes();
       })
       .catch(err => {
-        console.error('Error loading schemes:', err);
-        container.innerHTML = '<p style="grid-column: 1 / -1; font-size: 1.125rem; color: var(--secondary-text);">Failed to load schemes. Are you accessing via file://?</p>';
+        console.warn('Backend unavailable, falling back to local schemes.json:', err);
+        fetch('schemes.json')
+          .then(res => {
+            if (!res.ok) throw new Error('Local schemes.json not found');
+            return res.json();
+          })
+          .then(data => {
+            allSchemes = data;
+            renderSchemes();
+          })
+          .catch(fallbackErr => {
+            console.error('Error loading local schemes:', fallbackErr);
+            container.innerHTML = '<p style="grid-column: 1 / -1; font-size: 1.125rem; color: var(--secondary-text);">Failed to load schemes. Make sure the local server is running.</p>';
+          });
       });
 
     if (stateFilter) {
         stateFilter.addEventListener('change', renderSchemes);
     }
+    if (sectorFilter) {
+        sectorFilter.addEventListener('change', renderSchemes);
+    }
   });
 </script>
 <script src="theme.js?v=1776477080.03402"></script>
 <script src="translations.js?v=1776477080.03402"></script>
+<script src="modal.js?v=3"></script>
 </body>
 </html>
 

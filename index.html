@@ -14,12 +14,28 @@
     <div class="blob blob-3"></div>
   </div>
 
-  <!-- Content Layer -->
   <div class="content-wrapper">
-    <!-- Top Bar -->
     <header class="top-nav">
-      <div class="logo">SevaBots</div>
-      <a href="eligibility.html" class="small-btn" data-i18n="Try Now">Try Now</a>
+      <div style="display: flex; align-items: center; gap: 24px;">
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <img src="logo.jpg" alt="SevaBots Logo" style="width: 36px; height: 36px; border-radius: 50%;">
+          <div class="logo">SevaBots</div>
+        </div>
+        <div id="welcome-container" style="display: none; align-items: center; gap: 20px;">
+          <div style="height: 24px; width: 2px; background-color: rgba(157, 23, 77, 0.2); border-radius: 2px;"></div>
+          <span id="welcome-text" style="font-size: 1.5rem; color: #9d174d; font-weight: 600; letter-spacing: -0.01em;"></span>
+        </div>
+      </div>
+      <div id="nav-right-container" style="display: flex; align-items: center; gap: 12px; position: relative;">
+        <button id="nav-login-btn" class="small-btn" onclick="showLoginModal()" style="cursor: pointer; font-family: inherit; font-size: 1rem; font-weight: 500;" data-i18n="Sign In">Sign In</button>
+        <div id="nav-profile-icon" onclick="toggleDropdown()" style="display: none; width: 44px; height: 44px; border-radius: 50%; background-color: #e0f2fe; color: #0369a1; align-items: center; justify-content: center; font-weight: 600; font-size: 1.25rem; border: 2px solid #bae6fd; cursor: pointer; transition: transform 0.2s;"></div>
+        
+        <!-- Profile Dropdown -->
+        <div id="profile-dropdown" style="display: none; position: absolute; top: 60px; right: 0; background: var(--surface-color); border: 1px solid var(--border-color); border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); padding: 8px; width: 250px; z-index: 1000;">
+          <a href="previous-schemes.html" style="display: block; text-decoration: none; padding: 12px 16px; cursor: pointer; border-radius: 8px; font-weight: 500; font-size: 0.95rem; color: var(--primary-text); transition: background 0.2s;" onmouseover="this.style.background='#f0f9ff'" onmouseout="this.style.background='transparent'">My Profile</a>
+          <div onclick="handleLogout()" style="padding: 12px 16px; cursor: pointer; border-radius: 8px; font-weight: 500; font-size: 0.95rem; color: #ef4444; margin-top: 4px; transition: background 0.2s;" onmouseover="this.style.background='#fef2f2'" onmouseout="this.style.background='transparent'">Logout</div>
+        </div>
+      </div>
     </header>
 
     <!-- Hero Section -->
@@ -27,7 +43,8 @@
       <div class="hero-tag dynamic-tag" data-i18n="AI-powered welfare assistant">AI-powered welfare assistant</div>
       
       <h1 class="modern-hero-title">
-        <span data-i18n="Your guide to access government schemes">Your guide to access government schemes</span>
+        <span class="hero-upper-text" data-i18n="Your guide to access">Your guide to access</span>
+        <span class="gradient-text-multi" data-i18n="Government schemes">Government schemes</span>
       </h1>
       
       <p class="modern-hero-subtitle">
@@ -35,9 +52,9 @@
       </p>
 
       <div class="hero-actions">
-        <a href="personalized-schemes.html" class="btn primary-action-btn dynamic-btn unified-btn"><span data-i18n="Find Personalized Schemes">Find Personalized Schemes</span></a>
-        <a href="explore.html" class="btn secondary-action-btn dynamic-btn unified-btn"><span data-i18n="Explore All Schemes">Explore All Schemes</span></a>
-        <a href="assistant.html" class="btn secondary-action-btn dynamic-btn unified-btn"><span data-i18n="Talk to AI Assistant">Talk to AI Assistant</span></a>
+        <a href="personalized-schemes.html" class="btn light-pink-btn unified-btn"><span data-i18n="Find Personalized Schemes">Find Personalized Schemes</span></a>
+        <a href="explore.html" class="btn light-pink-btn unified-btn"><span data-i18n="Explore All Schemes">Explore All Schemes</span></a>
+        <a href="assistant.html" class="btn light-pink-btn unified-btn"><span data-i18n="Talk to AI Assistant">Talk to AI Assistant</span></a>
       </div>
     </main>
 
@@ -45,14 +62,14 @@
     <section class="landing-section impact-section fade-in-section">
       <div class="impact-content">
         <div class="impact-left">
-          <h2 class="impact-title">₹80,000+ crore in benefits go unclaimed every year</h2>
-          <p class="impact-subtitle">Many people are unaware or unable to access schemes</p>
+          <h2 class="impact-title" data-i18n="₹80,000+ crore in benefits go unclaimed every year">₹80,000+ crore in benefits go unclaimed every year</h2>
+          <p class="impact-subtitle" data-i18n="Many people are unaware or unable to access schemes">Many people are unaware or unable to access schemes</p>
         </div>
         <div class="impact-right">
-          <div class="soft-card stagger-1">Language Barriers</div>
-          <div class="soft-card stagger-2">Complex Process</div>
-          <div class="soft-card stagger-3">Lack of Awareness</div>
-          <div class="soft-card stagger-4">Digital Divide</div>
+          <div class="soft-card stagger-1" data-i18n="Language Barriers">Language Barriers</div>
+          <div class="soft-card stagger-2" data-i18n="Complex Process">Complex Process</div>
+          <div class="soft-card stagger-3" data-i18n="Lack of Awareness">Lack of Awareness</div>
+          <div class="soft-card stagger-4" data-i18n="Digital Divide">Digital Divide</div>
         </div>
       </div>
     </section>
@@ -60,21 +77,21 @@
     <!-- SECTION 2: How SevaBots Works -->
     <section class="landing-section steps-section fade-in-section">
       <div class="section-header">
-        <h2>How SevaBots Works</h2>
-        <p>Simple steps to help you access schemes</p>
+        <h2 data-i18n="How SevaBots Works">How SevaBots Works</h2>
+        <p data-i18n="Simple steps to help you access schemes">Simple steps to help you access schemes</p>
       </div>
       <div class="steps-grid">
         <div class="soft-card step-card stagger-1">
-          <h3 class="step-title">1. Answer</h3>
-          <p>Answer a few simple questions</p>
+          <h3 class="step-title" data-i18n="1. Answer">1. Answer</h3>
+          <p data-i18n="Answer a few simple questions">Answer a few simple questions</p>
         </div>
         <div class="soft-card step-card stagger-2">
-          <h3 class="step-title">2. Match</h3>
-          <p>AI finds schemes for you</p>
+          <h3 class="step-title" data-i18n="2. Match">2. Match</h3>
+          <p data-i18n="AI finds schemes for you">AI finds schemes for you</p>
         </div>
         <div class="soft-card step-card stagger-3">
-          <h3 class="step-title">3. Apply</h3>
-          <p>Get guidance to apply</p>
+          <h3 class="step-title" data-i18n="3. Apply">3. Apply</h3>
+          <p data-i18n="Get guidance to apply">Get guidance to apply</p>
         </div>
       </div>
     </section>
@@ -82,25 +99,25 @@
     <!-- SECTION 3: How SevaBots Helps You -->
     <section class="landing-section helps-section fade-in-section">
       <div class="section-header">
-        <h2>How SevaBots Helps You</h2>
-        <p>Simple features to make scheme access easy</p>
+        <h2 data-i18n="How SevaBots Helps You">How SevaBots Helps You</h2>
+        <p data-i18n="Simple features to make scheme access easy">Simple features to make scheme access easy</p>
       </div>
       <div class="helps-grid">
         <div class="soft-card help-card stagger-1">
-          <h3 class="help-title">AI Matching</h3>
-          <p>Find schemes based on your profile</p>
+          <h3 class="help-title" data-i18n="AI Matching">AI Matching</h3>
+          <p data-i18n="Find schemes based on your profile">Find schemes based on your profile</p>
         </div>
         <div class="soft-card help-card stagger-2">
-          <h3 class="help-title">Simple Guidance</h3>
-          <p>Step-by-step help to apply</p>
+          <h3 class="help-title" data-i18n="Simple Guidance">Simple Guidance</h3>
+          <p data-i18n="Step-by-step help to apply">Step-by-step help to apply</p>
         </div>
         <div class="soft-card help-card stagger-3">
-          <h3 class="help-title">Multilingual Support</h3>
-          <p>Use in your preferred language</p>
+          <h3 class="help-title" data-i18n="Multilingual Support">Multilingual Support</h3>
+          <p data-i18n="Use in your preferred language">Use in your preferred language</p>
         </div>
         <div class="soft-card help-card stagger-4">
-          <h3 class="help-title">Easy Access</h3>
-          <p>Simple and user-friendly interface</p>
+          <h3 class="help-title" data-i18n="Easy Access">Easy Access</h3>
+          <p data-i18n="Simple and user-friendly interface">Simple and user-friendly interface</p>
         </div>
       </div>
     </section>
@@ -108,43 +125,34 @@
     <!-- SECTION 4: Real Impact -->
     <section class="landing-section impact-testimonials-section fade-in-section">
       <div class="section-header">
-        <h2>Real Impact</h2>
-        <p>Helping people access the right schemes</p>
+        <h2 data-i18n="Real Impact">Real Impact</h2>
+        <p data-i18n="Helping people access the right schemes">Helping people access the right schemes</p>
       </div>
       <div class="testimonials-grid">
         <div class="soft-card testimonial-card stagger-1">
-          <p class="quote">"This helped me find the right scheme easily"</p>
+          <p class="quote" data-i18n="This helped me find the right scheme easily">"This helped me find the right scheme easily"</p>
           <div class="author">
-            <span class="name">Rahul K.</span>
-            <span class="state">Karnataka</span>
+            <span class="name" data-i18n="Rahul K.">Rahul K.</span>
+            <span class="state" data-i18n="Karnataka">Karnataka</span>
           </div>
         </div>
         <div class="soft-card testimonial-card stagger-2">
-          <p class="quote">"Very simple and useful"</p>
+          <p class="quote" data-i18n="Very simple and useful">"Very simple and useful"</p>
           <div class="author">
-            <span class="name">Priya S.</span>
-            <span class="state">Maharashtra</span>
+            <span class="name" data-i18n="Priya S.">Priya S.</span>
+            <span class="state" data-i18n="Maharashtra">Maharashtra</span>
           </div>
         </div>
         <div class="soft-card testimonial-card stagger-3">
-          <p class="quote">"Saved a lot of time"</p>
+          <p class="quote" data-i18n="Saved a lot of time">"Saved a lot of time"</p>
           <div class="author">
-            <span class="name">Amit Patel</span>
-            <span class="state">Gujarat</span>
+            <span class="name" data-i18n="Amit Patel">Amit Patel</span>
+            <span class="state" data-i18n="Gujarat">Gujarat</span>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- SECTION 5: Small Stats -->
-    <section class="landing-section stats-section fade-in-section">
-      <div class="stats-container">
-        <div class="stat-item stagger-1">80%+ Users helped</div>
-        <div class="stat-item stagger-2">1000+ Schemes</div>
-        <div class="stat-item stagger-3">10+ Languages</div>
-        <div class="stat-item stagger-4">All India Access</div>
-      </div>
-    </section>
 
   </div>
 
@@ -161,8 +169,113 @@
       document.querySelectorAll('.fade-in-section').forEach((section) => {
         observer.observe(section);
       });
+
+      // User details save logic
+      const saveBtn = document.getElementById('save-details-btn');
+      if(saveBtn) {
+        saveBtn.addEventListener('click', () => {
+          const details = {
+              name: document.getElementById('detail-name').value,
+              phone: document.getElementById('detail-phone').value,
+              age: document.getElementById('detail-age').value,
+              address: document.getElementById('detail-address').value,
+              pin: document.getElementById('detail-pin').value
+          };
+          localStorage.setItem('userDetails', JSON.stringify(details));
+          if(typeof updateProfileUI === 'function') updateProfileUI();
+          const msg = document.getElementById('save-msg');
+          msg.style.display = 'block';
+          setTimeout(() => {
+            msg.style.display = 'none';
+            closeLoginModal();
+          }, 2000);
+        });
+      }
+
+      function updateProfileUI() {
+        const userDataStr = localStorage.getItem('userDetails');
+        const loginBtn = document.getElementById('nav-login-btn');
+        const profileIcon = document.getElementById('nav-profile-icon');
+        const welcomeContainer = document.getElementById('welcome-container');
+        const welcomeText = document.getElementById('welcome-text');
+        
+        if (userDataStr && loginBtn && profileIcon) {
+          try {
+            const userData = JSON.parse(userDataStr);
+            if (userData && userData.name && userData.name.trim().length > 0) {
+              loginBtn.style.display = 'none';
+              profileIcon.style.display = 'flex';
+              profileIcon.textContent = userData.name.trim().charAt(0).toUpperCase();
+              if (welcomeContainer && welcomeText) {
+                welcomeContainer.style.display = 'flex';
+                welcomeText.textContent = 'Welcome, ' + userData.name.trim();
+              }
+            }
+          } catch(e) { console.error("Error parsing user details", e); }
+        }
+      }
+      
+      updateProfileUI();
     });
+
+    function showLoginModal() {
+      document.getElementById('login-modal').style.display = 'flex';
+    }
+    
+    function closeLoginModal() {
+      document.getElementById('login-modal').style.display = 'none';
+    }
+
+    function toggleDropdown() {
+      const dropdown = document.getElementById('profile-dropdown');
+      if (dropdown.style.display === 'none' || dropdown.style.display === '') {
+        dropdown.style.display = 'block';
+      } else {
+        dropdown.style.display = 'none';
+      }
+    }
+
+    // Close dropdown if clicking outside
+    document.addEventListener('click', (e) => {
+      const icon = document.getElementById('nav-profile-icon');
+      const dropdown = document.getElementById('profile-dropdown');
+      if (icon && dropdown && !icon.contains(e.target) && !dropdown.contains(e.target)) {
+        dropdown.style.display = 'none';
+      }
+    });
+
+    function handleLogout() {
+      localStorage.removeItem('userDetails');
+      
+      const loginBtn = document.getElementById('nav-login-btn');
+      const profileIcon = document.getElementById('nav-profile-icon');
+      const dropdown = document.getElementById('profile-dropdown');
+      const welcomeContainer = document.getElementById('welcome-container');
+      
+      if(loginBtn) loginBtn.style.display = '';
+      if(profileIcon) profileIcon.style.display = 'none';
+      if(dropdown) dropdown.style.display = 'none';
+      if(welcomeContainer) welcomeContainer.style.display = 'none';
+    }
   </script>
+  
+  <!-- Login / Details Modal Overlay -->
+  <div id="login-modal" style="display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); align-items: center; justify-content: center; z-index: 1000; padding: 20px;">
+    <div class="modal-content" style="background: var(--surface-color); padding: 32px 24px; border-radius: 16px; text-align: center; max-width: 420px; width: 100%; box-shadow: 0 10px 25px rgba(0,0,0,0.1); position: relative;">
+      <button onclick="closeLoginModal()" style="position: absolute; top: 16px; right: 20px; background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--secondary-text);">&times;</button>
+      <h2 style="margin-top: 0; margin-bottom: 8px; color: var(--primary-text); font-size: 1.5rem;">Welcome</h2>
+      <p style="color: var(--secondary-text); margin-bottom: 24px; font-size: 1rem;">Enter your details for easy access</p>
+      <div style="display: flex; flex-direction: column; gap: 16px;">
+        <input type="text" id="detail-name" placeholder="Full Name" class="large-input" style="padding: 14px; font-size: 1rem; text-align: left; width: 100%; box-shadow: none;">
+        <input type="tel" id="detail-phone" placeholder="Phone Number" class="large-input" style="padding: 14px; font-size: 1rem; text-align: left; width: 100%; box-shadow: none;">
+        <input type="number" id="detail-age" placeholder="Age" class="large-input" style="padding: 14px; font-size: 1rem; text-align: left; width: 100%; box-shadow: none;">
+        <input type="text" id="detail-address" placeholder="Address" class="large-input" style="padding: 14px; font-size: 1rem; text-align: left; width: 100%; box-shadow: none;">
+        <input type="text" id="detail-pin" placeholder="PIN Code" class="large-input" style="padding: 14px; font-size: 1rem; text-align: left; width: 100%; box-shadow: none;">
+        <button class="btn" id="save-details-btn" style="padding: 16px; font-size: 1.1rem; margin-top: 8px;">Save Details</button>
+        <div id="save-msg" style="color: #10b981; font-weight: 500; text-align: center; display: none;">Details saved successfully</div>
+      </div>
+    </div>
+  </div>
 <script src="theme.js?v=1776477080.03402"></script>
 <script src="translations.js?v=1776477080.03402"></script>
 </body>

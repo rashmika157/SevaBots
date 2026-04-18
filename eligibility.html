@@ -7,16 +7,35 @@
   <meta name="description" content="Check which government schemes you are eligible for using SevaBots.">
   <link rel="stylesheet" href="style.css">
 </head>
-<body>
-  <div class="container">
-    <nav class="main-nav">
+<body class="dynamic-landing-page">
+  <!-- Soft Background Effects Layer -->
+  <div class="bg-blobs">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+  </div>
+  <header class="top-nav" style="display: flex; justify-content: space-between; align-items: center; margin: 0 auto; margin-bottom: 24px; padding: 24px 5%; width: 100%; max-width: 1800px; box-sizing: border-box;">
+    <a href="index.html" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 10px;">
+      <img src="logo.jpg" alt="SevaBots Logo" style="width: 36px; height: 36px; border-radius: 50%;">
+      <div class="logo">SevaBots</div>
+    </a>
+    
+    <nav class="main-nav" style="margin-bottom: 0; border: none; padding-bottom: 0; display: flex; gap: 32px; align-items: center;">
       <a href="index.html" class="nav-link" data-i18n="Home">Home</a>
-      <a href="explore.html" class="nav-link" data-i18n="Explore Schemes">Explore Schemes</a>
       <a href="personalized-schemes.html" class="nav-link" data-i18n="Personalized Schemes">Personalized Schemes</a>
+      <a href="explore.html" class="nav-link" data-i18n="Explore Schemes">Explore Schemes</a>
       <a href="assistant.html" class="nav-link" data-i18n="AI Assistant">AI Assistant</a>
     </nav>
-    <header class="center-header">
-      <h1 id="page-title">Check Your Eligibility</h1>
+
+    <div id="nav-right-container" style="display: flex; align-items: center; gap: 12px;">
+      <button onclick="window.history.back()" class="small-btn" style="background: transparent; color: var(--primary-text); border: 1px solid var(--border-color);">Back</button>
+      <a href="index.html" class="small-btn">Home</a>
+    </div>
+  </header>
+  
+  <div class="container" style="padding-top: 24px;">
+    <header class="center-header" style="justify-content: center;">
+      <h1 id="page-title" style="text-align: center; color: #9d174d;">Check Your Eligibility</h1>
     </header>
 
     <main class="center-layout">

@@ -2,82 +2,111 @@
   {
     "name": "Kisan Credit Card (KCC)",
     "benefits": "Provides subsidized loans for farming up to 3 lakhs.",
-    "state": "All India",
+    "state": "Central Scheme",
     "category": "Loan for farming",
     "target": "Agriculture Sector",
-    "income": "Any"
+    "income": "Any",
+    "link": "https://pmkisan.gov.in/",
+    "steps": [
+      "Visit the closest cooperative bank or regional rural bank branch.",
+      "Collect the Kisan Credit Card application form.",
+      "Fill out the application detailing land holding and cropping patterns.",
+      "Attach mandatory documents and passport size photographs.",
+      "Submit the application to the branch manager for verification and issuance."
+    ],
+    "documents": [
+      "Aadhaar Card",
+      "PAN Card",
+      "Land Ownership Records (Pattadar Passbook)",
+      "Recent passport size photographs"
+    ]
   },
   {
-    "name": "PM KISAN Form Machinery",
-    "benefits": "Subsidies on equipment up to 50-80%.",
-    "state": "All India",
-    "category": "Equipment subsidy",
+    "name": "PM KISAN Samman Nidhi",
+    "benefits": "Direct benefit transfer of ₹6000 per year.",
+    "state": "Central Scheme",
+    "category": "Financial support",
     "target": "Agriculture Sector",
-    "income": "Below ₹2 Lakhs"
+    "income": "Below ₹2 Lakhs",
+    "link": "https://pmkisan.gov.in/",
+    "steps": [
+      "Visit the official PM KISAN website.",
+      "Click on 'New Farmer Registration' in the Farmers Corner.",
+      "Enter your Aadhaar number and fill the relevant details in the application form.",
+      "Upload your land record details verifying ownership.",
+      "Submit the form and check your status via 'Beneficiary Status'."
+    ],
+    "documents": [
+      "Aadhaar Card",
+      "Bank Passbook for DBT",
+      "Land Ownership Documents (Khatauni/7-12 Extract)"
+    ]
   },
   {
     "name": "Pradhan Mantri Fasal Bima Yojana",
     "benefits": "Premium crop insurance coverage.",
-    "state": "All India",
+    "state": "Central Scheme",
     "category": "Crop insurance",
     "target": "Agriculture Sector",
-    "income": "Any"
+    "income": "Any",
+    "link": "https://pmfby.gov.in/",
+    "steps": [
+      "Log on to the PMFBY online portal.",
+      "Click on 'Farmer Corner' to apply for crop insurance yourself or navigate to a CSC center.",
+      "Fill in your personal, banking, and land details.",
+      "Select the crop sown and calculate premium amount.",
+      "Pay the nominal premium online to secure coverage."
+    ],
+    "documents": [
+      "Aadhaar Card",
+      "Sowing Certificate from Patwari/Sarpanch",
+      "Bank Account Details",
+      "Land Records"
+    ]
   },
   {
-    "name": "Financial Assistance for Marginal Farmers",
-    "benefits": "Direct benefit transfer of 6000 per year.",
-    "state": "All India",
-    "category": "Financial support",
+    "name": "Sub Mission on Agricultural Mechanization",
+    "benefits": "Subsidies on equipment up to 50-80%.",
+    "state": "Central Scheme",
+    "category": "Equipment subsidy",
     "target": "Agriculture Sector",
-    "income": "Below ₹2 Lakhs"
+    "income": "Below ₹2 Lakhs",
+    "link": "https://agrimachinery.nic.in/",
+    "steps": [
+      "Register on the Agrimachinery direct benefit transfer portal.",
+      "Select the type of agricultural machinery you intend to purchase.",
+      "Choose a registered dealer and generate a quotation.",
+      "Submit the application with the quotation and Aadhaar validation.",
+      "Once approved, purchase the equipment and upload the receipt for direct subsidy deposit."
+    ],
+    "documents": [
+      "Aadhaar Card",
+      "Bank Passbook",
+      "Quotation of Machinery from Registered Dealer",
+      "Land Title/Record"
+    ]
   },
   {
-    "name": "Ayushman Bharat PMJAY",
-    "benefits": "Medical cover up to 5 Lakhs.",
-    "state": "All India",
-    "category": "Hospitalization / Surgery",
-    "target": "Medical Sector",
-    "income": "Below ₹1 Lakh"
-  },
-  {
-    "name": "National Health Mission - Chronic Care",
-    "benefits": "Free medicine and checkups for chronic diseases.",
-    "state": "All India",
-    "category": "Chronic disease treatment",
-    "target": "Medical Sector",
-    "income": "Any"
-  },
-  {
-    "name": "Janani Suraksha Yojana",
-    "benefits": "Maternity care and financial assistance for delivery.",
-    "state": "All India",
-    "category": "Maternity care",
-    "target": "Medical Sector",
-    "income": "Below ₹1 Lakh"
-  },
-  {
-    "name": "Pre-Matric Scholarship",
-    "benefits": "Tuition fee support for school students.",
-    "state": "All India",
-    "category": "Tuition Fee",
-    "target": "Education Sector",
-    "income": "Below ₹2.5 Lakhs"
-  },
-  {
-    "name": "Post-Matric Hostel Allowance",
-    "benefits": "Financial support for hostel expenses.",
-    "state": "All India",
-    "category": "Hostel Fee",
-    "target": "Education Sector",
-    "income": "Below ₹2.5 Lakhs"
-  },
-  {
-    "name": "National Means-cum-Merit Scholarship",
-    "benefits": "Both tuition and hostel support.",
-    "state": "All India",
-    "category": "Both",
-    "target": "Education Sector",
-    "income": "Below ₹2.5 Lakhs"
+    "name": "Karnataka Krishi Bhagya",
+    "benefits": "Rainwater harvesting and critical irrigation support during dry spells.",
+    "state": "Karnataka",
+    "category": "Equipment subsidy",
+    "target": "Agriculture Sector",
+    "income": "Any",
+    "link": "https://raitamitra.karnataka.gov.in/",
+    "steps": [
+      "Approach your nearest Raitha Samparka Kendra (RSK).",
+      "Acquire the Krishi Bhagya application form.",
+      "Submit the form outlining your intention to setup a Krishi Honda (farm pond) or polyhouse.",
+      "An inspection by the local agricultural officer will follow.",
+      "Sanctioned funds are released in phases based on setup progress."
+    ],
+    "documents": [
+      "Aadhaar Card",
+      "RTC (Record of Rights, Tenancy and Crops)",
+      "Caste Certificate (if claiming high subsidy quota)",
+      "Bank Account Passbook"
+    ]
   },
   {
     "name": "Karnataka Raitha Suraksha",
@@ -85,30 +114,168 @@
     "state": "Karnataka",
     "category": "Financial support",
     "target": "Agriculture Sector",
-    "income": "Any"
+    "income": "Any",
+    "link": "https://raitamitra.karnataka.gov.in/",
+    "steps": [
+      "Visit the local Agricultural Department office in your district.",
+      "Submit a claim form following crop destruction (due to natural calamity or pests).",
+      "A joint survey will be conducted by agriculture & revenue officials.",
+      "Submit your bank and RTC details for verification.",
+      "Compensation is directly credited via DBT to your linked bank account."
+    ],
+    "documents": [
+      "Aadhaar Card",
+      "Crop Sowing Certificate",
+      "Bank Passbook",
+      "RTC Documents"
+    ]
   },
   {
-    "name": "Maharashtra Krishi Sanjeevani",
-    "benefits": "Helps farmers with delayed payment of electricity bills.",
+    "name": "Maharashtra Mahatma Jotirao Phule Shetkari Karjmukti",
+    "benefits": "Debt relief for farmers facing severe financial crises.",
     "state": "Maharashtra",
+    "category": "Loan for farming",
+    "target": "Agriculture Sector",
+    "income": "Any",
+    "link": "https://mjpsky.maharashtra.gov.in/",
+    "steps": [
+      "Check your name in the beneficiary list maintained at your local Gram Panchayat.",
+      "Visit the Aaple Sarkar Maha-e-Seva Kendra or bank branch with your Aadhaar card.",
+      "Complete the biometric authentication process.",
+      "Once authenticated, the loan waiver amount is directly credited to your loan account.",
+      "Collect the 'No-Dues Certificate' from your bank."
+    ],
+    "documents": [
+      "Aadhaar Card linked to Bank Account",
+      "Bank Transaction Passbook",
+      "Loan Account Number Details"
+    ]
+  },
+  {
+    "name": "Rythu Bandhu Scheme",
+    "benefits": "Investment support for agriculture and horticulture crops by way of a grant of ₹5,000 per acre per farmer.",
+    "state": "Telangana",
     "category": "Financial support",
     "target": "Agriculture Sector",
-    "income": "Any"
+    "income": "Any",
+    "link": "http://rythubandhu.telangana.gov.in/",
+    "steps": [
+      "Ensure your land ownership details are digitally updated on the Dharani portal.",
+      "Submit a copy of your Pattadar Passbook to the Village Revenue Officer (VRO).",
+      "Provide your Aadhaar and bank details for validation.",
+      "The Agriculture Extension Officer (AEO) will verify your crop details.",
+      "Funds are directly deposited into your account prior to the Kharif / Rabi seasons."
+    ],
+    "documents": [
+      "Pattadar Passbook",
+      "Aadhaar Card",
+      "Bank Account Passbook"
+    ]
+  },
+  {
+    "name": "KALIA Scheme",
+    "benefits": "Financial assistance to cultivators, landless agricultural laborers, and vulnerable agricultural households.",
+    "state": "Odisha",
+    "category": "Financial support",
+    "target": "Agriculture Sector",
+    "income": "Below ₹2 Lakhs",
+    "link": "https://kalia.odisha.gov.in/",
+    "steps": [
+      "Visit the official KALIA portal and access the Online Grievance / Application form.",
+      "Select 'New Application' and fill in your Aadhaar details.",
+      "Fill the comprehensive form declaring your status as an active cultivator or landless laborer.",
+      "Upload necessary KYC details carefully.",
+      "Approval is confirmed via SMS, and funds are disbursed direct-to-bank."
+    ],
+    "documents": [
+      "Aadhaar Card",
+      "Income Certificate",
+      "Active Bank Account Details"
+    ]
+  },
+  {
+    "name": "PM KUSUM Scheme",
+    "benefits": "Subsidies for setting up solar pumps and grid-connected solar power plants.",
+    "state": "Central Scheme",
+    "category": "Equipment subsidy",
+    "target": "Agriculture Sector",
+    "income": "Any",
+    "link": "https://pmkusum.mnre.gov.in/",
+    "steps": [
+      "Visit your respective state's renewable energy agency portal.",
+      "Apply online under Component B for standalone solar agriculture pumps.",
+      "Deposit the required farmer-share of the cost via demand draft or online payment.",
+      "The agency will align a registered vendor for installation.",
+      "The system will be commissioned on your farm post-installation inspection."
+    ],
+    "documents": [
+      "Aadhaar Card",
+      "Land Ownership Documents",
+      "Bank Account Details",
+      "Declaration stating lack of electricity connection on farm"
+    ]
+  },
+  {
+    "name": "e-NAM (National Agriculture Market)",
+    "benefits": "Pan-India electronic trading portal linking APMCs.",
+    "state": "Central Scheme",
+    "category": "Financial support",
+    "target": "Agriculture Sector",
+    "income": "Any",
+    "link": "https://enam.gov.in/",
+    "steps": [
+      "Register as a Farmer on the e-NAM portal or mobile app.",
+      "Provide KYC details and Bank account info for payment integration.",
+      "Bring your produce to the nearest connected APMC mandi.",
+      "Get your produce quality assayed, which generates continuous online bids.",
+      "Accept the highest online bid and receive the payment directly to your bank account."
+    ],
+    "documents": [
+      "Aadhaar Card",
+      "Bank Account Details",
+      "Mobile Number for OTP validation"
+    ]
+  },
+  {
+    "name": "Ayushman Bharat PMJAY",
+    "benefits": "Medical cover up to 5 Lakhs.",
+    "state": "Central Scheme",
+    "category": "Hospitalization / Surgery",
+    "target": "Medical Sector",
+    "income": "Below ₹1 Lakh",
+    "link": "https://pmjay.gov.in/",
+    "steps": [
+      "Visit pmjay.gov.in to verify your eligibility via mobile number.",
+      "Visit any empaneled hospital or nearest Common Service Center (CSC).",
+      "Submit identification for E-KYC.",
+      "Get your PMJAY e-card printed.",
+      "Present the e-card during hospitalization for cashless treatment."
+    ],
+    "documents": [
+      "Aadhaar Card",
+      "Ration Card",
+      "Registered Mobile Number"
+    ]
   },
   {
     "name": "MUDRA Yojana",
     "benefits": "Business loan support for entrepreneurs.",
-    "state": "All India",
+    "state": "Central Scheme",
     "category": "Start a business",
     "target": "Others",
-    "income": "Any"
-  },
-  {
-    "name": "PMAY - Gramin",
-    "benefits": "Financial support for housing.",
-    "state": "All India",
-    "category": "House / Housing Loan",
-    "target": "Others",
-    "income": "Below ₹2 Lakhs"
+    "income": "Any",
+    "link": "https://www.mudra.org.in/",
+    "steps": [
+      "Prepare your business plan.",
+      "Visit authorized Banks, NBFCs or MFIs.",
+      "Complete the MUDRA loan application under Shishu, Kishore or Tarun category.",
+      "Submit required KYCs and projected business financials.",
+      "Once approved, loans are disbursed to an active business account."
+    ],
+    "documents": [
+      "Identity Proof",
+      "Business Address Proof",
+      "Quotations for machinery/items to be purchased"
+    ]
   }
 ]

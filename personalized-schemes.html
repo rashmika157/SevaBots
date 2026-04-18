@@ -57,17 +57,36 @@
     }
   </style>
 </head>
-<body class="landing-page">
-  <div class="container">
-    <nav class="main-nav">
+<body class="dynamic-landing-page">
+  <!-- Soft Background Effects Layer -->
+  <div class="bg-blobs">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+  </div>
+  <header class="top-nav" style="display: flex; justify-content: space-between; align-items: center; margin: 0 auto; margin-bottom: 24px; padding: 24px 5%; width: 100%; max-width: 1800px; box-sizing: border-box;">
+    <a href="index.html" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 10px;">
+      <img src="logo.jpg" alt="SevaBots Logo" style="width: 36px; height: 36px; border-radius: 50%;">
+      <div class="logo">SevaBots</div>
+    </a>
+    
+    <nav class="main-nav" style="margin-bottom: 0; border: none; padding-bottom: 0; display: flex; gap: 32px; align-items: center;">
       <a href="index.html" class="nav-link" data-i18n="Home">Home</a>
-      <a href="explore.html" class="nav-link" data-i18n="Explore Schemes">Explore Schemes</a>
       <a href="personalized-schemes.html" class="nav-link active" data-i18n="Personalized Schemes">Personalized Schemes</a>
+      <a href="explore.html" class="nav-link" data-i18n="Explore Schemes">Explore Schemes</a>
       <a href="assistant.html" class="nav-link" data-i18n="AI Assistant">AI Assistant</a>
     </nav>
 
+    <div id="nav-right-container" style="display: flex; align-items: center; gap: 12px;">
+      <button onclick="window.history.back()" class="small-btn" style="background: transparent; color: var(--primary-text); border: 1px solid var(--border-color);">Back</button>
+      <a href="index.html" class="small-btn">Home</a>
+    </div>
+  </header>
+  
+  <div class="container" style="padding-top: 24px;">
+
     <header style="justify-content: center; margin-bottom: 24px;">
-      <h1 id="page-title" style="text-align: center;" data-i18n="Personalized Schemes">Personalized Schemes</h1>
+      <h1 id="page-title" style="text-align: center; color: #9d174d;" data-i18n="Personalized Schemes">Personalized Schemes</h1>
     </header>
 
     <main class="centered-question-layout" id="chat-stage">
@@ -81,21 +100,22 @@
       const stage = document.getElementById('chat-stage');
       
       const schemeFlows = {
-        "Agriculture Sector": [
-          { q: "Are you a farmer?", opts: ["Yes", "No"] },
-          { q: "Do you own agricultural land?", opts: ["Yes", "No"] },
-          { q: "What is the size of your land?", opts: ["Small (less than 2 acres)", "Medium (2–5 acres)", "Large (more than 5 acres)"] },
-          { q: "What type of crops do you grow?", opts: ["Food crops (rice, wheat)", "Cash crops (cotton, sugarcane)", "Fruits / vegetables", "Not sure"] },
-          { q: "Do you have irrigation facilities?", opts: ["Yes (borewell / canal)", "No (rain-dependent)", "Not sure"] },
-          { q: "Do you own any heavy farm equipment (e.g. Tractor)?", opts: ["Yes", "No"] },
-          { q: "Have you taken any crop loan historically?", opts: ["Yes", "No"] },
-          { q: "Are you registered under PM-KISAN?", opts: ["Yes", "No", "Don't know"] },
-          { q: "What kind of support do you need?", opts: ["Loan for farming", "Equipment subsidy", "Crop insurance", "Financial support", "Not sure"] },
-          { q: "What is your annual family income?", opts: ["Below ₹2 Lakhs", "₹2–5 Lakhs", "Above ₹5 Lakhs"] },
-          { q: "Where do you live?", opts: ["Rural", "Semi-urban"] },
-          { q: "Do you belong to any category?", opts: ["General", "OBC", "SC/ST"] },
-          { q: "Select your age group", opts: ["Below 30", "30–50", "Above 50"] }
-        ],
+        "Agriculture Sector": {
+          isGraph: true,
+          start: "q1",
+          nodes: {
+            "q1": { q: "Are you a farmer?", opts: ["Yes", "No"], next: { "Yes": "q2", "No": "q_not_farmer" } },
+            "q2": { q: "Do you own agricultural land?", opts: ["Yes", "No"], next: { "Yes": "q3_yes", "No": "q3_no" } },
+            "q3_yes": { q: "What is the size of your land?", opts: ["Small (less than 2 acres)", "Medium (2–5 acres)", "Large (more than 5 acres)"], next: "q4" },
+            "q3_no": { q: "Are you a tenant farmer or agricultural laborer?", opts: ["Tenant Farmer", "Laborer", "Other"], next: "q4" },
+            "q_not_farmer": { q: "Are you involved in allied agricultural activities (Dairy, Poultry etc)?", opts: ["Dairy", "Poultry", "Fishery", "None"], next: "q4" },
+            "q4": { q: "What kind of support do you need?", opts: ["Loan for farming", "Equipment subsidy", "Crop insurance", "Financial support", "Not sure"], next: "q5" },
+            "q5": { q: "What is your annual family income?", opts: ["Below ₹2 Lakhs", "₹2–5 Lakhs", "Above ₹5 Lakhs"], next: "q6" },
+            "q6": { q: "Where do you live?", opts: ["Rural", "Semi-urban"], next: "q7" },
+            "q7": { q: "Do you belong to any category?", opts: ["General", "OBC", "SC/ST"], next: "q8" },
+            "q8": { q: "Select your age group", opts: ["Below 30", "30–50", "Above 50"], next: null }
+          }
+        },
         "Medical Sector": [
           { q: "Are you seeking healthcare support for yourself or family?", opts: ["Myself", "Family Member"] },
           { q: "What is your primary healthcare requirement?", opts: ["Hospitalization / Surgery", "Chronic disease treatment", "Maternity care", "General checkups"] },
@@ -143,12 +163,23 @@
       let userAnswers = {};
 
       function renderCurrentStep() {
-        if (stepIndex >= activeFlow.length) {
-          showEndSequence();
-          return;
+        if (!activeFlow) return;
+
+        let step = null;
+        if (activeFlow.isGraph) {
+          if (!stepIndex || !activeFlow.nodes[stepIndex]) {
+            showEndSequence();
+            return;
+          }
+          step = activeFlow.nodes[stepIndex];
+        } else {
+          if (stepIndex >= activeFlow.length) {
+            showEndSequence();
+            return;
+          }
+          step = activeFlow[stepIndex];
         }
 
-        const step = activeFlow[stepIndex];
         let buttonsHtml = '';
         for (const opt of step.opts) {
           buttonsHtml += `<button class="huge-choice-btn btn-dynamic-opt" data-val="${opt}">${window.t(opt)}</button>`;
@@ -173,7 +204,17 @@
               return;
             }
             
-            stepIndex++;
+            if (activeFlow.isGraph) {
+                if (!step.next) {
+                    stepIndex = null;
+                } else if (typeof step.next === 'object') {
+                    stepIndex = step.next[answer] || null;
+                } else {
+                    stepIndex = step.next;
+                }
+            } else {
+                stepIndex++;
+            }
             renderCurrentStep();
           });
         });
@@ -185,7 +226,7 @@
             <div class="main-question" style="margin-bottom: 24px;">${window.t("Thank you! We have collected your details.")}</div>
             <div class="message-text" style="margin-bottom: 48px;" id="analysis-text">${window.t("Analyzing your profile and finding suitable schemes")}...</div>
             <div id="final-action-container" style="display: none;">
-              <a href="results.html" class="huge-choice-btn" style="text-decoration: none; display: inline-block;">${window.t("View Recommended Schemes")}</a>
+              <a href="results.html?v=2" class="huge-choice-btn" style="text-decoration: none; display: inline-block;">${window.t("View Recommended Schemes")}</a>
             </div>
           </div>
         `;
@@ -232,7 +273,7 @@
           
           if (schemeFlows[occ]) {
             activeFlow = schemeFlows[occ];
-            stepIndex = 0;
+            stepIndex = activeFlow.isGraph ? activeFlow.start : 0;
             renderCurrentStep();
           }
         });
