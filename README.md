@@ -40,7 +40,7 @@ Make sure you have Python installed (Version 3.8+ recommended).
 4. **Navigate to the web application:**
    Open your browser and visit: `http://127.0.0.1:5000`
 
-## ☁️ Deployment Instructions
+## Deployment Instructions
 
 The application is architecturally designed with relative URL endpoints (`/api/...`). This structurally implies you can host the repository seamlessly using a single unified pipeline! 
 
