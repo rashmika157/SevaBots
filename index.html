@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SevaBots</title>
+  <title>SevaBot</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body class="dynamic-landing-page">
@@ -18,12 +18,12 @@
     <header class="top-nav">
       <div style="display: flex; align-items: center; gap: 24px;">
         <div style="display: flex; align-items: center; gap: 10px;">
-          <img src="logo.jpg" alt="SevaBots Logo" style="width: 36px; height: 36px; border-radius: 50%;">
-          <div class="logo">SevaBots</div>
+          <img src="logo.jpg" alt="SevaBot Logo" style="width: 36px; height: 36px; border-radius: 50%;">
+          <div class="logo">SevaBot</div>
         </div>
         <div id="welcome-container" style="display: none; align-items: center; gap: 20px;">
           <div style="height: 24px; width: 2px; background-color: rgba(157, 23, 77, 0.2); border-radius: 2px;"></div>
-          <span id="welcome-text" style="font-size: 1.5rem; color: #9d174d; font-weight: 600; letter-spacing: -0.01em;"></span>
+          <span id="welcome-text" style="font-size: 1.5rem; color: var(--heading-color); font-weight: 600; letter-spacing: -0.01em;"></span>
         </div>
       </div>
       <div id="nav-right-container" style="display: flex; align-items: center; gap: 12px; position: relative;">
@@ -32,8 +32,8 @@
         
         <!-- Profile Dropdown -->
         <div id="profile-dropdown" style="display: none; position: absolute; top: 60px; right: 0; background: var(--surface-color); border: 1px solid var(--border-color); border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); padding: 8px; width: 250px; z-index: 1000;">
-          <a href="previous-schemes.html" style="display: block; text-decoration: none; padding: 12px 16px; cursor: pointer; border-radius: 8px; font-weight: 500; font-size: 0.95rem; color: var(--primary-text); transition: background 0.2s;" onmouseover="this.style.background='#f0f9ff'" onmouseout="this.style.background='transparent'">My Profile</a>
-          <div onclick="handleLogout()" style="padding: 12px 16px; cursor: pointer; border-radius: 8px; font-weight: 500; font-size: 0.95rem; color: #ef4444; margin-top: 4px; transition: background 0.2s;" onmouseover="this.style.background='#fef2f2'" onmouseout="this.style.background='transparent'">Logout</div>
+          <a href="previous-schemes.html" style="display: block; text-decoration: none; padding: 12px 16px; cursor: pointer; border-radius: 8px; font-weight: 500; font-size: 0.95rem; color: var(--primary-text); transition: background 0.2s;" onmouseover="this.style.background='#f0f9ff'" onmouseout="this.style.background='transparent'" data-i18n="My Profile">My Profile</a>
+          <div onclick="handleLogout()" style="padding: 12px 16px; cursor: pointer; border-radius: 8px; font-weight: 500; font-size: 0.95rem; color: #ef4444; margin-top: 4px; transition: background 0.2s;" onmouseover="this.style.background='#fef2f2'" onmouseout="this.style.background='transparent'" data-i18n="Logout">Logout</div>
         </div>
       </div>
     </header>
@@ -74,10 +74,10 @@
       </div>
     </section>
 
-    <!-- SECTION 2: How SevaBots Works -->
+    <!-- SECTION 2: How SevaBot Works -->
     <section class="landing-section steps-section fade-in-section">
       <div class="section-header">
-        <h2 data-i18n="How SevaBots Works">How SevaBots Works</h2>
+        <h2 data-i18n="How SevaBot Works">How SevaBot Works</h2>
         <p data-i18n="Simple steps to help you access schemes">Simple steps to help you access schemes</p>
       </div>
       <div class="steps-grid">
@@ -96,10 +96,10 @@
       </div>
     </section>
 
-    <!-- SECTION 3: How SevaBots Helps You -->
+    <!-- SECTION 3: How SevaBot Helps You -->
     <section class="landing-section helps-section fade-in-section">
       <div class="section-header">
-        <h2 data-i18n="How SevaBots Helps You">How SevaBots Helps You</h2>
+        <h2 data-i18n="How SevaBot Helps You">How SevaBot Helps You</h2>
         <p data-i18n="Simple features to make scheme access easy">Simple features to make scheme access easy</p>
       </div>
       <div class="helps-grid">
@@ -130,21 +130,21 @@
       </div>
       <div class="testimonials-grid">
         <div class="soft-card testimonial-card stagger-1">
-          <p class="quote" data-i18n="This helped me find the right scheme easily">"This helped me find the right scheme easily"</p>
+          <p class="quote" data-i18n="This helped me find the right scheme easily">This helped me find the right scheme easily</p>
           <div class="author">
             <span class="name" data-i18n="Rahul K.">Rahul K.</span>
             <span class="state" data-i18n="Karnataka">Karnataka</span>
           </div>
         </div>
         <div class="soft-card testimonial-card stagger-2">
-          <p class="quote" data-i18n="Very simple and useful">"Very simple and useful"</p>
+          <p class="quote" data-i18n="Very simple and useful">Very simple and useful</p>
           <div class="author">
             <span class="name" data-i18n="Priya S.">Priya S.</span>
             <span class="state" data-i18n="Maharashtra">Maharashtra</span>
           </div>
         </div>
         <div class="soft-card testimonial-card stagger-3">
-          <p class="quote" data-i18n="Saved a lot of time">"Saved a lot of time"</p>
+          <p class="quote" data-i18n="Saved a lot of time">Saved a lot of time</p>
           <div class="author">
             <span class="name" data-i18n="Amit Patel">Amit Patel</span>
             <span class="state" data-i18n="Gujarat">Gujarat</span>
@@ -153,6 +153,53 @@
       </div>
     </section>
 
+    <!-- Footer Section -->
+    <footer class="app-footer">
+      <div class="footer-light-box">
+        <div class="footer-content">
+          <div class="footer-brand-col">
+            <h2 class="footer-title">SevaBot</h2>
+            <p class="footer-desc" data-i18n="AI-powered multilingual assistant helping users discover government schemes">
+              AI-powered multilingual assistant helping users discover government schemes
+            </p>
+          <div class="social-icons">
+            <a href="#" class="social-icon">
+               <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+            </a>
+            <a href="#" class="social-icon">
+               <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+            </a>
+            <a href="#" class="social-icon">
+               <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg>
+            </a>
+          </div>
+        </div>
+        
+        <div class="footer-links-col">
+          <h4 data-i18n="ABOUT">ABOUT</h4>
+          <a href="#" data-i18n="Home">Home</a>
+          <a href="#" data-i18n="Features">Features</a>
+          <a href="#" data-i18n="How It Works">How It Works</a>
+          <a href="#" data-i18n="Impact">Impact</a>
+        </div>
+
+        <div class="footer-links-col">
+          <h4 data-i18n="RESOURCES">RESOURCES</h4>
+          <a href="#" data-i18n="Demo">Demo</a>
+          <a href="#" data-i18n="Contact">Contact</a>
+          <a href="#" data-i18n="FAQ">FAQ</a>
+        </div>
+
+        <div class="footer-links-col">
+          <h4 data-i18n="LEGAL">LEGAL</h4>
+          <a href="#" data-i18n="Privacy Policy">Privacy Policy</a>
+          <a href="#" data-i18n="Terms of Service">Terms of Service</a>
+        </div>
+        <div class="footer-bottom">
+          <p data-i18n="© 2026 SevaBot. All rights reserved.">© 2026 SevaBot. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
 
   </div>
 
@@ -173,27 +220,55 @@
       // User details save logic
       const saveBtn = document.getElementById('save-details-btn');
       if(saveBtn) {
-        saveBtn.addEventListener('click', () => {
+        saveBtn.addEventListener('click', async () => {
           const details = {
               name: document.getElementById('detail-name').value,
               phone: document.getElementById('detail-phone').value,
               age: document.getElementById('detail-age').value,
-              address: document.getElementById('detail-address').value,
-              pin: document.getElementById('detail-pin').value
+              state: document.getElementById('detail-state').value,
+              occupation: document.getElementById('detail-occupation').value,
+              income: document.getElementById('detail-income').value
           };
-          localStorage.setItem('userDetails', JSON.stringify(details));
-          if(typeof updateProfileUI === 'function') updateProfileUI();
-          const msg = document.getElementById('save-msg');
-          msg.style.display = 'block';
-          setTimeout(() => {
-            msg.style.display = 'none';
-            closeLoginModal();
-          }, 2000);
+          
+          if (!details.phone) {
+             alert((typeof window.t === 'function' ? window.t('Phone number is required') : 'Phone number is required'));
+             return;
+          }
+
+          try {
+              const saveBtnEl = document.getElementById('save-details-btn');
+              const originalText = saveBtnEl.innerText;
+              saveBtnEl.innerText = 'Saving...';
+              
+              // Immediately save to local storage to ensure frontend works perfectly
+              localStorage.setItem('userProfile', JSON.stringify(details));
+              if(typeof updateProfileUI === 'function') updateProfileUI();
+              
+              // Show success message
+              const msg = document.getElementById('save-msg');
+              msg.style.display = 'block';
+              setTimeout(() => {
+                msg.style.display = 'none';
+                closeLoginModal();
+              }, 2000);
+              
+              saveBtnEl.innerText = originalText;
+              
+              // Sync with backend asynchronously 
+              fetch('/api/user/save', {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/json' },
+                  body: JSON.stringify(details)
+              }).catch(e => console.error("Backend not connected or failed parsing.", e));
+              
+          } catch(e) {
+              console.error(e);
+          }
         });
       }
 
       function updateProfileUI() {
-        const userDataStr = localStorage.getItem('userDetails');
+        const userDataStr = localStorage.getItem('userProfile');
         const loginBtn = document.getElementById('nav-login-btn');
         const profileIcon = document.getElementById('nav-profile-icon');
         const welcomeContainer = document.getElementById('welcome-container');
@@ -208,7 +283,7 @@
               profileIcon.textContent = userData.name.trim().charAt(0).toUpperCase();
               if (welcomeContainer && welcomeText) {
                 welcomeContainer.style.display = 'flex';
-                welcomeText.textContent = 'Welcome, ' + userData.name.trim();
+                welcomeText.textContent = (typeof window.t === 'function' ? window.t('Welcome') : 'Welcome') + ', ' + userData.name.trim();
               }
             }
           } catch(e) { console.error("Error parsing user details", e); }
@@ -245,7 +320,7 @@
     });
 
     function handleLogout() {
-      localStorage.removeItem('userDetails');
+      localStorage.removeItem('userProfile');
       
       const loginBtn = document.getElementById('nav-login-btn');
       const profileIcon = document.getElementById('nav-profile-icon');
@@ -263,16 +338,17 @@
   <div id="login-modal" style="display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); align-items: center; justify-content: center; z-index: 1000; padding: 20px;">
     <div class="modal-content" style="background: var(--surface-color); padding: 32px 24px; border-radius: 16px; text-align: center; max-width: 420px; width: 100%; box-shadow: 0 10px 25px rgba(0,0,0,0.1); position: relative;">
       <button onclick="closeLoginModal()" style="position: absolute; top: 16px; right: 20px; background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--secondary-text);">&times;</button>
-      <h2 style="margin-top: 0; margin-bottom: 8px; color: var(--primary-text); font-size: 1.5rem;">Welcome</h2>
-      <p style="color: var(--secondary-text); margin-bottom: 24px; font-size: 1rem;">Enter your details for easy access</p>
+      <h2 style="margin-top: 0; margin-bottom: 8px; color: var(--primary-text); font-size: 1.5rem;" data-i18n="Welcome">Welcome</h2>
+      <p style="color: var(--secondary-text); margin-bottom: 24px; font-size: 1rem;" data-i18n="Enter your details for easy access">Enter your details for easy access</p>
       <div style="display: flex; flex-direction: column; gap: 16px;">
-        <input type="text" id="detail-name" placeholder="Full Name" class="large-input" style="padding: 14px; font-size: 1rem; text-align: left; width: 100%; box-shadow: none;">
-        <input type="tel" id="detail-phone" placeholder="Phone Number" class="large-input" style="padding: 14px; font-size: 1rem; text-align: left; width: 100%; box-shadow: none;">
-        <input type="number" id="detail-age" placeholder="Age" class="large-input" style="padding: 14px; font-size: 1rem; text-align: left; width: 100%; box-shadow: none;">
-        <input type="text" id="detail-address" placeholder="Address" class="large-input" style="padding: 14px; font-size: 1rem; text-align: left; width: 100%; box-shadow: none;">
-        <input type="text" id="detail-pin" placeholder="PIN Code" class="large-input" style="padding: 14px; font-size: 1rem; text-align: left; width: 100%; box-shadow: none;">
-        <button class="btn" id="save-details-btn" style="padding: 16px; font-size: 1.1rem; margin-top: 8px;">Save Details</button>
-        <div id="save-msg" style="color: #10b981; font-weight: 500; text-align: center; display: none;">Details saved successfully</div>
+        <input type="text" id="detail-name" placeholder="Full Name" data-i18n="Full Name" class="large-input" style="padding: 14px; font-size: 1rem; text-align: left; width: 100%; box-shadow: none;">
+        <input type="number" id="detail-age" placeholder="Age" data-i18n="Age" class="large-input" style="padding: 14px; font-size: 1rem; text-align: left; width: 100%; box-shadow: none;">
+        <input type="tel" id="detail-phone" placeholder="Phone Number" data-i18n="Phone Number" class="large-input" style="padding: 14px; font-size: 1rem; text-align: left; width: 100%; box-shadow: none;">
+        <input type="text" id="detail-state" placeholder="State" data-i18n="State" class="large-input" style="padding: 14px; font-size: 1rem; text-align: left; width: 100%; box-shadow: none;">
+        <input type="text" id="detail-occupation" placeholder="Occupation" data-i18n="Occupation" class="large-input" style="padding: 14px; font-size: 1rem; text-align: left; width: 100%; box-shadow: none;">
+        <input type="text" id="detail-income" placeholder="Income Range" data-i18n="Income Range" class="large-input" style="padding: 14px; font-size: 1rem; text-align: left; width: 100%; box-shadow: none;">
+        <button class="btn" id="save-details-btn" style="padding: 16px; font-size: 1.1rem; margin-top: 8px;" data-i18n="Save Details">Save Details</button>
+        <div id="save-msg" style="color: #10b981; font-weight: 500; text-align: center; display: none;" data-i18n="Details saved successfully">Details saved successfully</div>
       </div>
     </div>
   </div>

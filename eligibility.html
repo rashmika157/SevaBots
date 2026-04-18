@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Check Your Eligibility - SevaBots</title>
-  <meta name="description" content="Check which government schemes you are eligible for using SevaBots.">
+  <title>Check Your Eligibility - SevaBot</title>
+  <meta name="description" content="Check which government schemes you are eligible for using SevaBot.">
   <link rel="stylesheet" href="style.css">
 </head>
 <body class="dynamic-landing-page">
@@ -15,10 +15,13 @@
     <div class="blob blob-3"></div>
   </div>
   <header class="top-nav" style="display: flex; justify-content: space-between; align-items: center; margin: 0 auto; margin-bottom: 24px; padding: 24px 5%; width: 100%; max-width: 1800px; box-sizing: border-box;">
-    <a href="index.html" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 10px;">
-      <img src="logo.jpg" alt="SevaBots Logo" style="width: 36px; height: 36px; border-radius: 50%;">
-      <div class="logo">SevaBots</div>
-    </a>
+    <div style="display: flex; align-items: center; gap: 24px;">
+      <button onclick="window.history.back()" class="nav-btn">&#8592; Back</button>
+      <a href="index.html" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 10px;">
+        <img src="logo.jpg" alt="SevaBot Logo" style="width: 36px; height: 36px; border-radius: 50%;">
+        <div class="logo">SevaBot</div>
+      </a>
+    </div>
     
     <nav class="main-nav" style="margin-bottom: 0; border: none; padding-bottom: 0; display: flex; gap: 32px; align-items: center;">
       <a href="index.html" class="nav-link" data-i18n="Home">Home</a>
@@ -27,15 +30,42 @@
       <a href="assistant.html" class="nav-link" data-i18n="AI Assistant">AI Assistant</a>
     </nav>
 
-    <div id="nav-right-container" style="display: flex; align-items: center; gap: 12px;">
-      <button onclick="window.history.back()" class="small-btn" style="background: transparent; color: var(--primary-text); border: 1px solid var(--border-color);">Back</button>
-      <a href="index.html" class="small-btn">Home</a>
+    <div id="nav-right-container" style="display: flex; align-items: center; gap: 12px; position: relative;">
+      <div id="nav-profile-icon" onclick="toggleDropdown()" style="display: none; width: 44px; height: 44px; border-radius: 50%; background-color: #e0f2fe; color: #0369a1; align-items: center; justify-content: center; font-weight: 600; font-size: 1.25rem; border: 2px solid #bae6fd; cursor: pointer; transition: transform 0.2s;"></div>
+      <!-- Profile Dropdown -->
+      <div id="profile-dropdown" style="display: none; position: absolute; top: 60px; right: 0; background: var(--surface-color); border: 1px solid var(--border-color); border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); padding: 8px; width: 250px; z-index: 1000;">
+        <a href="previous-schemes.html" style="display: block; text-decoration: none; padding: 12px 16px; cursor: pointer; border-radius: 8px; font-weight: 500; font-size: 0.95rem; color: var(--primary-text); transition: background 0.2s;" onmouseover="this.style.background='#f0f9ff'" onmouseout="this.style.background='transparent'" data-i18n="My Profile">My Profile</a>
+        <div onclick="handleLogout()" style="padding: 12px 16px; cursor: pointer; border-radius: 8px; font-weight: 500; font-size: 0.95rem; color: #ef4444; margin-top: 4px; transition: background 0.2s;" onmouseover="this.style.background='#fef2f2'" onmouseout="this.style.background='transparent'" data-i18n="Logout">Logout</div>
+      </div>
+      <script>
+        function toggleDropdown() {
+          const dropdown = document.getElementById("profile-dropdown");
+          dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
+        }
+        function handleLogout() {
+          localStorage.removeItem("userProfile");
+          window.location.href = "index.html";
+        }
+        document.addEventListener("DOMContentLoaded", () => {
+          const userStr = localStorage.getItem("userProfile");
+          const profileIcon = document.getElementById("nav-profile-icon");
+          if (userStr && profileIcon) {
+            try {
+              const userData = JSON.parse(userStr);
+              if (userData.name) {
+                profileIcon.textContent = userData.name.charAt(0).toUpperCase();
+                profileIcon.style.display = "flex";
+              }
+            } catch(e){}
+          }
+        });
+      </script>
     </div>
   </header>
   
   <div class="container" style="padding-top: 24px;">
     <header class="center-header" style="justify-content: center;">
-      <h1 id="page-title" style="text-align: center; color: #9d174d;">Check Your Eligibility</h1>
+      <h1 id="page-title" style="text-align: center; color: var(--heading-color);">Check Your Eligibility</h1>
     </header>
 
     <main class="center-layout">

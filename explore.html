@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Explore Schemes - SevaBots</title>
-  <meta name="description" content="Explore and find government and social schemes available in your state with SevaBots.">
+  <title>Explore Schemes - SevaBot</title>
+  <meta name="description" content="Explore and find government and social schemes available in your state with SevaBot.">
   <link rel="stylesheet" href="style.css">
 </head>
 <body class="dynamic-landing-page">
@@ -15,10 +15,13 @@
     <div class="blob blob-3"></div>
   </div>
   <header class="top-nav" style="display: flex; justify-content: space-between; align-items: center; margin: 0 auto; margin-bottom: 24px; padding: 24px 5%; width: 100%; max-width: 1800px; box-sizing: border-box;">
-    <a href="index.html" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 10px;">
-      <img src="logo.jpg" alt="SevaBots Logo" style="width: 36px; height: 36px; border-radius: 50%;">
-      <div class="logo">SevaBots</div>
-    </a>
+    <div style="display: flex; align-items: center; gap: 24px;">
+      <button onclick="window.history.back()" class="nav-btn" data-i18n="Back">&#8592; Back</button>
+      <a href="index.html" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 10px;">
+        <img src="logo.jpg" alt="SevaBot Logo" style="width: 36px; height: 36px; border-radius: 50%;">
+        <div class="logo">SevaBot</div>
+      </a>
+    </div>
     
     <nav class="main-nav" style="margin-bottom: 0; border: none; padding-bottom: 0; display: flex; gap: 32px; align-items: center;">
       <a href="index.html" class="nav-link" data-i18n="Home">Home</a>
@@ -27,33 +30,65 @@
       <a href="assistant.html" class="nav-link" data-i18n="AI Assistant">AI Assistant</a>
     </nav>
 
-    <div id="nav-right-container" style="display: flex; align-items: center; gap: 12px;">
-      <button onclick="window.history.back()" class="small-btn" style="background: transparent; color: var(--primary-text); border: 1px solid var(--border-color);">Back</button>
-      <a href="index.html" class="small-btn">Home</a>
+    <div id="nav-right-container" style="display: flex; align-items: center; gap: 12px; position: relative;">
+      <div id="nav-profile-icon" onclick="toggleDropdown()" style="display: none; width: 44px; height: 44px; border-radius: 50%; background-color: #e0f2fe; color: #0369a1; align-items: center; justify-content: center; font-weight: 600; font-size: 1.25rem; border: 2px solid #bae6fd; cursor: pointer; transition: transform 0.2s;"></div>
+      <!-- Profile Dropdown -->
+      <div id="profile-dropdown" style="display: none; position: absolute; top: 60px; right: 0; background: var(--surface-color); border: 1px solid var(--border-color); border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); padding: 8px; width: 250px; z-index: 1000;">
+        <a href="previous-schemes.html" style="display: block; text-decoration: none; padding: 12px 16px; cursor: pointer; border-radius: 8px; font-weight: 500; font-size: 0.95rem; color: var(--primary-text); transition: background 0.2s;" onmouseover="this.style.background='#f0f9ff'" onmouseout="this.style.background='transparent'" data-i18n="My Profile">My Profile</a>
+        <div onclick="handleLogout()" style="padding: 12px 16px; cursor: pointer; border-radius: 8px; font-weight: 500; font-size: 0.95rem; color: #ef4444; margin-top: 4px; transition: background 0.2s;" onmouseover="this.style.background='#fef2f2'" onmouseout="this.style.background='transparent'" data-i18n="Logout">Logout</div>
+      </div>
+      <script>
+        function toggleDropdown() {
+          const dropdown = document.getElementById("profile-dropdown");
+          dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
+        }
+        function handleLogout() {
+          localStorage.removeItem("userProfile");
+          window.location.href = "index.html";
+        }
+        document.addEventListener("DOMContentLoaded", () => {
+          const userStr = localStorage.getItem("userProfile");
+          const profileIcon = document.getElementById("nav-profile-icon");
+          if (userStr && profileIcon) {
+            try {
+              const userData = JSON.parse(userStr);
+              if (userData.name) {
+                profileIcon.textContent = userData.name.charAt(0).toUpperCase();
+                profileIcon.style.display = "flex";
+              }
+            } catch(e){}
+          }
+        });
+      </script>
     </div>
   </header>
   
   <div class="container" style="padding-top: 24px;">
     <header style="justify-content: center; flex-direction: column; align-items: center;">
-      <h1 id="page-title" style="text-align: center; color: #9d174d; margin-bottom: 24px;">Explore Schemes</h1>
+      <h1 id="page-title" style="text-align: center; color: var(--heading-color); margin-bottom: 24px;" data-i18n="Explore Schemes">Explore Schemes</h1>
       <div class="filter-container" style="display: flex; gap: 16px; flex-wrap: wrap; justify-content: center;">
         <select id="state-filter" title="Select your state to filter schemes" style="padding: 10px 16px; border-radius: 8px; border: 1px solid var(--border-color); background: var(--surface-color); color: var(--primary-text);">
-          <option value="">All States</option>
-          <option value="Central Scheme">Central Scheme</option>
-          <option value="maharashtra">Maharashtra</option>
-          <option value="karnataka">Karnataka</option>
-          <option value="delhi">Delhi</option>
-          <option value="gujarat">Gujarat</option>
-          <option value="tamil_nadu">Tamil Nadu</option>
-          <option value="telangana">Telangana</option>
-          <option value="odisha">Odisha</option>
+          <option value="" data-i18n="All States">All States</option>
+          <option value="All India" data-i18n="All India">All India</option>
+          <option value="maharashtra" data-i18n="Maharashtra">Maharashtra</option>
+          <option value="karnataka" data-i18n="Karnataka">Karnataka</option>
+          <option value="delhi" data-i18n="Delhi">Delhi</option>
+          <option value="gujarat" data-i18n="Gujarat">Gujarat</option>
+          <option value="tamil_nadu" data-i18n="Tamil Nadu">Tamil Nadu</option>
+          <option value="telangana" data-i18n="Telangana">Telangana</option>
+          <option value="odisha" data-i18n="Odisha">Odisha</option>
         </select>
-        <select id="sector-filter" title="Select the sector to filter schemes" style="padding: 10px 16px; border-radius: 8px; border: 1px solid var(--border-color); background: var(--surface-color); color: var(--primary-text);">
-          <option value="">All Sectors</option>
-          <option value="Agriculture Sector">Agriculture Sector</option>
-          <option value="Medical Sector">Medical Sector</option>
-          <option value="Education Sector">Education Sector</option>
-          <option value="Others">Others</option>
+        <select id="org-filter" title="Select organization" style="padding: 10px 16px; border-radius: 8px; border: 1px solid var(--border-color); background: var(--surface-color); color: var(--primary-text);">
+          <option value="" data-i18n="All Sectors">All Sectors</option>
+          <option value="Agriculture Sector" data-i18n="Agriculture Sector">Agriculture Sector</option>
+          <option value="Medical Sector" data-i18n="Medical Sector">Medical Sector</option>
+          <option value="Education Sector" data-i18n="Education Sector">Education Sector</option>
+          <option value="Others" data-i18n="Others">Others</option>
+        </select>
+        <select id="type-filter" title="Select scheme type" style="padding: 10px 16px; border-radius: 8px; border: 1px solid var(--border-color); background: var(--surface-color); color: var(--primary-text);">
+          <option value="" data-i18n="All Types">All Types</option>
+          <option value="Central Scheme" data-i18n="Central Scheme">Central Scheme</option>
+          <option value="State Scheme" data-i18n="State Scheme">State Scheme</option>
         </select>
       </div>
     </header>
@@ -66,28 +101,36 @@
   document.addEventListener('DOMContentLoaded', () => {
     const container = document.getElementById('schemes-container');
     const stateFilter = document.getElementById('state-filter');
-    const sectorFilter = document.getElementById('sector-filter');
+    const orgFilter = document.getElementById('org-filter');
+    const typeFilter = document.getElementById('type-filter');
     let allSchemes = [];
 
     function renderSchemes() {
         const selectedState = stateFilter ? stateFilter.value : '';
-        const selectedSector = sectorFilter ? sectorFilter.value : '';
+        const selectedOrg = orgFilter ? orgFilter.value : '';
+        const selectedType = typeFilter ? typeFilter.value : '';
         
         let filteredSchemes = allSchemes;
         
         if (selectedState) {
             filteredSchemes = filteredSchemes.filter(scheme => {
-                const stateNormalized = scheme.state.toLowerCase().replace(/_/g, ' ');
+                const stateNormalized = (scheme.state || '').toLowerCase().replace(/_/g, ' ');
                 const selectedNormalized = selectedState.toLowerCase().replace(/_/g, ' ');
                 return stateNormalized === selectedNormalized || stateNormalized === 'all india';
             });
         }
 
-        if (selectedSector) {
+        if (selectedOrg) {
             filteredSchemes = filteredSchemes.filter(scheme => {
                 if (!scheme.target && !scheme.category) return false;
                 const schemeTarget = scheme.target || scheme.category;
-                return schemeTarget === selectedSector || schemeTarget === 'General';
+                return schemeTarget === selectedOrg || schemeTarget === 'General';
+            });
+        }
+
+        if (selectedType) {
+            filteredSchemes = filteredSchemes.filter(scheme => {
+                return scheme.type === selectedType;
             });
         }
         
@@ -95,19 +138,22 @@
         filteredSchemes.forEach(scheme => {
           const article = document.createElement('article');
           article.className = 'scheme-card';
+          article.style.opacity = '1';
           article.innerHTML = `
-            <div class="scheme-content">
+            <div class="scheme-content" style="flex-grow: 1; display: flex; flex-direction: column;">
                <div class="scheme-header">
-                 <span class="scheme-category">${scheme.category || 'General'}</span>
-                 <span class="scheme-availability">${scheme.state || 'All India'}</span>
+                 <span class="scheme-category">${window.t(scheme.category || 'General')}</span>
+                 <span class="scheme-availability">${window.t(scheme.state || 'All India')}</span>
                </div>
-               <h3>${scheme.name}</h3>
-               <p>${scheme.benefits}</p>
+               <h3>${window.t(scheme.name)}</h3>
+               <p style="flex-grow: 1;">${window.t(scheme.benefits)}</p>
             </div>
-            <button class="btn" style="width: 100%; border-radius: 0 0 12px 12px; margin-top: auto;">Explore Details</button>
+            <div style="padding-top: 24px; margin-top: auto;">
+              <button class="maroon-btn" style="width: 100%; border-radius: 8px;">${window.t('View Details')}</button>
+            </div>
           `;
           
-          const detailsBtn = article.querySelector('.btn');
+          const detailsBtn = article.querySelector('.maroon-btn');
           detailsBtn.addEventListener('click', () => {
              if (window.showSchemeModal) window.showSchemeModal(scheme);
           });
@@ -120,7 +166,7 @@
         }
     }
 
-    fetch('http://127.0.0.1:5000/api/schemes')
+    fetch('/api/schemes')
       .then(res => {
         if (!res.ok) throw new Error('Backend response not OK');
         return res.json();
@@ -149,8 +195,11 @@
     if (stateFilter) {
         stateFilter.addEventListener('change', renderSchemes);
     }
-    if (sectorFilter) {
-        sectorFilter.addEventListener('change', renderSchemes);
+    if (orgFilter) {
+        orgFilter.addEventListener('change', renderSchemes);
+    }
+    if (typeFilter) {
+        typeFilter.addEventListener('change', renderSchemes);
     }
   });
 </script>

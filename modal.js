@@ -55,41 +55,65 @@ window.showSchemeModal = function(schemeObj) {
   modalOverlay.innerHTML = `
     <div class="modal-content">
       <div class="modal-header">
-        <h2 class="modal-title">${name}</h2>
+        <h2 class="modal-title">${window.t(name)}</h2>
         <button class="modal-close-btn" onclick="window.closeModal()">&times;</button>
       </div>
 
       <div class="modal-body">
         <div class="modal-benefits-box">
-           <strong>Description:</strong> ${benefits}
+           <strong>${window.t("Description:")}</strong> ${window.t(benefits)}
         </div>
 
         <div class="modal-section mt-high">
-          <div class="modal-section-title"><span class="icon-emoji">📄</span> Required Documents</div>
+          <div class="modal-section-title"><span class="icon-emoji">📄</span> ${window.t("Required Documents")}</div>
           <ul class="modal-list docs-list">
-            ${documents.map(doc => `<li><span class="doc-item-text">${doc}</span></li>`).join('')}
+            ${documents.map(doc => `<li><span class="doc-item-text">${window.t(doc)}</span></li>`).join('')}
           </ul>
         </div>
 
         <div class="modal-section mt-high">
-          <div class="modal-section-title"><span class="icon-emoji">🛠️</span> How to Apply</div>
+          <div class="modal-section-title"><span class="icon-emoji">🛠️</span> ${window.t("How to Apply")}</div>
           <ul class="modal-list steps-list">
-            ${steps.map(step => `<li><span class="step-item-text">${step}</span></li>`).join('')}
+            ${steps.map(step => `<li><span class="step-item-text">${window.t(step)}</span></li>`).join('')}
           </ul>
         </div>
         
-        <div class="modal-section" style="margin-top: 40px; text-align: center;">
-          <a href="${link}" class="modal-website-btn" ${linkTarget} rel="noopener noreferrer">${btnLabel}</a>
+        <div class="modal-section" style="margin-top: 40px; text-align: center; display: flex; justify-content: center; gap: 16px; flex-wrap: wrap;">
+          <a href="${link}" class="modal-website-btn" ${linkTarget} rel="noopener noreferrer">${window.t(btnLabel)}</a>
+          <button class="btn" id="modal-apply-action" style="box-shadow: none; width: auto; padding: 12px 24px; border-radius: 8px;">${window.t("Save to Dashboard")}</button>
         </div>
       </div>
 
       <div class="modal-footer">
-        <button class="btn" style="background-color: transparent; color: var(--secondary-text); border: 1px solid var(--border-color); width: auto; box-shadow: none;" onclick="window.closeModal()">Close</button>
+        <button class="btn" style="background-color: transparent; color: var(--secondary-text); border: 1px solid var(--border-color); width: auto; box-shadow: none;" onclick="window.closeModal()">${window.t("Close")}</button>
       </div>
     </div>
   `;
 
   document.body.appendChild(modalOverlay);
+
+  // Hook up the apply button
+  const applyBtn = document.getElementById('modal-apply-action');
+  if (applyBtn) {
+      applyBtn.addEventListener('click', () => {
+         const savedSchemesRaw = localStorage.getItem('savedSchemes');
+         let savedSchemes = [];
+         if (savedSchemesRaw) {
+             try { savedSchemes = JSON.parse(savedSchemesRaw); } catch(e) {}
+         }
+         
+         const isAlreadySaved = savedSchemes.some(s => s.name === schemeObj.name);
+         if (!isAlreadySaved) {
+             savedSchemes.push(schemeObj);
+             localStorage.setItem('savedSchemes', JSON.stringify(savedSchemes));
+         }
+         
+         applyBtn.innerText = typeof window.t === 'function' ? window.t('✓ Saved!') : '✓ Saved!';
+         applyBtn.style.backgroundColor = '#16a34a';
+         applyBtn.style.color = '#fff';
+         applyBtn.disabled = true;
+     });
+  }
 
   // Prevent background scrolling while modal is open
   document.body.style.overflow = 'hidden';

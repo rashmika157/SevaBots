@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Profile - SevaBots</title>
+  <title>My Profile - SevaBot</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body class="dynamic-landing-page">
@@ -14,10 +14,13 @@
     <div class="blob blob-3"></div>
   </div>
   <header class="top-nav" style="display: flex; justify-content: space-between; align-items: center; margin: 0 auto; margin-bottom: 24px; padding: 24px 5%; width: 100%; max-width: 1800px; box-sizing: border-box;">
-    <a href="index.html" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 10px;">
-      <img src="logo.jpg" alt="SevaBots Logo" style="width: 36px; height: 36px; border-radius: 50%;">
-      <div class="logo">SevaBots</div>
-    </a>
+    <div style="display: flex; align-items: center; gap: 24px;">
+      <button onclick="window.history.back()" class="nav-btn" data-i18n="Back">&#8592; Back</button>
+      <a href="index.html" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 10px;">
+        <img src="logo.jpg" alt="SevaBot Logo" style="width: 36px; height: 36px; border-radius: 50%;">
+        <div class="logo">SevaBot</div>
+      </a>
+    </div>
     
     <nav class="main-nav" style="margin-bottom: 0; border: none; padding-bottom: 0; display: flex; gap: 32px; align-items: center;">
       <a href="index.html" class="nav-link" data-i18n="Home">Home</a>
@@ -26,16 +29,43 @@
       <a href="assistant.html" class="nav-link" data-i18n="AI Assistant">AI Assistant</a>
     </nav>
 
-    <div id="nav-right-container" style="display: flex; align-items: center; gap: 12px;">
-      <button onclick="window.history.back()" class="small-btn" style="background: transparent; color: var(--primary-text); border: 1px solid var(--border-color);">Back</button>
-      <a href="index.html" class="small-btn">Home</a>
+    <div id="nav-right-container" style="display: flex; align-items: center; gap: 12px; position: relative;">
+      <div id="nav-profile-icon" onclick="toggleDropdown()" style="display: none; width: 44px; height: 44px; border-radius: 50%; background-color: #e0f2fe; color: #0369a1; align-items: center; justify-content: center; font-weight: 600; font-size: 1.25rem; border: 2px solid #bae6fd; cursor: pointer; transition: transform 0.2s;"></div>
+      <!-- Profile Dropdown -->
+      <div id="profile-dropdown" style="display: none; position: absolute; top: 60px; right: 0; background: var(--surface-color); border: 1px solid var(--border-color); border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); padding: 8px; width: 250px; z-index: 1000;">
+        <a href="previous-schemes.html" style="display: block; text-decoration: none; padding: 12px 16px; cursor: pointer; border-radius: 8px; font-weight: 500; font-size: 0.95rem; color: var(--primary-text); transition: background 0.2s;" onmouseover="this.style.background='#f0f9ff'" onmouseout="this.style.background='transparent'" data-i18n="My Profile">My Profile</a>
+        <div onclick="handleLogout()" style="padding: 12px 16px; cursor: pointer; border-radius: 8px; font-weight: 500; font-size: 0.95rem; color: #ef4444; margin-top: 4px; transition: background 0.2s;" onmouseover="this.style.background='#fef2f2'" onmouseout="this.style.background='transparent'" data-i18n="Logout">Logout</div>
+      </div>
+      <script>
+        function toggleDropdown() {
+          const dropdown = document.getElementById("profile-dropdown");
+          dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
+        }
+        function handleLogout() {
+          localStorage.removeItem("userProfile");
+          window.location.href = "index.html";
+        }
+        document.addEventListener("DOMContentLoaded", () => {
+          const userStr = localStorage.getItem("userProfile");
+          const profileIcon = document.getElementById("nav-profile-icon");
+          if (userStr && profileIcon) {
+            try {
+              const userData = JSON.parse(userStr);
+              if (userData.name) {
+                profileIcon.textContent = userData.name.charAt(0).toUpperCase();
+                profileIcon.style.display = "flex";
+              }
+            } catch(e){}
+          }
+        });
+      </script>
     </div>
   </header>
   
   <div class="container" style="padding-top: 24px;">
 
     <header style="margin-bottom: 32px; justify-content: center;">
-      <h1 class="empty-state-title" style="margin-bottom: 0; text-align: center; color: #9d174d;">My Profile</h1>
+      <h1 class="empty-state-title" style="margin-bottom: 0; text-align: center; color: var(--heading-color);" data-i18n="My Profile">My Profile</h1>
     </header>
 
     <div class="profile-dashboard fade-in-section is-visible">
@@ -49,37 +79,37 @@
         
         <div class="profile-details-grid">
           <div class="profile-field">
-            <span class="profile-label">Full Name</span>
-            <span class="profile-value" id="profile-name">Not Specified</span>
+            <span class="profile-label" data-i18n="Full Name">Full Name</span>
+            <span class="profile-value" id="profile-name" data-i18n="Not Specified">Not Specified</span>
           </div>
           <div class="profile-field">
-            <span class="profile-label">Age</span>
-            <span class="profile-value" id="profile-age">Not Specified</span>
+            <span class="profile-label" data-i18n="Age">Age</span>
+            <span class="profile-value" id="profile-age" data-i18n="Not Specified">Not Specified</span>
           </div>
           <div class="profile-field">
-            <span class="profile-label">Gender</span>
-            <span class="profile-value" id="profile-gender">Not Specified</span>
+            <span class="profile-label" data-i18n="Phone Number">Phone Number</span>
+            <span class="profile-value" id="profile-phone" data-i18n="Not Specified">Not Specified</span>
           </div>
           <div class="profile-field">
-            <span class="profile-label">State</span>
-            <span class="profile-value" id="profile-state">Not Specified</span>
+            <span class="profile-label" data-i18n="State">State</span>
+            <span class="profile-value" id="profile-state" data-i18n="Not Specified">Not Specified</span>
           </div>
           <div class="profile-field">
-            <span class="profile-label">Occupation</span>
-            <span class="profile-value" id="profile-occupation">Not Specified</span>
+            <span class="profile-label" data-i18n="Occupation">Occupation</span>
+            <span class="profile-value" id="profile-occupation" data-i18n="Not Specified">Not Specified</span>
           </div>
           <div class="profile-field">
-            <span class="profile-label">Income Range</span>
-            <span class="profile-value" id="profile-income">Not Specified</span>
+            <span class="profile-label" data-i18n="Income Range">Income Range</span>
+            <span class="profile-value" id="profile-income" data-i18n="Not Specified">Not Specified</span>
           </div>
         </div>
       </div>
 
       <hr style="border: none; border-top: 1px solid var(--border-color); margin: 0;">
 
-      <!-- Registered Schemes Section -->
+      <!-- Saved Schemes Section -->
       <div class="registered-schemes-section">
-        <h2 class="section-title">Registered Schemes</h2>
+        <h2 class="section-title" data-i18n="Saved Schemes">Saved Schemes</h2>
         
         <div id="schemes-list" style="display: flex; flex-direction: column; gap: 24px;">
           <!-- Schemes will be generated here -->
@@ -87,8 +117,8 @@
 
         <!-- Empty State Container (Hidden by default) -->
         <div id="empty-state" style="display: none; flex-direction: column; align-items: center; justify-content: center; padding: 60px 24px; text-align: center; background: var(--surface-color); border: 1px dashed var(--border-color); border-radius: 20px;">
-          <p style="font-size: 1.5rem; font-weight: 500; color: var(--secondary-text); margin-bottom: 24px;">You haven't registered for any schemes yet.</p>
-          <a href="explore.html" class="btn" style="width: auto; padding: 16px 40px; border-radius: 12px; font-size: 1.1rem;">Browse Schemes</a>
+          <p style="font-size: 1.5rem; font-weight: 500; color: var(--secondary-text); margin-bottom: 24px;" data-i18n="No saved schemes yet">No saved schemes yet</p>
+          <a href="explore.html" class="btn" style="width: auto; padding: 16px 40px; border-radius: 12px; font-size: 1.1rem;" data-i18n="Browse Schemes">Browse Schemes</a>
         </div>
       </div>
 
@@ -96,88 +126,103 @@
   </div>
 
 <script>
-  document.addEventListener("DOMContentLoaded", () => {
+  document.addEventListener("DOMContentLoaded", async () => {
     // 1. Load User Profile from localStorage
-    const savedUserStr = localStorage.getItem('userDetails');
+    const savedUserStr = localStorage.getItem('userProfile');
+    let userPhone = ''; // Needed for backend fetch later
+    
     if (savedUserStr) {
       try {
         const user = JSON.parse(savedUserStr);
-        if (user.name) {
-          document.getElementById('profile-name').textContent = user.name;
+        if(user.phone) userPhone = user.phone; // Extract for later
+        
+        if (user.name && user.name.trim() !== '') {
+          const el = document.getElementById('profile-name');
+          el.textContent = user.name;
+          el.removeAttribute('data-i18n');
           document.getElementById('avatar-icon').textContent = user.name.charAt(0).toUpperCase();
         }
-        if (user.age) document.getElementById('profile-age').textContent = user.age + " Years";
-        if (user.address || user.pin) document.getElementById('profile-state').textContent = user.address || ("PIN: " + user.pin);
+        if (user.age && user.age.trim() !== '') {
+          const el = document.getElementById('profile-age');
+          el.textContent = user.age + " Years";
+          el.removeAttribute('data-i18n');
+        }
+        if (user.phone && user.phone.trim() !== '') {
+          const el = document.getElementById('profile-phone');
+          el.textContent = user.phone;
+          el.removeAttribute('data-i18n');
+        }
+        if (user.state && user.state.trim() !== '') {
+          const el = document.getElementById('profile-state');
+          el.textContent = user.state;
+          el.removeAttribute('data-i18n');
+        }
+        if (user.occupation && user.occupation.trim() !== '') {
+          const el = document.getElementById('profile-occupation');
+          el.setAttribute('data-i18n', user.occupation);
+          el.textContent = (typeof window.t === 'function') ? window.t(user.occupation) : user.occupation;
+        }
+        if (user.income && user.income.trim() !== '') {
+          const el = document.getElementById('profile-income');
+          el.setAttribute('data-i18n', user.income);
+          el.textContent = (typeof window.t === 'function') ? window.t(user.income) : user.income;
+        }
       } catch (e) { console.error("Error formatting user profile", e); }
     }
-
+    
     // 2. Load Registered Schemes (Mocking data if empty for demo purposes)
     const schemesListContainer = document.getElementById('schemes-list');
     const emptyStateContainer = document.getElementById('empty-state');
     
-    // We try to get real registered schemes. If none exist, we inject mock data so the new UI is visible.
-    let registeredSchemesStr = localStorage.getItem('registeredSchemes');
-    let registeredSchemes = [];
+    // 3. Fetch from local storage
+    if (!userPhone && !savedUserStr) {
+        schemesListContainer.style.display = "none";
+        emptyStateContainer.style.display = "flex";
+        emptyStateContainer.innerHTML = '<h2><br>Please Sign In to view your saved schemes.</h2>';
+        return;
+    }
     
-    if (registeredSchemesStr) {
-      try {
-        registeredSchemes = JSON.parse(registeredSchemesStr);
-      } catch (e) {}
-    }
-
-    // MOCK DATA FOR UI PREVIEW (Remove or change condition if you want real empty state)
-    if (registeredSchemes.length === 0) {
-      registeredSchemes = [
-        {
-          name: "Pradhan Mantri Fasal Bima Yojana",
-          category: "Agriculture Sector",
-          benefits: "Provides insurance cover and financial support to farmers in the event of failure of any of the notified crops as a result of natural calamities, pests & diseases.",
-          status: "Applied", // Applied, In Progress, Approved
-          documents: ["Aadhar Card", "Land Records", "Bank Passbook"]
-        },
-        {
-          name: "Ayushman Bharat PMJAY",
-          category: "Medical Sector",
-          benefits: "Health cover of Rs. 5 lakhs per family per year for secondary and tertiary care hospitalization across public and private empaneled hospitals in India.",
-          status: "Approved",
-          documents: ["Income Certificate", "Ration Card"]
+    try {
+        const savedRaw = localStorage.getItem('savedSchemes');
+        let registeredSchemes = [];
+        if (savedRaw) {
+            registeredSchemes = JSON.parse(savedRaw);
         }
-      ];
-    }
 
-    // 3. Render the schemes
-    if (registeredSchemes.length > 0) {
+        if (registeredSchemes.length > 0) {
       schemesListContainer.style.display = "flex";
       emptyStateContainer.style.display = "none";
       
       registeredSchemes.forEach(scheme => {
         let statusClass = "status-applied";
         if (scheme.status === "In Progress") statusClass = "status-in-progress";
-        else if (scheme.status === "Approved") statusClass = "status-approved";
+        else if (scheme.status && scheme.status !== "Applied") statusClass = "status-approved";
+        else scheme.status = "Saved"; // Display 'Saved' if no status is physically tracked
 
-        const docsHtml = (scheme.documents || []).map(doc => `<span class="doc-tag">${doc}</span>`).join('');
+        const docsHtml = (scheme.documents || []).map(doc => `<span class="doc-tag">${typeof window.t === 'function' ? window.t(doc) : doc}</span>`).join('');
 
         const card = document.createElement("div");
         card.className = "scheme-history-card";
         card.innerHTML = `
           <div class="history-card-header">
             <div class="history-title-group">
-              <span class="scheme-category-tag" style="margin-bottom: 12px;">${scheme.category}</span>
-              <h3>${scheme.name}</h3>
+              <span class="scheme-category-tag" style="margin-bottom: 12px;">${typeof window.t === 'function' ? window.t(scheme.category) : scheme.category}</span>
+              <h3>${typeof window.t === 'function' ? window.t(scheme.name) : scheme.name}</h3>
             </div>
-            <div class="status-badge ${statusClass}">${scheme.status}</div>
+            <div class="status-badge ${statusClass}">${typeof window.t === 'function' ? window.t(scheme.status) : scheme.status}</div>
           </div>
           <div class="card-benefits">
-            ${scheme.benefits}
+            ${typeof window.t === 'function' ? window.t(scheme.benefits) : scheme.benefits}
           </div>
           <div>
-            <span style="font-size: 0.9rem; font-weight: 600; color: var(--primary-text); margin-bottom: 4px; display: inline-block;">Documents Required:</span>
+            <span style="font-size: 0.9rem; font-weight: 600; color: var(--primary-text); margin-bottom: 4px; display: inline-block;">${typeof window.t === 'function' ? window.t("Required Documents") : "Required Documents"}</span>
             <div class="documents-list">
-              ${docsHtml || '<span class="doc-tag">No documents specified</span>'}
+              ${docsHtml || `<span class="doc-tag">${typeof window.t === 'function' ? window.t("No documents specified") : "No documents specified"}</span>`}
             </div>
           </div>
-          <div style="margin-top: 24px; text-align: right;">
-             <button class="btn modal-trigger-btn" style="width: auto; padding: 10px 20px;">View Details</button>
+          <div style="margin-top: 24px; display: flex; justify-content: flex-end; gap: 12px; align-items: center;">
+             <button class="btn delete-scheme-btn" style="width: auto; padding: 10px 20px; background-color: #ef4444; color: white; border: none;">${typeof window.t === 'function' ? window.t("Delete") : "Delete"}</button>
+             <button class="btn modal-trigger-btn" style="width: auto; padding: 10px 20px;">${typeof window.t === 'function' ? window.t("View Details") : "View Details"}</button>
           </div>
         `;
         
@@ -186,9 +231,27 @@
              if (window.showSchemeModal) window.showSchemeModal(scheme);
         });
 
+        const deleteBtn = card.querySelector('.delete-scheme-btn');
+        deleteBtn.addEventListener('click', () => {
+             if (confirm(typeof window.t === 'function' ? window.t("Are you sure you want to remove this scheme?") : "Are you sure you want to remove this scheme?")) {
+                 registeredSchemes = registeredSchemes.filter(s => s.name !== scheme.name);
+                 localStorage.setItem('savedSchemes', JSON.stringify(registeredSchemes));
+                 card.remove(); 
+                 if (registeredSchemes.length === 0) {
+                      schemesListContainer.style.display = "none";
+                      emptyStateContainer.style.display = "flex";
+                 }
+             }
+        });
+
         schemesListContainer.appendChild(card);
       });
     } else {
+      schemesListContainer.style.display = "none";
+      emptyStateContainer.style.display = "flex";
+    }
+    } catch (e) {
+      console.error(e);
       schemesListContainer.style.display = "none";
       emptyStateContainer.style.display = "flex";
     }

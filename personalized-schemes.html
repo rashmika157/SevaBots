@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Personalized Schemes - SevaBots</title>
+  <title>Personalized Schemes - SevaBot</title>
   <link rel="stylesheet" href="style.css">
   <style>
     .centered-question-layout {
@@ -13,12 +13,33 @@
       justify-content: center;
       min-height: 50vh;
       text-align: center;
+      padding: 0 20px;
+    }
+    .question-box-container {
+      background: rgba(255, 255, 255, 0.65); /* Semi-transparent */
+      backdrop-filter: blur(16px); /* Blur effect */
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      border-radius: 20px;
+      padding: 64px 48px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05); /* Soft shadow */
+      width: 100%;
+      max-width: 760px;
+      margin: 0 auto;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+    
+    :root.dark-mode .question-box-container {
+      background: rgba(30, 30, 30, 0.65);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
     }
     .main-question {
       font-size: 2.25rem;
       font-weight: 600;
       color: var(--primary-text);
-      margin-bottom: 48px;
+      margin-bottom: 40px;
     }
     .large-btn-container {
       display: flex;
@@ -65,10 +86,13 @@
     <div class="blob blob-3"></div>
   </div>
   <header class="top-nav" style="display: flex; justify-content: space-between; align-items: center; margin: 0 auto; margin-bottom: 24px; padding: 24px 5%; width: 100%; max-width: 1800px; box-sizing: border-box;">
-    <a href="index.html" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 10px;">
-      <img src="logo.jpg" alt="SevaBots Logo" style="width: 36px; height: 36px; border-radius: 50%;">
-      <div class="logo">SevaBots</div>
-    </a>
+    <div style="display: flex; align-items: center; gap: 24px;">
+      <button onclick="window.history.back()" class="nav-btn">&#8592; Back</button>
+      <a href="index.html" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 10px;">
+        <img src="logo.jpg" alt="SevaBot Logo" style="width: 36px; height: 36px; border-radius: 50%;">
+        <div class="logo">SevaBot</div>
+      </a>
+    </div>
     
     <nav class="main-nav" style="margin-bottom: 0; border: none; padding-bottom: 0; display: flex; gap: 32px; align-items: center;">
       <a href="index.html" class="nav-link" data-i18n="Home">Home</a>
@@ -77,16 +101,43 @@
       <a href="assistant.html" class="nav-link" data-i18n="AI Assistant">AI Assistant</a>
     </nav>
 
-    <div id="nav-right-container" style="display: flex; align-items: center; gap: 12px;">
-      <button onclick="window.history.back()" class="small-btn" style="background: transparent; color: var(--primary-text); border: 1px solid var(--border-color);">Back</button>
-      <a href="index.html" class="small-btn">Home</a>
+    <div id="nav-right-container" style="display: flex; align-items: center; gap: 12px; position: relative;">
+      <div id="nav-profile-icon" onclick="toggleDropdown()" style="display: none; width: 44px; height: 44px; border-radius: 50%; background-color: #e0f2fe; color: #0369a1; align-items: center; justify-content: center; font-weight: 600; font-size: 1.25rem; border: 2px solid #bae6fd; cursor: pointer; transition: transform 0.2s;"></div>
+      <!-- Profile Dropdown -->
+      <div id="profile-dropdown" style="display: none; position: absolute; top: 60px; right: 0; background: var(--surface-color); border: 1px solid var(--border-color); border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); padding: 8px; width: 250px; z-index: 1000;">
+        <a href="previous-schemes.html" style="display: block; text-decoration: none; padding: 12px 16px; cursor: pointer; border-radius: 8px; font-weight: 500; font-size: 0.95rem; color: var(--primary-text); transition: background 0.2s;" onmouseover="this.style.background='#f0f9ff'" onmouseout="this.style.background='transparent'" data-i18n="My Profile">My Profile</a>
+        <div onclick="handleLogout()" style="padding: 12px 16px; cursor: pointer; border-radius: 8px; font-weight: 500; font-size: 0.95rem; color: #ef4444; margin-top: 4px; transition: background 0.2s;" onmouseover="this.style.background='#fef2f2'" onmouseout="this.style.background='transparent'" data-i18n="Logout">Logout</div>
+      </div>
+      <script>
+        function toggleDropdown() {
+          const dropdown = document.getElementById("profile-dropdown");
+          dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
+        }
+        function handleLogout() {
+          localStorage.removeItem("userProfile");
+          window.location.href = "index.html";
+        }
+        document.addEventListener("DOMContentLoaded", () => {
+          const userStr = localStorage.getItem("userProfile");
+          const profileIcon = document.getElementById("nav-profile-icon");
+          if (userStr && profileIcon) {
+            try {
+              const userData = JSON.parse(userStr);
+              if (userData.name) {
+                profileIcon.textContent = userData.name.charAt(0).toUpperCase();
+                profileIcon.style.display = "flex";
+              }
+            } catch(e){}
+          }
+        });
+      </script>
     </div>
   </header>
   
   <div class="container" style="padding-top: 24px;">
 
     <header style="justify-content: center; margin-bottom: 24px;">
-      <h1 id="page-title" style="text-align: center; color: #9d174d;" data-i18n="Personalized Schemes">Personalized Schemes</h1>
+      <h1 id="page-title" style="text-align: center; color: var(--heading-color);" data-i18n="Personalized Schemes">Personalized Schemes</h1>
     </header>
 
     <main class="centered-question-layout" id="chat-stage">
@@ -186,9 +237,11 @@
         }
         
         stage.innerHTML = `
-          <div class="main-question">${window.t(step.q)}</div>
-          <div class="large-btn-container">
-            ${buttonsHtml}
+          <div class="question-box-container fade-in-section is-visible">
+            <div class="main-question">${window.t(step.q)}</div>
+            <div class="large-btn-container">
+              ${buttonsHtml}
+            </div>
           </div>
         `;
         
@@ -200,7 +253,11 @@
             localStorage.setItem('userAnswers', JSON.stringify(userAnswers));
             
             if (step.terminateMap && step.terminateMap[answer]) {
-              stage.innerHTML = `<div class="message-text">${window.t(step.terminateMap[answer])}</div>`;
+              stage.innerHTML = `
+                <div class="question-box-container fade-in-section is-visible">
+                  <div class="message-text">${window.t(step.terminateMap[answer])}</div>
+                </div>
+              `;
               return;
             }
             
@@ -222,11 +279,13 @@
 
       function showEndSequence() {
         stage.innerHTML = `
-          <div style="display: flex; flex-direction: column; align-items: center; text-align: center;">
-            <div class="main-question" style="margin-bottom: 24px;">${window.t("Thank you! We have collected your details.")}</div>
-            <div class="message-text" style="margin-bottom: 48px;" id="analysis-text">${window.t("Analyzing your profile and finding suitable schemes")}...</div>
-            <div id="final-action-container" style="display: none;">
-              <a href="results.html?v=2" class="huge-choice-btn" style="text-decoration: none; display: inline-block;">${window.t("View Recommended Schemes")}</a>
+          <div class="question-box-container fade-in-section is-visible">
+            <div style="display: flex; flex-direction: column; align-items: center; text-align: center;">
+              <div class="main-question" style="margin-bottom: 24px;">${window.t("Thank you! We have collected your details.")}</div>
+              <div class="message-text" style="margin-bottom: 48px;" id="analysis-text">${window.t("Analyzing your profile and finding suitable schemes")}...</div>
+              <div id="final-action-container" style="display: none;">
+                <a href="results.html?v=2" class="huge-choice-btn" style="text-decoration: none; display: inline-block;">${window.t("View Recommended Schemes")}</a>
+              </div>
             </div>
           </div>
         `;
@@ -249,16 +308,18 @@
       // Render the very first occupation selector screen
       function renderInitialScreen() {
         stage.innerHTML = `
-          <label class="main-question" for="occupation-select" style="display: block;">${window.t('Select your occupation')}</label>
-          <div style="display: flex; flex-direction: column; align-items: center; width: 100%; gap: 32px;">
-            <select id="occupation-select" style="max-width: 500px; width: 100%; font-size: 1.25rem; padding: 20px; border-radius: 12px; border: 1px solid var(--border-color); background-color: var(--surface-color); color: var(--primary-text); cursor: pointer;">
-              <option value="">${window.t('-- Select Option --')}</option>
-              <option value="Agriculture Sector">${window.t('Agriculture Sector')}</option>
-              <option value="Medical Sector">${window.t('Medical Sector')}</option>
-              <option value="Education Sector">${window.t('Education Sector')}</option>
-              <option value="Others">${window.t('Others')}</option>
-            </select>
-            <button id="btn-occupation-next" class="huge-choice-btn">${window.t('Next')}</button>
+          <div class="question-box-container fade-in-section is-visible">
+            <label class="main-question" for="occupation-select" style="display: block;">${window.t('Select your occupation')}</label>
+            <div style="display: flex; flex-direction: column; align-items: center; width: 100%; gap: 32px;">
+              <select id="occupation-select" style="max-width: 500px; width: 100%; font-size: 1.25rem; padding: 20px; border-radius: 12px; border: 1px solid var(--border-color); background-color: var(--surface-color); color: var(--primary-text); cursor: pointer;">
+                <option value="">${window.t('-- Select Option --')}</option>
+                <option value="Agriculture Sector">${window.t('Agriculture Sector')}</option>
+                <option value="Medical Sector">${window.t('Medical Sector')}</option>
+                <option value="Education Sector">${window.t('Education Sector')}</option>
+                <option value="Others">${window.t('Others')}</option>
+              </select>
+              <button id="btn-occupation-next" class="huge-choice-btn">${window.t('Next')}</button>
+            </div>
           </div>
         `;
 

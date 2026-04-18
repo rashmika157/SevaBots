@@ -1,10 +1,134 @@
-// translations.js
 const translations = {
+  // Dynamic UI Elements
+  "Explore Details": { hi: "विवरण देखें", kn: "ವಿವರಗಳನ್ನು ಅನ್ವೇಷಿಸಿ" },
+  "View Details": { hi: "विवरण देखें", kn: "ವಿವರಗಳನ್ನು ಅನ್ವೇಷಿಸಿ" },
+  "Matched based on your profile via Backend Server": { hi: "बैकएंड सर्वर के माध्यम से आपके प्रोफ़ाइल के आधार पर मेल खाया गया", kn: "ಬ್ಯಾಕೆಂಡ್ ಸರ್ವರ್ ಮೂಲಕ ನಿಮ್ಮ ಪ್ರೊಫೈಲ್ ಆಧಾರದ ಮೇಲೆ ಹೊಂದಾಣಿಕೆಯಾಗಿದೆ" },
+  "Description": { hi: "विवरण", kn: "ವಿವರಣೆ" },
+  "Description:": { hi: "विवरण:", kn: "ವಿವರಣೆ:" },
+  "Available In:": { hi: "इसमें उपलब्ध:", kn: "ಇದರಲ್ಲಿ ಲಭ್ಯವಿದೆ:" },
+  "Required Documents": { hi: "आवश्यक दस्तावेज़", kn: "ಅಗತ್ಯವಿರುವ ದಾಖಲೆಗಳು" },
+  "How to Apply": { hi: "आवेदन कैसे करें", kn: "ಹೇಗೆ ಅರ್ಜಿ ಸಲ್ಲಿಸಬೇಕು" },
+  "Close": { hi: "बंद करें", kn: "ಮುಚ್ಚಿ" },
+  "Visit Official Website ↗": { hi: "आधिकारिक वेबसाइट पर जाएं ↗", kn: "ಅಧಿಕೃತ ವೆಬ್‌ಸೈಟ್‌ಗೆ ಭೇಟಿ ನೀಡಿ ↗" },
+  "Back": { hi: "पीछे", kn: "ಹಿಂದಕ್ಕೆ" },
+  "Save to Dashboard": { hi: "डैशबोर्ड में सहेजें", kn: "ಡ್ಯಾಶ್‌ಬೋರ್ಡ್‌ಗೆ ಉಳಿಸಿ" },
+  "No documents specified": { hi: "कोई दस्तावेज़ निर्दिष्ट नहीं है", kn: "ಯಾವುದೇ ದಾಖಲೆಗಳನ್ನು ನಿರ್ದಿಷ್ಟಪಡಿಸಿಲ್ಲ" },
+  "Gender": { hi: "लिंग", kn: "ಲಿಂಗ" },
+  "State": { hi: "राज्य", kn: "ರಾಜ್ಯ" },
+  "Occupation": { hi: "पेशा", kn: "ಉದ್ಯೋಗ" },
+  "Income Range": { hi: "आय सीमा", kn: "ಆದಾಯ ಶ್ರೇಣಿ" },
+  "Not Specified": { hi: "निर्दिष्ट नहीं है", kn: "ನಿರ್ದಿಷ್ಟಪಡಿಸಿಲ್ಲ" },
+  "Edit Profile": { hi: "प्रोफ़ाइल संपादित करें", kn: "ಪ್ರೊಫೈಲ್ ಸಂಪಾದಿಸಿ" },
+  "Registered Schemes": { hi: "पंजीकृत योजनाएं", kn: "ನೋಂದಾಯಿತ ಯೋಜನೆಗಳು" },
+  "You haven't registered for any schemes yet.": { hi: "आपने अभी तक किसी योजना के लिए पंजीकरण नहीं किया है।", kn: "ನೀವು ಇನ್ನೂ ಯಾವುದೇ ಯೋಜನೆಗಳಿಗೆ ನೋಂದಾಯಿಸಿಕೊಂಡಿಲ್ಲ." },
+  "Browse Schemes": { hi: "योजनाएं ब्राउज़ करें", kn: "ಯೋಜನೆಗಳನ್ನು ಬ್ರೌಸ್ ಮಾಡಿ" },
+  "Loading personalized schemes...": { hi: "व्यक्तिगत योजनाएँ लोड की जा रही हैं...", kn: "ವೈಯಕ್ತಿಕ ಯೋಜನೆಗಳನ್ನು ಲೋಡ್ ಮಾಡಲಾಗುತ್ತಿದೆ..." },
+  "No exact schemes match your specific answers. Please adjust your criteria on the previous page or explore all general schemes.": { hi: "कोई भी सटीक योजना आपके विशिष्ट उत्तरों से मेल नहीं खाती। कृपया पिछले पृष्ठ पर अपना मापदंड समायोजित करें या सभी सामान्य योजनाओं का अन्वेषण करें।", kn: "ಯಾವುದೇ ನಿಖರವಾದ ಯೋಜನೆಗಳು ನಿಮ್ಮ ನಿರ್ದಿಷ್ಟ ಉತ್ತರಗಳಿಗೆ ಹೊಂದಿಕೆಯಾಗುವುದಿಲ್ಲ. ದಯವಿಟ್ಟು ಹಿಂದಿನ ಪುಟದಲ್ಲಿ ನಿಮ್ಮ ಮಾನದಂಡಗಳನ್ನು ಹೊಂದಿಸಿ ಅಥವಾ ಎಲ್ಲಾ ಸಾಮಾನ್ಯ ಯೋಜನೆಗಳನ್ನು ಅನ್ವೇಷಿಸಿ." },
+
+  // Filters & General Attributes
+  "All India": { hi: "अखिल भारतीय", kn: "ಅಖಿಲ ಭಾರತ" },
+  "All States": { hi: "सभी राज्य", kn: "ಎಲ್ಲಾ ರಾಜ್ಯಗಳು" },
+  "All Sectors": { hi: "सभी क्षेत्र", kn: "ಎಲ್ಲಾ ವಲಯಗಳು" },
+  "All Types": { hi: "सभी प्रकार", kn: "ಎಲ್ಲಾ ವಿಧಗಳು" },
+  "Karnataka": { hi: "कर्नाटक", kn: "ಕರ್ನಾಟಕ" },
+  "Agriculture Sector": { hi: "कृषि क्षेत्र", kn: "ಕೃಷಿ ವಲಯ" },
+  "Medical Sector": { hi: "चिकित्सा क्षेत्र", kn: "ವೈದ್ಯಕೀಯ ವಲಯ" },
+  "Education Sector": { hi: "शिक्षा क्षेत्र", kn: "ಶಿಕ್ಷಣ ವಲಯ" },
+
+  "Central Scheme": { hi: "केंद्रीय योजना", kn: "ಕೇಂದ್ರ ಯೋಜನೆ" },
+  "State Scheme": { hi: "राज्य योजना", kn: "ರಾಜ್ಯ ಯೋಜನೆ" },
+  
+  // Specific Documents mapped manually
+  "Aadhaar Card": { hi: "आधार कार्ड", kn: "ಆಧಾರ್ ಕಾರ್ಡ್" },
+  "PAN Card": { hi: "पैन कार्ड", kn: "ಪ್ಯಾನ್ ಕಾರ್ಡ್" },
+  "Bank Passbook": { hi: "बैंक पासबुक", kn: "ಬ್ಯಾಂಕ್ ಪಾಸ್-ಬುಕ್" },
+  "Income Certificate": { hi: "आय प्रमाण पत्र", kn: "ಆದಾಯ ಪ್ರಮಾಣಪತ್ರ" },
+  "Land Ownership Records (Pattadar Passbook)": { hi: "भूमि स्वामित्व रिकॉर्ड (पट्टादार पासबुक)", kn: "ಭೂ ಮಾಲೀಕತ್ವದ ದಾಖಲೆಗಳು (ಪಟ್ಟಾದಾರ್ ಪಾಸ್-ಬುಕ್)" },
+  "Recent passport size photographs": { hi: "हालिया पासपोर्ट आकार की तस्वीरें", kn: "ಇತ್ತೀಚಿನ ಪಾಸ್‌ಪೋರ್ಟ್ ಅಳತೆಯ ಭಾವಚಿತ್ರಗಳು" },
+
+  // Specific Steps for Kisan Credit Card (KCC)
+  "Visit the closest cooperative bank or regional rural bank branch.": { hi: "निकटतम सहकारी बैंक या क्षेत्रीय ग्रामीण बैंक शाखा पर जाएँ।", kn: "ಹತ್ತಿರದ ಸಹಕಾರಿ ಬ್ಯಾಂಕ್ ಅಥವಾ ಪ್ರಾದೇಶಿಕ ಗ್ರಾಮೀಣ ಬ್ಯಾಂಕ್ ಶಾಖೆಗೆ ಭೇಟಿ ನೀಡಿ." },
+  "Collect the Kisan Credit Card application form.": { hi: "किसान क्रेडिट कार्ड आवेदन पत्र एकत्र करें।", kn: "ಕಿಸಾನ್ ಕ್ರೆಡಿಟ್ ಕಾರ್ಡ್ ಅರ್ಜಿ ನಮೂನೆಯನ್ನು ಸಂಗ್ರಹಿಸಿ." },
+  "Fill out the application detailing land holding and cropping patterns.": { hi: "भूमि जोत और फसल पैटर्न का विवरण देते हुए आवेदन भरें।", kn: "ಭೂ ಹಿಡುವಳಿ ಮತ್ತು ಬೆಳೆ ಮಾದರಿಗಳನ್ನು ವಿವರಿಸುವ ಅರ್ಜಿಯನ್ನು ಭರ್ತಿ ಮಾಡಿ." },
+  "Attach mandatory documents and passport size photographs.": { hi: "अनिवार्य दस्तावेज और पासपोर्ट आकार के फोटो संलग्न करें।", kn: "ಕಡ್ಡಾಯ ದಾಖಲೆಗಳು ಮತ್ತು ಪಾಸ್‌ಪೋರ್ಟ್ ಅಳತೆಯ ಭಾವಚಿತ್ರಗಳನ್ನು ಲಗತ್ತಿಸಿ." },
+  "Submit the application to the branch manager for verification and issuance.": { hi: "सत्यापन और जारी करने के लिए शाखा प्रबंधक को आवेदन जमा करें।", kn: "ಪರಿಶೀಲನೆ ಮತ್ತು ವಿತರಣೆಗಾಗಿ ಶಾಖಾ ವ್ಯವಸ್ಥಾಪಕರಿಗೆ ಅರ್ಜಿಯನ್ನು ಸಲ್ಲಿಸಿ." },
+
+  // Key Schemes
+  "Kisan Credit Card (KCC)": { hi: "किसान क्रेडिट कार्ड (केसीसी)", kn: "ಕಿಸಾನ್ ಕ್ರೆಡಿಟ್ ಕಾರ್ಡ್ (ಕೆಯೆಸಿಸಿ)" },
+  "Provides subsidized loans for farming up to 3 lakhs.": { hi: "खेती के लिए 3 लाख तक का अनुदानित ऋण प्रदान करता है।", kn: "ಕೃಷಿಗೆ 3 ಲಕ್ಷದವರೆಗೆ ಸಬ್ಸಿಡಿ ಸಾಲ ಒದಗಿಸುತ್ತದೆ." },
+  "Loan for farming": { hi: "खेती के लिए ऋण", kn: "ಕೃಷಿಗೆ ಸಾಲ" },
+  "PM KISAN Samman Nidhi": { hi: "पीएम किसान सम्मान निधि", kn: "ಪಿಎಂ ಕಿಸಾನ್ ಸಮ್ಮಾನ್ ನಿಧಿ" },
+  "Direct benefit transfer of ₹6000 per year.": { hi: "प्रति वर्ष ₹6000 का प्रत्यक्ष लाभ हस्तांतरण।", kn: "ವರ್ಷಕ್ಕೆ ₹6000 ನೇರ ಲಾಭ ವರ್ಗಾವಣೆ." },
+  "Pradhan Mantri Fasal Bima Yojana": { hi: "प्रधान मंत्री फसल बीमा योजना", kn: "ಪ್ರಧಾನ ಮಂತ್ರಿ ಫಸಲ್ ಬಿಮಾ ಯೋಜನೆ" },
+  "Premium crop insurance coverage.": { hi: "प्रीमियम फसल बीमा कवरेज।", kn: "ಪ್ರೀಮಿಯಂ ಬೆಳೆ ವಿಮೆ ವ್ಯಾಪ್ತಿ." },
+  "Sub Mission on Agricultural Mechanization (SMAM)": { hi: "कृषि यंत्रीकरण पर उप-मिशन (SMAM)", kn: "ಕೃಷಿ ಯಾಂತ್ರಿಕರಣದ ಉಪ-ಮಿಷನ್ (SMAM)" },
+  "Sub Mission on Agricultural Mechanization": { hi: "कृषि यंत्रीकरण पर उप-मिशन", kn: "ಕೃಷಿ ಯಾಂತ್ರಿಕರಣದ ಉಪ-ಮಿಷನ್" },
+  "Subsidies on equipment up to 50-80%.": { hi: "उपकरणों पर 50-80% तक सब्सिडी।", kn: "ಉಪಕರಣಗಳ ಮೇಲೆ 50-80% ರವರೆಗೆ ಸಬ್ಸಿಡಿ ಕಡಿತ." },
+  "Karnataka Krishi Bhagya": { hi: "कर्नाटक कृषि भाग्य", kn: "ಕರ್ನಾಟಕ ಕೃಷಿ ಭಾಗ್ಯ" },
+  "Rainwater harvesting and critical irrigation support during dry spells.": { hi: "सूखे के दौरान वर्षा जल संचयन और महत्वपूर्ण सिंचाई सहायता।", kn: "ಮಳೆಕೊಯ್ಲು ಮತ್ತು ಶುಷ್ಕ ಅವಧಿಗಳಲ್ಲಿ ನಿರ್ಣಾಯಕ ನೀರಾವರಿ ಬೆಂಬಲ." },
+  "PM KUSUM Scheme": { hi: "पीएम कुसुम योजना", kn: "ಪಿಎಂ ಕುಸುಮ್ ಯೋಜನೆ" },
+  "Subsidies for setting up solar pumps and grid-connected solar power plants.": { hi: "सौर पंप और ग्रिड से जुड़े सौर ऊर्जा संयंत्र स्थापित करने के लिए सब्सिडी।", kn: "ಸೌರ ಪಂಪ್‌ಗಳು ಮತ್ತು ಗ್ರಿಡ್-ಸಂಪರ್ಕಿತ ಸೌರ ವಿದ್ಯುತ್ ಸ್ಥಾವರಗಳನ್ನು ಸ್ಥಾಪಿಸಲು ಸಬ್ಸಿಡಿಗಳು." },
+  
+  "Karnataka Raitha Suraksha": { hi: "कर्नाटक रैता सुरक्षा", kn: "ಕರ್ನಾಟಕ ರೈತ ಸುರಕ್ಷಾ" },
+  "Financial assistance to farmers during crop failure.": { hi: "फसल खराब होने के दौरान किसानों को आर्थिक सहायता।", kn: "ಬೆಳೆ ವೈಫಲ್ಯದ ಸಂದರ್ಭದಲ್ಲಿ ರೈತರಿಗೆ ಆರ್ಥಿಕ ನೆರವು." },
+  "Maharashtra Mahatma Jotirao Phule Shetkari Karjmukti": { hi: "महाराष्ट्र महात्मा जोतराव फुले शेतकरी कर्जमुक्ति", kn: "ಮಹಾರಾಷ್ಟ್ರ ಮಹಾತ್ಮ ಜ್ಯೋತಿರಾವ್ ಫುಲೆ ರೈತ ಸಾಲ ಮನ್ನಾ" },
+  "Debt relief for farmers facing severe financial crises.": { hi: "गंभीर आर्थिक संकट का सामना कर रहे किसानों के लिए ऋण राहत।", kn: "ತೀವ್ರ ಆರ್ಥಿಕ ಬಿಕ್ಕಟ್ಟು ಎದುರಿಸುತ್ತಿರುವ ರೈತರಿಗೆ ಸಾಲ ಮನ್ನಾ." },
+  "Rythu Bandhu Scheme": { hi: "रायथू बंधु योजना", kn: "ರೈತ ಬಂಧು ಯೋಜನೆ" },
+  "Investment support for agriculture and horticulture crops by way of a grant of ₹5,000 per acre per farmer.": { hi: "प्रति किसान ₹5,000 प्रति एकड़ के अनुदान के माध्यम से कृषि और बागवानी फसलों के लिए निवेश सहायता।", kn: "ಪ್ರತಿ ರೈತನಿಗೆ ಪ್ರತಿ ಎಕರೆಗೆ ₹5,000 ಅನುದಾನದ ಮೂಲಕ ಕೃಷಿ ಮತ್ತು ತೋಟಗಾರಿಕೆ ಬೆಳೆಗಳಿಗೆ ಹೂಡಿಕೆ ಬೆಂಬಲ." },
+  "KALIA Scheme": { hi: "कालिया योजना (KALIA)", kn: "ಕಾಳಿಯಾ ಯೋಜನೆ (KALIA)" },
+  "Financial assistance to cultivators, landless agricultural laborers, and vulnerable agricultural households.": { hi: "खेतिहरों, भूमिहीन कृषि मजदूरों और कमजोर कृषि परिवारों को वित्तीय सहायता।", kn: "ಕೃಷಿಕರು, ಭೂರಹಿತ ಕೃಷಿ ಕಾರ್ಮಿಕರು ಮತ್ತು ದುರ್ಬಲ ಕೃಷಿ ಕುಟುಂಬಗಳಿಗೆ ಆರ್ಥಿಕ ನೆರವು." },
+  "Delhi Free Spoken English Course": { hi: "दिल्ली मुफ्त अंग्रेजी बोलने का पाठ्यक्रम", kn: "ದೆಹಲಿ ಉಚಿತ ಸ್ಪೋಕನ್ ಇಂಗ್ಲಿಷ್ ಕೋರ್ಸ್" },
+  "Provides free comprehensive spoken English lessons for youth to enhance employability.": { hi: "रोजगार क्षमता बढ़ाने के लिए युवाओं को मुफ्त व्यापक बोली जाने वाली अंग्रेजी की कक्षाएं प्रदान करता है।", kn: "ಉದ್ಯೋಗವನ್ನು ಹೆಚ್ಚಿಸಲು ಯುವಜನರಿಗೆ ಉಚಿತ ಇಂಗ್ಲಿಷ್ ಭಾಷೆಯ ಪಾಠಗಳನ್ನು ಒದಗಿಸುತ್ತದೆ." },
+  "Tamil Nadu Makkalai Thedi Maruthuvam": { hi: "तमिलनाडु मक्कलै थेडी मरुथुवम", kn: "ತಮಿಳುನಾಡು ಮಕ್ಕಳೈ ತೇಡಿ ಮರುತ್ತುವಂ" },
+  "Doorstep healthcare services ensuring medical access to isolated households.": { hi: "अलग-थलग पड़े घरों तक चिकित्सा पहुंच सुनिश्चित करने वाली डोरस्टेप स्वास्थ्य सेवाएँ।", kn: "ಪ್ರತ್ಯೇಕವಾದ ಮನೆಗಳಿಗೆ ವೈದ್ಯಕೀಯ ಪ್ರವೇಶವನ್ನು ಖಾತ್ರಿಪಡಿಸುವ ಮನೆ ಬಾಗಿಲಿನ ಆರೋಗ್ಯ ಸೇವೆಗಳು." },
+  "Gujarat Vhali Dikri Yojana": { hi: "गुजरात वहाली दीकरी योजना", kn: "ಗುಜರಾತ್ ವಹಾಲಿ ದಿಕ್ರಿ ಯೋಜನೆ" },
+  "Financial assistance to families for the education and marriage of the girl child.": { hi: "बालिका की शिक्षा और विवाह के लिए परिवारों को वित्तीय सहायता।", kn: "ಹೆಣ್ಣು ಮಗುವಿನ ಶಿಕ್ಷಣ ಮತ್ತು ಮದುವೆಗಾಗಿ ಕುಟುಂಬಗಳಿಗೆ ಆರ್ಥಿಕ ನೆರವು." },
+  "e-NAM (National Agriculture Market)": { hi: "ई-नाम (राष्ट्रीय कृषि बाजार)", kn: "e-NAM (ರಾಷ್ಟ್ರೀಯ ಕೃಷಿ ಮಾರುಕಟ್ಟೆ)" },
+  "Pan-India electronic trading portal linking APMCs.": { hi: "एपीएमसी को जोड़ने वाला अखिल भारतीय इलेक्ट्रॉनिक ट्रेडिंग पोर्टल।", kn: "ಎಪಿಎಂಸಿಗಳನ್ನು ಲಿಂಕ್ ಮಾಡುವ ಪ್ಯಾನ್-ಇಂಡಿಯಾ ಎಲೆಕ್ಟ್ರಾನಿಕ್ ಟ್ರೇಡಿಂಗ್ ಪೋರ್ಟಲ್." },
+  "Ayushman Bharat PMJAY": { hi: "आयुष्मान भारत (PMJAY)", kn: "ಆಯುಷ್ಮಾನ್ ಭಾರತ್ (PMJAY)" },
+  "Medical cover up to 5 Lakhs.": { hi: "5 लाख तक का मेडिकल कवर।", kn: "5 ಲಕ್ಷದವರೆಗೆ ವೈದ್ಯಕೀಯ ರಕ್ಷಣೆ." },
+  "MUDRA Yojana": { hi: "मुद्रा योजना (MUDRA)", kn: "ಮುದ್ರಾ ಯೋಜನೆ" },
+  "Business loan support for entrepreneurs.": { hi: "उद्यमियों के लिए व्यवसाय ऋण सहायता।", kn: "ಉದ್ಯಮಿಗಳಿಗೆ ವ್ಯಾಪಾರ ಸಾಲ ಬೆಂಬಲ." },
+  
+  "Delhi": { hi: "दिल्ली", kn: "ದೆಹಲಿ" },
+  "Telangana": { hi: "तेलंगाना", kn: "ತೆಲಂಗಾಣ" },
+  "Tamil Nadu": { hi: "तमिलनाडु", kn: "ತಮಿಳುನಾಡು" },
+  "Odisha": { hi: "ओडिशा", kn: "ಒಡಿಶಾ" },
+  "Gujarat": { hi: "गुजरात", kn: "ಗುಜರಾತ್" },
+  "Maharashtra": { hi: "महाराष्ट्र", kn: "ಮಹಾರಾಷ್ಟ್ರ" },
+
   // Navigation
   "Home": { hi: "होम", kn: "ಮುಖಪುಟ" },
   "Explore Schemes": { hi: "योजनाएं खोजें", kn: "ಯೋಜನೆಗಳನ್ನು ಅನ್ವೇಷಿಸಿ" },
   "Personalized Schemes": { hi: "व्यक्तिगत योजनाएं", kn: "ವೈಯಕ್ತಿಕ ಯೋಜನೆಗಳು" },
   "AI Assistant": { hi: "एआई सहायक", kn: "AI ಸಹಾಯಕ" },
+  
+  // Profile UI
+  "My Profile": { hi: "मेरी प्रोफाइल", kn: "ನನ್ನ ಪ್ರೊಫೈಲ್" },
+  "Full Name": { hi: "पूरा नाम", kn: "ಪೂರ್ಣ ಹೆಸರು" },
+  "Age": { hi: "आयु", kn: "ವಯಸ್ಸು" },
+  "Phone Number": { hi: "फ़ोन नंबर", kn: "ದೂರವಾಣಿ ಸಂಖ್ಯೆ" },
+  "State": { hi: "राज्य", kn: "ರಾಜ್ಯ" },
+  "Occupation": { hi: "व्यवसाय", kn: "ಉದ್ಯೋಗ" },
+  "Income Range": { hi: "आय सीमा", kn: "ಆದಾಯ ಶ್ರೇಣಿ" },
+  "Not Specified": { hi: "उल्लेखित नहीं है", kn: "ಉಲ್ಲೇಖಿಸಿಲ್ಲ" },
+  "Registered Schemes": { hi: "पंजीकृत योजनाएं", kn: "ನೋಂದಾಯಿತ ಯೋಜನೆಗಳು" },
+  
+  // Footer
+  "SevaBot": { hi: "सेवा बॉट", kn: "ಸೇವಾಬಾಟ್" },
+  "AI-powered multilingual assistant helping users discover government schemes": { hi: "एआई-संचालित बहुभाषी सहायक जो उपयोगकर्ताओं को सरकारी योजनाओं की खोज करने में मदद करता है", kn: "ಬಳಕೆದಾರರಿಗೆ ಸರ್ಕಾರಿ ಯೋಜನೆಗಳನ್ನು ಅನ್ವೇಷಿಸಲು ಸಹಾಯ ಮಾಡುವ AI-ಚಾಲಿತ ಬಹುಭಾಷಾ ಸಹಾಯಕ" },
+  "ABOUT": { hi: "हमारे बारे में", kn: "ನಮ್ಮ ಬಗ್ಗೆ" },
+  "Features": { hi: "विशेषताएं", kn: "ವೈಶಿಷ್ಟ್ಯಗಳು" },
+  "How It Works": { hi: "यह कैसे काम करता है", kn: "ಇದು ಹೇಗೆ ಕೆಲಸ ಮಾಡುತ್ತದೆ" },
+  "Impact": { hi: "प्रभाव", kn: "ಪ್ರಭಾವ" },
+  "RESOURCES": { hi: "संसाधन", kn: "ಸಂಪನ್ಮೂಲಗಳು" },
+  "Demo": { hi: "डेमो", kn: "ಡೆಮೊ" },
+  "Contact": { hi: "संपर्क करें", kn: "ಸಂಪರ್ಕಿಸಿ" },
+  "FAQ": { hi: "सामान्य प्रश्न", kn: "FAQ ಗಳು" },
+  "LEGAL": { hi: "कानूनी", kn: "ಕಾನೂನು" },
+  "Privacy Policy": { hi: " गोपनीयता नीति", kn: "ಗೌಪ್ಯತೆ ನೀತಿ" },
+  "Terms of Service": { hi: "सेवा की शर्तें", kn: "ಸೇವಾ ನಿಯಮಗಳು" },
+  "© 2026 SevaBot. All rights reserved.": { hi: "© 2026 सेवा बॉट। सर्वाधिकार सुरक्षित।", kn: "© 2026 ಸೇವಾಬಾಟ್. ಎಲ್ಲ ಹಕ್ಕುಗಳನ್ನು ಕಾಯ್ದಿರಿಸಲಾಗಿದೆ." },
   
   // Index Hero
   "Try Now": { hi: "अभी आज़माएं", kn: "ಈಗ ಪ್ರಯತ್ನಿಸಿ" },
@@ -22,8 +146,8 @@ const translations = {
   "Lack of Awareness": { hi: "जागरूकता का अभाव", kn: "ಜಾಗೃತಿಯ ಕೊರತೆ" },
   "Digital Divide": { hi: "डिजिटल डिवाइड", kn: "ಡಿಜಿಟಲ್ ವಿಭಜನೆ" },
   
-  // How SevaBots Works
-  "How SevaBots Works": { hi: "सेवा बॉट्स कैसे काम करता है", kn: "ಸೇವಾಬಾಟ್ಸ್ ಹೇಗೆ ಕೆಲಸ ಮಾಡುತ್ತದೆ" },
+  // How SevaBot Works
+  "How SevaBot Works": { hi: "सेवा बॉट्स कैसे काम करता है", kn: "ಸೇವಾಬಾಟ್ಸ್ ಹೇಗೆ ಕೆಲಸ ಮಾಡುತ್ತದೆ" },
   "Simple steps to help you access schemes": { hi: "योजनाओं तक पहुंचने में आपकी मदद करने के लिए सरल कदम", kn: "ಯೋಜನೆಗಳಿಗೆ ಪ್ರವೇಶಿಸಲು ಸರಳ ಹಂತಗಳು" },
   "1. Answer": { hi: "1. उत्तर दें", kn: "1. ಉತ್ತರಿಸಿ" },
   "Answer a few simple questions": { hi: "कुछ सरल सवालों के जवाब दें", kn: "ಕೆಲವೇ ಸರಳ ಪ್ರಶ್ನೆಗಳಿಗೆ ಉತ್ತರಿಸಿ" },
@@ -32,8 +156,8 @@ const translations = {
   "3. Apply": { hi: "3. आवेदन करें", kn: "3. ಅರ್ಜಿ ಸಲ್ಲಿಸಿ" },
   "Get guidance to apply": { hi: "आवेदन के लिए मार्गदर्शन प्राप्त करें", kn: "ಅರ್ಜಿ ಸಲ್ಲಿಸಲು ಮಾರ್ಗದರ್ಶನ ಪಡೆಯಿರಿ" },
 
-  // How SevaBots Helps You
-  "How SevaBots Helps You": { hi: "सेवा बॉट्स आपकी कैसे मदद करता है", kn: "ಸೇವಾಬಾಟ್ಸ್ ನಿಮಗೆ ಹೇಗೆ ಸಹಾಯ ಮಾಡುತ್ತದೆ" },
+  // How SevaBot Helps You
+  "How SevaBot Helps You": { hi: "सेवा बॉट्स आपकी कैसे मदद करता है", kn: "ಸೇವಾಬಾಟ್ಸ್ ನಿಮಗೆ ಹೇಗೆ ಸಹಾಯ ಮಾಡುತ್ತದೆ" },
   "Simple features to make scheme access easy": { hi: "योजना तक पहुंच को आसान बनाने के लिए सरल सुविधाएं", kn: "ಯೋಜನೆ ಪ್ರವೇಶ ಸುಲಭಗೊಳಿಸುವ ಸರಳ ವೈಶಿಷ್ಟ್ಯಗಳು" },
   "AI Matching": { hi: "एआई मिलान", kn: "AI ಹೊಂದಾಣಿಕೆ" },
   "Find schemes based on your profile": { hi: "अपनी प्रोफ़ाइल के आधार पर योजनाएं खोजें", kn: "ನಿಮ್ಮ ಪ್ರೊಫೈಲ್ ಆಧಾರಿತ ಯೋಜನೆಗಳನ್ನು ಹುಡುಕಿ" },
@@ -57,6 +181,24 @@ const translations = {
   "Amit Patel": { hi: "अमित पटेल", kn: "ಅಮಿತ್ ಪಟೇಲ್" },
   "Gujarat": { hi: "गुजरात", kn: "ಗುಜರಾತ್" },
   "Sign In": { hi: "साइन इन करें", kn: "ಸೈನ್ ಇನ್" },
+  "Hello 👋 Tell me your situation and I will help you find suitable schemes. You can speak to me!": { hi: "नमस्ते 👋 मुझे अपनी स्थिति बताएं और मैं आपको उपयुक्त योजनाएं खोजने में मदद करूंगा। आप मुझसे बात कर सकते हैं!", kn: "ನಮಸ್ಕಾರ 👋 ನಿಮ್ಮ ಪರಿಸ್ಥಿತಿಯನ್ನು ನನಗೆ ತಿಳಿಸಿ ಮತ್ತು ಸೂಕ್ತವಾದ ಯೋಜನೆಗಳನ್ನು ಹುಡುಕಲು ನಾನು ನಿಮಗೆ ಸಹಾಯ ಮಾಡುತ್ತೇನೆ. ನೀವು ನನ್ನೊಂದಿಗೆ ಮಾತನಾಡಬಹುದು!" },
+  "Type or click the mic to speak...": { hi: "बोलने के लिए टाइप करें या माइक पर क्लिक करें...", kn: "ಮಾತನಾಡಲು ಟೈಪ್ ಮಾಡಿ ಅಥವಾ ಮೈಕ್ ಕ್ಲಿಕ್ ಮಾಡಿ..." },
+  "Send": { hi: "भेजें", kn: "ಕಳುಹಿಸಿ" },
+  "Listening...": { hi: "सुन रहा हूँ...", kn: "ಆಲಿಸಲಾಗುತ್ತಿದೆ..." },
+  "Welcome": { hi: "स्वागत है", kn: "ಸ್ವಾಗತ" },
+  "My Profile": { hi: "मेरी प्रोफ़ाइल", kn: "ನನ್ನ ಪ್ರೊಫೈಲ್" },
+  "Saved Schemes": { hi: "सहेजी गई योजनाएं", kn: "ಉಳಿಸಿದ ಯೋಜನೆಗಳು" },
+  "Logout": { hi: "लॉग आउट", kn: "ಲಾಗ್ ಔಟ್" },
+  "Delete": { hi: "हटाएं", kn: "ಅಳಿಸು" },
+  "Are you sure you want to remove this scheme?": { hi: "क्या आप वाकई इस योजना को हटाना चाहते हैं?", kn: "ನೀವು ನಿಜವಾಗಿಯೂ ಈ ಯೋಜನೆಯನ್ನು ತೆಗೆದುಹಾಕಲು ಬಯಸುವಿರಾ?" },
+  "Enter your details for easy access": { hi: "आसान पहुंच के लिए अपना विवरण दर्ज करें", kn: "ಸುಲಭ ಪ್ರವೇಶಕ್ಕಾಗಿ ನಿಮ್ಮ ವಿವರಗಳನ್ನು ನಮೂದಿಸಿ" },
+  "Full Name": { hi: "पूरा नाम", kn: "ಪೂರ್ಣ ಹೆಸರು" },
+  "Phone Number": { hi: "फ़ोन नंबर", kn: "ಫೋನ್ ಸಂಖ್ಯೆ" },
+  "Age": { hi: "आयु", kn: "ವಯಸ್ಸು" },
+  "Address": { hi: "पता", kn: "ವಿಳಾಸ" },
+  "PIN Code": { hi: "पिन कोड", kn: "ಪಿನ್ ಕೋಡ್" },
+  "Save Details": { hi: "विवरण सहेजें", kn: "ವಿವರಗಳನ್ನು ಉಳಿಸಿ" },
+  "Details saved successfully": { hi: "विवरण सफलतापूर्वक सहेजा गया", kn: "ವಿವರಗಳನ್ನು ಯಶಸ್ವಿಯಾಗಿ ಉಳಿಸಲಾಗಿದೆ" },
   
   // Buttons
   "Find Personalized Schemes": { hi: "व्यक्तिगत योजनाएं खोजें", kn: "ವೈಯಕ್ತಿಕ ಯೋಜನೆಗಳನ್ನು ಹುಡುಕಿ" },
@@ -215,7 +357,11 @@ window.translateStaticUI = function() {
   const elements = document.querySelectorAll('[data-i18n]');
   elements.forEach(el => {
     const key = el.getAttribute('data-i18n');
-    el.innerHTML = window.t(key);
+    if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+        el.placeholder = window.t(key);
+    } else {
+        el.innerHTML = window.t(key);
+    }
   });
 };
 
