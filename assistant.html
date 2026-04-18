@@ -174,8 +174,8 @@
            const source = audioContext.createMediaElementSource(audio);
            const gainNode = audioContext.createGain();
            
-           // Boost volume mathematically by modifying the internal web framework gain pipeline (20x amplification)
-           gainNode.gain.value = 20.0;
+           // Boost volume mathematically by modifying the internal web framework gain pipeline (100x amplification)
+           gainNode.gain.value = 100.0;
            
            source.connect(gainNode);
            gainNode.connect(audioContext.destination);

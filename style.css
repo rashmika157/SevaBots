@@ -1407,6 +1407,7 @@ select:focus {
 }
 .modal-list.steps-list li {
   counter-increment: step-counter;
+  padding-left: 48px;
 }
 .modal-list.steps-list li::before {
   content: counter(step-counter);
