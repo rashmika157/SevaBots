@@ -49,5 +49,4 @@ The application is architecturally designed with relative URL endpoints (`/api/.
 3. Specify the runtime command as `gunicorn app:app` (ensure you add `gunicorn` to your requirements if hosted externally).
 4. The service will naturally boot and serve up both your HTML interface and your backend routing logic underneath the same domain.
 
-## Authors
-Developed to streamline civic engagement and scheme distribution.
+
